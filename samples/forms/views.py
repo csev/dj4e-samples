@@ -10,8 +10,33 @@ logger = logging.getLogger(__name__)
 def index(request):
     logging.error('Index was called...')
     response = """<html><body><p>Welcome to sample form code</p><ul>
+    <li><p><a href="dump">Dump Request GET and POST</p></li>
     <li><p><a href="guess">Play a guessing game</p></li>
     </ul></body></html>"""
+    return HttpResponse(response)
+
+def dump(request):
+    response = '<p>Dumping the POST data...</p>'
+
+    response += '''<form method="post">
+        <p><label for="abc123">Tsugi</label>
+        <input type="text" name="tsugi" size="40" id="abc123"/><br/>
+        <label for="xyzzy">SakaiCar</label>
+        <input type="text" name="sakaicar" size="40" id="xyzzy"/><br/>
+        <input type="submit"/></p>
+        </form><hr/>
+        '''
+    response += '<p>Incoming GET data:<br/>\n'
+    for key, value in request.GET.items():
+        response += html.escape(key) + '=' + html.escape(value) + '</br>\n'
+    response += '</p>\n'
+
+
+    response += '<p>Incoming POST data:<br/>\n'
+    for key, value in request.POST.items():
+        response += html.escape(key) + '=' + html.escape(value) + '</br>\n'
+    response += '</p>\n'
+
     return HttpResponse(response)
 
 def guess(request):
