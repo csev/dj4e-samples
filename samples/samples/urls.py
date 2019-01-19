@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views
 # Use include() to add paths from other applications
 from django.urls import include
+
+urlpatterns = [
+    path('', views.index, name='home'),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +30,5 @@ urlpatterns = [
 urlpatterns += [
     path('forms/', include('forms.urls')),
 ]
+
 
