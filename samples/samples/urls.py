@@ -23,12 +23,11 @@ urlpatterns = [
     path('', views.index, name='home'),
 ]
 
-urlpatterns = [
+urlpatterns += [
     path('admin/', admin.site.urls),
 ]
 
 urlpatterns += [
     path('forms/', include('forms.urls')),
 ]
-
 

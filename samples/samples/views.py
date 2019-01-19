@@ -10,6 +10,6 @@ logger = logging.getLogger(__name__)
 def index(request):
     logging.error('Top level index was called...')
     response = """<html><body><p>Welcome to DJ4E sample code</p><ul>
-    <li><p><a href="form/guess">Play a guessing game</p></li>
+    <li><p><a href="forms/guess">Play a guessing game</p></li>
     </ul></body></html>"""
     return HttpResponse(response)
