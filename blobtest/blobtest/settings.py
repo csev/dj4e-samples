@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blobs.apps.BlobsConfig',
+    'blobui.apps.BlobuiConfig',
 ]
 
 MIDDLEWARE = [
