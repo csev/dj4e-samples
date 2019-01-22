@@ -16,7 +16,7 @@ These samples may be updated from time to tims so you might want to get updates
 using `git pull`.  Also if there are bugs, you are welcome to submit
 a Pull Request on github.
 
-All of the documentation material is copyright CC-BY 3.0 and the Code is copyright Apache 2.0
+All of the documentation material is copyright CC-BY 3.0 and the Code is copyright MIT
 by whomever wrote the code or documentation.  You are welcoe to use this in any way you see
 fit and paste code from this repo into your applications.
 
