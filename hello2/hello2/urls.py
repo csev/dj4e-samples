@@ -19,3 +19,15 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+# Route the top level URLs to the "home" application
+# This is the preferred way to build site-wide pages
+# And "home" can have its own models.py
+
+from django.urls import include
+from home import views
+
+urlpatterns += [
+    path('', include('home.urls')),
+]
+
