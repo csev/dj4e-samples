@@ -1,8 +1,8 @@
 DJ4E Samples
 ============
 
-This is a aset of Django projects that provide free sample code to
-support the www.dj4e.com instruction.
+This is aset of Django projects that provide free sample code to
+support the www.dj4e.com web site.
 
 To set this up, simply check it out into some folder
 
@@ -17,7 +17,7 @@ using `git pull`.  Also if there are bugs, you are welcome to submit
 a Pull Request on github.
 
 All of the documentation material is copyright CC-BY 3.0 and the Code is copyright MIT
-by whomever wrote the code or documentation.  You are welcoe to use this in any way you see
+by whomever wrote the code or documentation.  You are welcome to use this in any way you see
 fit and paste code from this repo into your applications.
 
 Running Locally
