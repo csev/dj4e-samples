@@ -10,7 +10,7 @@ To set this up, simply check it out into some folder
     git clone https://github.com/csev/dj4e-samples.git
 
 Each of the subfolders below dj4e-samples is a Django project that
-contains zero or applications.  
+contains zero or more applications.  
 
 These samples may be updated from time to tims so you might want to get updates
 using `git pull`.  Also if there are bugs, you are welcome to submit
