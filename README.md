@@ -1,7 +1,7 @@
 DJ4E Samples
 ============
 
-This is aset of Django projects that provide free sample code to
+This is a set of Django projects that provide free sample code to
 support the www.dj4e.com web site.
 
 To set this up, simply check it out into some folder
