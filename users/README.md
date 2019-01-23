@@ -1,7 +1,63 @@
-
 User Model
 ----------
 
 Take a look at models.py
 
-Do migrations.
+
+    $ python3 manage.py makemigrations
+    Migrations for 'usermodel':
+      usermodel/migrations/0001_initial.py
+        - Create model User
+
+    $ git status
+    Untracked files:
+
+        usermodel/models.py
+        usermodel/migrations/0001_initial.py
+
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+    $ python3 manage.py migrate
+    Running migrations:
+    Applying contenttypes.0001_initial... OK
+    ...
+    Applying sessions.0001_initial... OK
+    Applying usermodel.0001_initial... OK
+
+    $ sqlite3 db.sqlite3
+    SQLite version 3.24.0 2018-06-04 14:10:15
+    Enter ".help" for usage hints.
+    sqlite> .tables
+    auth_group                  django_admin_log
+    auth_group_permissions      django_content_type
+    auth_permission             django_migrations
+    auth_user                   django_session
+    auth_user_groups            usermodel_user
+    auth_user_user_permissions
+    sqlite> .schema usermodel_user
+    CREATE TABLE IF NOT EXISTS "usermodel_user" (
+        "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+        "name" varchar(128) NOT NULL,
+        "email" varchar(128) NOT NULL
+    );
+    sqlite> .quit
+
+    $ python3 manage.py shell
+    >>> from usermodel.models import User
+    >>> u = User(name='Kristen', email='kf@umich.edu')
+    >>> u.save()
+    >>> print(u.id)
+    1
+    >>> print(u.email)
+    kf@umich.edu
+    >>>
+
+    >>> from django.db import connection
+    >>> print(connection.queries)
+    [
+    {'sql': 'BEGIN', 'time': '0.000'},
+    {'sql': 'INSERT INTO "usermodel_user" ("name", "email") VALUES (\'Kristen\', \'kf@umich.edu\')',
+        'time': '0.002'}
+    ]
+    >>>
+
