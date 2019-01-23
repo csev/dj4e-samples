@@ -30,7 +30,7 @@ class Track(models.Model):
     length = models.IntegerField(null=True)
     count = models.IntegerField(null=True)
     album = models.ForeignKey('Album', on_delete=models.CASCADE)
-    genre = models.ForeignKey('Genre', on_delete=models.CASCADE)
+    genre = models.ForeignKey('Genre', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         """String for representing the Model object."""
