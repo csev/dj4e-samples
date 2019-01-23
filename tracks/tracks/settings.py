@@ -25,7 +25,7 @@ SECRET_KEY = 'skb6()crx550^5xz-f8*ya_yz$%z_@h-35h3_9+31b*^)pva86'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ '*' ]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tracksmodel.apps.TracksmodelConfig',
 ]
 
 MIDDLEWARE = [
