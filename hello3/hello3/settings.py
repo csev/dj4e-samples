@@ -25,7 +25,7 @@ SECRET_KEY = 'gjlsi1a__+j(55#55(#n9%vi#@=7dg5z^y5v16n48f7w-w@^on'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ '*' ]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home.apps.HomeConfig',
 ]
 
 MIDDLEWARE = [
