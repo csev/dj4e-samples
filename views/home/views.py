@@ -37,3 +37,4 @@ class MainView(View) :
         https://github.com/csev/dj4e-samples</a></p>
         </body></html>"""
         return HttpResponse(response)
+
