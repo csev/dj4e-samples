@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.utils.html import escape
 from django.views import View
 
 # Create your views here.
@@ -9,6 +10,18 @@ def funky(request):
     <p>This sample code is available at
     <a href="https://github.com/csev/dj4e-samples">
     https://github.com/csev/dj4e-samples</a></p>
+    </body></html>"""
+    return HttpResponse(response)
+
+def danger(request) :
+    response = """<html><body>
+    <p>Your guess was """+request.GET['guess']+"""</p>
+    </body></html>"""
+    return HttpResponse(response)
+
+def game(request) :
+    response = """<html><body>
+    <p>Your guess was """+escape(request.GET['guess'])+"""</p>
     </body></html>"""
     return HttpResponse(response)
 
