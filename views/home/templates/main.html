@@ -1,20 +1,24 @@
 <html><body><p>This is the views main.html sample</p>
+<p>
+<ul>
+    <li>This page is coming from a file in home/templates/main.html</li>
+    <li>Try <a href="funky">To see a view as a function</a></li>
+    <li>Try <a href="danger?guess=42">a dangerous game</a></li>
+    <li>Try <a href="danger?guess=%3Cb%3EBold%3C%2Fb%3E">a very dangerous game</a></li>
+    <li>Try <a href="danger?guess=%3Cscript%3Ealert%28%27Owned%27%29%3B%3C%2Fscript%3E">
+            a very very dangerous game</a>
+        (see also 
+        <a href="https://en.wikipedia.org/wiki/Code_injection#HTML_script_injection" target="_blank">
+            Script Injection</a>)
+    </li>
+    <li>Try <a href="game?guess=24">a safe game</a></li>
+    <li>Try <a href="game?guess=%3Cb%3EBold%3C%2Fb%3E">to attack a safe game</a></li>
+    <li>Try <a href="bounce" target="_blank">To see a page bounce (redirect)</a></li>
+    <li>Try <a href="main">To see a view as a class</a></li>
+</ul>
+</p>
 <p>This sample code is available at
 <a href="https://github.com/csev/dj4e-samples" target="_blank">
 https://github.com/csev/dj4e-samples</a>
-</p>
-<p>
-<ul>
-    <li>This is coming from a file in home/templates/main.html</li>
-    <li>Try <a href="funky">To see a view as a function</a></li>
-    <li>Try <a href="main">To see a view as a class</a></li>
-    <li>Try <a href="danger?guess=42">a dangerous game</a></li>
-    <li>Try <a href="danger?guess=%3Cb%3EBold%3C%2Fb%3E">a very dangerous game</a></li>
-    <li>Try <a href="danger?guess=%3Cscript%3Ealert%28%27Owned%27%29%3B%3C%2Fscript%3E">a very very dangerous game</a></li>
-    <li>Try <a href="game?guess=24">a safe game</a></li>
-    <li>Try <a href="game?guess=%3Cb%3EBold%3C%2Fb%3E">attack a safe game</a></li>
-    <li>Try <a href="bounce" target="_blank">To see a 
-            view function return a redirect</a></li>
-</ul>
 </p>
 </body></html>
