@@ -16,7 +16,7 @@ def special(request) :
 
 def loop(request) :
     f = ['Apple', 'Orange', 'Banana', 'Lychee']
-    n = []
+    n = ['peanut', 'cashew']
     x = {'fruits' : f, 'nuts' : n, 'zap' : '42' }
     return render(request, 'loop.html', x)
 

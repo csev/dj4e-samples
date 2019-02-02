@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.utils.html import escape
 from django.views import View
 
+
 # Create your views here.
 
 def funky(request):
@@ -25,6 +26,13 @@ def game(request) :
     </body></html>"""
     return HttpResponse(response)
 
+def rest(request, guess) :
+    response = """<html><body>
+    <p>Your guess was """+escape(guess)+"""</p>
+    </body></html>"""
+    return HttpResponse(response)
+
+# This is a command to the browser
 def bounce(request) :
     return HttpResponseRedirect('https://www.dj4e.com/lessons')
 
