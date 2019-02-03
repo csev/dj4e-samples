@@ -13,8 +13,11 @@ def cookie(request):
     resp.set_cookie('sakaicar', 42, max_age=1000) # seconds until expire
     return resp
 
+# https://www.youtube.com/watch?v=Ye8mB6VsUHw
+
 def sessfun(request) :
     context = {'zap' : '42' }
-    return render(request, 'guess.html', context)
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    return HttpResponse('click count='+str(request.session['num_visits']));
 
-# https://www.youtube.com/watch?v=Ye8mB6VsUHw
