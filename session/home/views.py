@@ -19,5 +19,5 @@ def sessfun(request) :
     context = {'zap' : '42' }
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
-    return HttpResponse('click count='+str(request.session['num_visits']));
+    return HttpResponse('click count='+str(request.session['num_visits']))
 
