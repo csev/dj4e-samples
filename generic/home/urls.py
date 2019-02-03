@@ -7,8 +7,8 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='main.html')),
     path('cats', views.CatListView.as_view()),
     path('cat/<int:pk_from_url>', views.CatDetailView.as_view()),
-    # path('dogs', views.DogListView.as_view()),
-    # path('dog/<int:pk>', views.DogDetailView.as_view()),
+    path('dogs', views.DogListView.as_view()),
+    path('dog/<int:pk>', views.DogDetailView.as_view()),
     path('horses', views.HorseListView.as_view(), name='horses-all-view'),
     path('horse/<int:pk>', views.HorseDetailView.as_view()),
 ]

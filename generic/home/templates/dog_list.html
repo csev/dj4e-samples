@@ -1,0 +1,14 @@
+<h1>Dog List</h1>
+<p>
+{% if dog_list %}
+<ul>
+  {% for dog in dog_list %}
+    <li>
+      <a href="/dog/{{ dog.id }}">{{ dog.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no dogs in the database.</p>
+{% endif %}
+</p>
