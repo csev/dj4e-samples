@@ -5,7 +5,7 @@
 # Otherwise make a super user and add the records
 # or run the shell and paset the commands.
 
-from home.models import Cat, Dog, Horse
+from home.models import Cat, Dog, Horse, Car
 
 x = Cat(name='Sophie')
 x.save()
@@ -22,3 +22,7 @@ x.save()
 x = Horse(name='Bravo')
 x.save()
 
+x = Car(name='SakaiCar')
+x.save()
+x = Car(name='Subaru')
+x.save()

@@ -13,3 +13,6 @@ class Dog(models.Model):
 class Horse(models.Model):
     name = models.CharField(max_length=128)
 
+class Car(models.Model):
+    name = models.CharField(max_length=128)
+

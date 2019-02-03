@@ -1,4 +1,4 @@
-from home.models import Cat, Dog, Horse 
+from home.models import Cat, Dog, Horse, Car
 
 from django.views import View
 from django.shortcuts import render
@@ -34,7 +34,8 @@ class DogDetailView(View):
         cntx = { modelname : obj }
         return render(request, modelname+'_detail.html', cntx)
 
-# Lets rely on built-in generics
+# Lets save time and use the built-in generics
+# https://docs.djangoproject.com/en/2.1/topics/class-based-views/generic-display/
 from django.views import generic
 
 class HorseListView(generic.ListView):
@@ -42,3 +43,31 @@ class HorseListView(generic.ListView):
 
 class HorseDetailView(generic.DetailView):
     model = Horse
+
+# Lets review how inheritance works to avoid repeating ourselves
+# It is all about convention
+class DJ4EListView(View):
+    def get(self, request) :
+        modelname = self.model._meta.verbose_name.title().lower()
+        stuff = self.model.objects.all()
+        cntx = { modelname+'_list': stuff }
+        return render(request, modelname+'_list.html', cntx)
+    
+class DJ4EDetailView(View):
+    def get(self, request, pk) :
+        modelname = self.model._meta.verbose_name.title().lower()
+        obj = self.model.objects.get(pk=pk)
+        cntx = { modelname : obj }
+        return render(request, modelname+'_detail.html', cntx)
+
+# Lets reuse those "generic" classes
+class CarListView(DJ4EListView):
+    model = Car
+
+class CarDetailView(DJ4EDetailView):
+    model = Car
+
+# There is much more to learn
+# https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView
+# https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-display/#django.views.generic.detail.ListView
+
