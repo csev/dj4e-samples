@@ -46,3 +46,11 @@ class MainView(View) :
         </body></html>"""
         return HttpResponse(response)
 
+class RestMainView(View) :
+    def get(self, request, guess):
+        print("We got a slug from the URL",guess);
+        response = """<html><body>
+        <p>Your guess was """+escape(guess)+"""</p>
+        </body></html>"""
+        return HttpResponse(response)
+

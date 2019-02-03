@@ -11,5 +11,6 @@ urlpatterns = [
     path('rest/<int:guess>', views.rest),
     path('bounce', views.bounce),
     path('main', views.MainView.as_view()),
+    path('remain/<slug:guess>', views.RestMainView.as_view()),
 ]
 
