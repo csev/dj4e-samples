@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     logging.error('Index was called...')
-    response = """<html><body><p>Welcome to sample form code</p><ul>
+    response = """<html><body><p>Welcome to sample getpost code</p><ul>
     <li><p><a href="dump">Dump Request GET and POST</p></li>
     <li><p><a href="guess">Play a guessing game</p></li>
     </ul></body></html>"""

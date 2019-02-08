@@ -1,15 +1,39 @@
-Hello World DJ4E
-================
+Hello World DJ4E (Using a "home" application)
+=============================================
 
 This is a simple single page web application that says "Hello
-World".  Some text was added to the end of `urls.py`
+World".  This version avoids using any project wide `views.py` file
+and instead puts the "top level" pages in an application called
+"home".  
 
+We have to update `home2/settings.py` to change the `ALLOWED_HOSTS` and
+to pull in the configuration for the new "home" application:
+
+    INSTALLED_APPS = [
+        ...
+        'django.contrib.staticfiles',
+        'home.apps.HomeConfig',
+    ]
+
+We delegate the top level URLs to the "home" application in the `home2/urls.py` application:
+
+    from django.urls import include
+    from home import views
+
+    urlpatterns += [
+        path('', include('home.urls')),
+    ]
+
+The file `home/urls.py` was created:
+
+    from django.urls import path
     from . import views
+
     urlpatterns = [
         path('', views.index, name='home'),
     ]
 
-The file `hello/views.py` was created:
+The file `home/views.py` was created:
 
     from django.http import HttpResponse
     import logging
@@ -38,15 +62,15 @@ can check all the sample code out as follows:
 
 Then under the web tab, update the config files to point to your new application:
 
-    Source code:                /home/--your-account--/dj4e-samples/hello
-    Working Directory:          /home/--your-account--/dj4e-samples/hello
+    Source code:                /home/--your-account--/dj4e-samples/hello2
+    Working Directory:          /home/--your-account--/dj4e-samples/hello2
 
 Update the lines in your `WGSI configuration file`:
 
     ...
-    path = os.path.expanduser('~/dj4e-samples/hello')
+    path = os.path.expanduser('~/dj4e-samples/hello2')
     ...
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'hello.settings'
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'hello2.settings'
 
 Then `Reload` your application and then visit the site.
 
