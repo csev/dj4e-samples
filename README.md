@@ -62,3 +62,21 @@ insists on redirecting to `/catalog` simply clear your cache.
 You can edit these files and settings in the Web tab to easily switch between
 the various projects in this repository.
 
+Approximate Order
+-----------------
+
+    hello - Project layout
+    getpost - HTTP get / post
+
+    users - One table model / SQL  / django shell
+    tracks - Many to one models / SQL / django shell
+
+    views - Function and class views
+    tmpl - Templates examples
+
+    generic - Looking at generic views - cats/dogs/horses/autos
+    session 
+
+    form - Using forms.py
+    autoscrud 
+
