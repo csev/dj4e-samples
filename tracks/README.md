@@ -1,11 +1,19 @@
 Tracks Model
 ------------
 
-Take a look at models.py.  Sample execution
+Take a look at models.py.  Make a superuser
 
+    $ python3 manage.py createsuperuser
+    Username (leave blank to use 'csev'): dj4e
+    Email address: sample@sample.com
+    Password: 
+    Password (again): 
+    Superuser created successfully.
+
+Sample execution
 
     $ python3 manage.py shell
-    >>> from tracksmodel.models import Artist, Genre, Album, Track;
+    >>> from home.models import Artist, Genre, Album, Track;
     >>> zep = Artist(name='Led Zepplin')
     >>> zep.save()
     >>> zep.id
