@@ -71,3 +71,11 @@ Sample execution
     >>> print(first.album.artist)
     Led Zepplin
     >>>
+
+    >>> from home.models import Artist, Genre, Album, Track;
+    >>> x = Artist.objects.get(pk=1)
+    >>> x
+    <Artist: Led Zepplin>
+    >>> x.album_set.values()
+    <QuerySet [{'id': 2, 'title': 'IV', 'artist_id': 1}]>
+
