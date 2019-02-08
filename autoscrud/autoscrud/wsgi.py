@@ -1,5 +1,5 @@
 """
-WSGI config for autos project.
+WSGI config for autoscrud project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "autos.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "autoscrud.settings")
 
 application = get_wsgi_application()

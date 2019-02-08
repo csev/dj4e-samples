@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from crud.models import Make, Auto
+from home.models import Make, Auto
 
 # Register your models here.
 
