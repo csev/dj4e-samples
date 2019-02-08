@@ -8,14 +8,14 @@ from django.http import HttpResponse
 def cookie(request):
     print(request.COOKIES)
     resp = HttpResponse('C is for cookie and that is good enough for me...')
-    resp.set_cookie('zap', 42) # No epired data = until browser close
+    if not request.COOKIES.get('zap') :
+        resp.set_cookie('zap', 42) # No epired data = until browser close
     resp.set_cookie('sakaicar', 42, max_age=1000) # seconds until expire
     return resp
 
 # https://www.youtube.com/watch?v=Ye8mB6VsUHw
 
 def sessfun(request) :
-    context = {'zap' : '42' }
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
     return HttpResponse('view count='+str(request.session['num_visits']))
