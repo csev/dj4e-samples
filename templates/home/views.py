@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import View
 
 # Create your views here.
 
@@ -29,8 +30,14 @@ def nested(request) :
     return render(request, 'nested.html', x)
     
 # Call this with a parameter number
-def game(request) :
-    x = {'guess' : int(request.GET['guess']) }
-    return render(request, 'cond.html', x)
-    
-    
+class GameView(View) :
+    def get(self, request, guess) :
+        x = {'guess' : int(guess) }
+        return render(request, 'cond.html', x)
+
+# Using inheritance (extend)
+class Game2View(View) :
+    def get(self, request, guess) :
+        x = {'guess' : int(guess) }
+        return render(request, 'cond2.html', x)
+

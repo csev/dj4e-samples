@@ -10,7 +10,8 @@ urlpatterns = [
     path('loop', views.loop),
     path('cond', views.cond),
     path('nested', views.nested),
-    path('game', views.game),
+    path('game/<slug:guess>', views.GameView.as_view()),
+    path('game2/<slug:guess>', views.Game2View.as_view()),
 
 ]
 
