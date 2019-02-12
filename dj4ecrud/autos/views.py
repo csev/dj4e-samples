@@ -10,8 +10,11 @@ from autos.models import Auto, Make
 
 class MainView(View) :
     def get(self, request):
-        return render(request, 'autos/auto_list.html')
+        mc = Make.objects.all().count();
+        al = Auto.objects.all();
 
+        ctx = { 'make_count': mc, 'auto_list': al };
+        return render(request, 'autos/auto_list.html', ctx)
 
 class AutoCreate(LoginRequiredMixin,CreateView):
     model = Auto
@@ -45,6 +48,6 @@ class MakeUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('autos')
 
 class MakeDelete(LoginRequiredMixin, DeleteView):
-    model = Auto
+    model = Make
     fields = '__all__'
     success_url = reverse_lazy('autos')
