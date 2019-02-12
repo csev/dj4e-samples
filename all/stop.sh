@@ -1,5 +1,8 @@
 
-echo "This kills most all the DJangos running on this server..."
+djangos=`ps -ewww | grep ' ./manage.py runserver 0.0.0.0:80[0-9][0-9]' | wc -l`
 
-ps -ewww | grep ' ./manage.py runserver 80[0-9][0-9]' | awk '{print "kill " $1}' | bash
+echo Killing $djangos Djangos on this server...
+sleep 5
+
+ps -ewww | grep ' ./manage.py runserver 0.0.0.0:80[0-9][0-9]' | awk '{print "kill " $1}' | sh
 
