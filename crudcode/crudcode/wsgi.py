@@ -1,5 +1,5 @@
 """
-WSGI config for autoscrud project.
+WSGI config for crudcode project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "autoscrud.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crudcode.settings")
 
 application = get_wsgi_application()
