@@ -44,10 +44,6 @@ cd ../form
 python3 ./manage.py migrate
 python3 ./manage.py runserver 0.0.0.0:8010 &
 
-cd ../dj4ecrud
-python3 ./manage.py migrate
-python3 ./manage.py runserver 0.0.0.0:8011 &
-
 sleep 8
 echo
 echo "Start at http://localhost:8001/"

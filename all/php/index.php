@@ -1,8 +1,10 @@
 <?php
 // To run local server
 // php -S localhost:8000
-$url_components = parse_url($_SERVER['HTTP_HOST']);
-$domain = $url_components['host'];
+$domain = $_SERVER['HTTP_HOST'];
+if ( strpos($domain, ':' ) > 0 ) {
+   $domain = substr($domain, 0 , strpos($domain, ':' ));
+}
 ?>
 <html>
 <head>
@@ -13,16 +15,15 @@ $domain = $url_components['host'];
     <p>
     Here are some samples (Each will open in a new tab):
     <ul>
-    <li><a href="http://<?= $domain ?>:8002" target="_blank">hello</a></li>
-    <li><a href="http://<?= $domain ?>:8003" target="_blank">getpost</a></li>
-    <li><a href="http://<?= $domain ?>:8004" target="_blank">users</a></li>
-    <li><a href="http://<?= $domain ?>:8005" target="_blank">tracks</a></li>
-    <li><a href="http://<?= $domain ?>:8006" target="_blank">views</a></li>
-    <li><a href="http://<?= $domain ?>:8007" target="_blank">templates</a></li>
-    <li><a href="http://<?= $domain ?>:8008" target="_blank">generic</a></li>
-    <li><a href="http://<?= $domain ?>:8009" target="_blank">session</a></li>
-    <li><a href="http://<?= $domain ?>:8010" target="_blank">form</a></li>
-    <li><a href="http://<?= $domain ?>:8011" target="_blank">dj4ecrud</a></li>
+    <li><a href="//<?= $domain ?>:8002" target="_blank">hello</a></li>
+    <li><a href="//<?= $domain ?>:8003" target="_blank">getpost</a></li>
+    <li><a href="//<?= $domain ?>:8004" target="_blank">users</a></li>
+    <li><a href="//<?= $domain ?>:8005" target="_blank">tracks</a></li>
+    <li><a href="//<?= $domain ?>:8006" target="_blank">views</a></li>
+    <li><a href="//<?= $domain ?>:8007" target="_blank">templates</a></li>
+    <li><a href="//<?= $domain ?>:8008" target="_blank">generic</a></li>
+    <li><a href="//<?= $domain ?>:8009" target="_blank">session</a></li>
+    <li><a href="//<?= $domain ?>:8010" target="_blank">form</a></li>
     </ul>
     <p>This sample code is available at
     <a href="https://github.com/csev/dj4e-samples" target="_blank">
