@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Auto List</h1>
+  {% if auto_list %}
+  <ul>
+    {% for autos in auto_list %}
+      <li>
+          {{ auto.nickname }} (Make)
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no autos in the library.</p>
+  {% endif %}
+  <p><a href="{% url 'auto_create' %}">Add an auto</a></p>
+  <p>
+    <a href="{% url 'make_list' %}">View makes</a> | 
+    <a href="{% url 'make_create' %}">Add a make</a>
+  </p>
+{% endblock %}

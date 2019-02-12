@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Make List</h1>
+  {% if make_list %}
+  <ul>
+    {% for make in make_list %}
+      <li>
+          {{ make.name }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no makes in the library.</p>
+  {% endif %}
+  <p><a href="{% url 'make_create' %}">Add a make</a></p>
+  <p>
+    <a href="{% url 'autos' %}">Back to autos</a>
+  </p>
+{% endblock %}
