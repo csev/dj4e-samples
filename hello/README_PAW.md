@@ -1,8 +1,8 @@
 Running on PythonAnywhere
 -------------------------
 
-If you are using PythonAnywhere.com to run your DJango applications, you
-can check all the sample code out as follows:
+If you cannot run Django locally, and have to run this code using 
+PythonAnywhere.com, you can check all the sample code out as follows:
 
     cd ~
     git clone https://github.com/csev/dj4e-samples.git
