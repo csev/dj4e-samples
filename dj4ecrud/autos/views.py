@@ -16,21 +16,6 @@ class MainView(LoginRequiredMixin, View) :
         ctx = { 'make_count': mc, 'auto_list': al };
         return render(request, 'autos/auto_list.html', ctx)
 
-class AutoCreate(LoginRequiredMixin,CreateView):
-    model = Auto
-    fields = '__all__'
-    success_url = reverse_lazy('autos')
-
-class AutoUpdate(LoginRequiredMixin, UpdateView):
-    model = Auto
-    fields = '__all__'
-    success_url = reverse_lazy('autos')
-
-class AutoDelete(LoginRequiredMixin, DeleteView):
-    model = Auto
-    fields = '__all__'
-    success_url = reverse_lazy('autos')
-
 class MakeView(LoginRequiredMixin,View) :
     def get(self, request):
         ml = Make.objects.all();
@@ -49,6 +34,22 @@ class MakeUpdate(LoginRequiredMixin, UpdateView):
 
 class MakeDelete(LoginRequiredMixin, DeleteView):
     model = Make
+    fields = '__all__'
+    success_url = reverse_lazy('autos')
+
+
+class AutoCreate(LoginRequiredMixin,CreateView):
+    model = Auto
+    fields = '__all__'
+    success_url = reverse_lazy('autos')
+
+class AutoUpdate(LoginRequiredMixin, UpdateView):
+    model = Auto
+    fields = '__all__'
+    success_url = reverse_lazy('autos')
+
+class AutoDelete(LoginRequiredMixin, DeleteView):
+    model = Auto
     fields = '__all__'
     success_url = reverse_lazy('autos')
 
