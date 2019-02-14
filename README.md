@@ -79,8 +79,9 @@ Approximate Order
     tmpl - Templates examples
 
     generic - Looking at generic views - cats/dogs/horses/autos
-    session 
+    session - Using the Django session features
 
     form - Using forms.py
-    autoscrud 
+
+    dj4escrud - A CRUD application
 
