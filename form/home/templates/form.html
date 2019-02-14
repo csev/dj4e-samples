@@ -1,3 +1,6 @@
+{% if errors %}
+<p>{{ errors|safe }}</p>
+{% endif %}
 <p>
   <form action="" method="post">
     {% csrf_token %}

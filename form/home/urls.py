@@ -8,4 +8,6 @@ urlpatterns = [
     path('example', views.example),
     path('create', views.SimpleCreate.as_view()),
     path('update', views.SimpleUpdate.as_view()),
+    path('validate', views.SimpleValidate.as_view()),
+    path('postredirect', views.RedirectValidate.as_view()),
 ]

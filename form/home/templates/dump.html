@@ -1,5 +1,6 @@
 <html><body>
 <p>Dump of {{ title }}:
+{% if errors %}{% for error in errors %}<p style='color: red'><b>Error:</b> {{ error }}</p>{% endfor %}{% endif %}
 <pre>
 {{ dump }}
 </pre>
