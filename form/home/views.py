@@ -4,9 +4,35 @@ from django.http import HttpResponse
 from django.views import View
 from home.forms import BasicForm
 
+from pprint import pprint
 import json
 
 # Create your views here.
+
+# https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message
+def get_form_errors(form) :
+
+    retval = list()
+    for field in form:
+        message = ''
+        for error in field.errors :
+            if len(message) > 0 : message += ', '
+            message += error
+
+        if len(message) > 0 :
+            row = {'name': field.name, 'label': field.label, 'message': message}
+            retval.append(row)
+
+    message = ''
+    for error in form.non_field_errors() :
+        if len(message) > 0 : message += ', '
+        message += error
+
+    if len(message) > 0 :
+        row = {'name': '_general', 'label': 'General errors', 'message': message}
+        retval.append(row)
+
+    return retval
 
 def example(request) :
     form = BasicForm()
@@ -72,10 +98,10 @@ class RedirectValidate(DumpPostView):
 
     def post(self, request) :
         form = BasicForm(request.POST)
+        pprint(form)
         if not form.is_valid() :
-            error_str = render_to_string('errors.html', {'form': form})
             request.session['form_post_data'] = request.POST
-            request.session['form_post_errors'] = error_str
+            request.session['form_post_errors'] = get_form_errors(form)
             return redirect(request.path)
 
         js = json.dumps(request.POST, sort_keys=True, indent=4)        
@@ -85,4 +111,4 @@ class RedirectValidate(DumpPostView):
 # References
 
 # https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message
-
+# https://stackoverflow.com/questions/383944/what-is-a-python-equivalent-of-phps-var-dump

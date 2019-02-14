@@ -1,5 +1,7 @@
 {% if errors %}
-<p>{{ errors|safe }}</p>
+    {% for error in errors %}
+    <p style="color:red">Error in {{ error.label }}: {{ error.message }}</p>
+    {% endfor %}
 {% endif %}
 <p>
   <form action="" method="post">
