@@ -97,7 +97,7 @@ class RedirectValidate2(DumpPostView):
         form = BasicForm(initial=old_data)
 
         ctx = {'form' : form, 'errors': form_errors}
-        return render(request, 'form.html', ctx)
+        return render(request, 'formerrors.html', ctx)
 
     def post(self, request) :
         form = BasicForm(request.POST)

@@ -1,3 +1,8 @@
+{% if errors %}
+    {% for error in errors %}
+    <p style="color:red">Error in {{ error.label }}: {{ error.message }}</p>
+    {% endfor %}
+{% endif %}
 <p>
   <form action="" method="post">
     {% csrf_token %}
