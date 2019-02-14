@@ -8,7 +8,7 @@ from autos.models import Auto, Make
 
 # Create your views here.
 
-class MainView(View) :
+class MainView(LoginRequiredMixin, View) :
     def get(self, request):
         mc = Make.objects.all().count();
         al = Auto.objects.all();
@@ -31,7 +31,7 @@ class AutoDelete(LoginRequiredMixin, DeleteView):
     fields = '__all__'
     success_url = reverse_lazy('autos')
 
-class MakeView(View) :
+class MakeView(LoginRequiredMixin,View) :
     def get(self, request):
         ml = Make.objects.all();
         ctx = { 'make_list': ml };
