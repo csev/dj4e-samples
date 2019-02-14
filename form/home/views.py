@@ -3,37 +3,12 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.views import View
 from home.forms import BasicForm
+from home.library import get_form_errors
 
 from pprint import pprint
 import json
 
 # Create your views here.
-
-# https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message
-def get_form_errors(form) :
-
-    retval = list()
-    for field in form:
-        message = ''
-        for error in field.errors :
-            if len(message) > 0 : message += ', '
-            message += error
-
-        if len(message) > 0 :
-            row = {'name': field.name, 'label': field.label, 'message': message}
-            retval.append(row)
-
-    message = ''
-    for error in form.non_field_errors() :
-        if len(message) > 0 : message += ', '
-        message += error
-
-    if len(message) > 0 :
-        row = {'name': '_general', 'label': 'General errors', 'message': message}
-        retval.append(row)
-
-    return retval
-
 def example(request) :
     form = BasicForm()
 
@@ -83,6 +58,34 @@ class SimpleValidate(DumpPostView):
 
 class RedirectValidate(DumpPostView):
     def get(self, request) :
+        # Check if we have been redirected...
+        redirect_html = request.session.pop('form_error_html', False)
+        if redirect_html : return HttpResponse(redirect_html)
+
+        old_data = {
+            'title': 'SakaiCar', 
+            'mileage' : 42, 
+            'purchase_date': '2018-08-14'
+        }
+        form = BasicForm(initial=old_data)
+        ctx = {'form' : form}
+        return render(request, 'form.html', ctx)
+
+    def post(self, request) :
+        form = BasicForm(request.POST)
+        if not form.is_valid() :
+            ctx = {'form' : form}
+            html = render_to_string('form.html', ctx, request=request)
+            request.session['form_error_html'] = html
+            return redirect(request.path)
+
+        js = json.dumps(request.POST, sort_keys=True, indent=4)        
+        ctx = {'title': 'request.POST', 'dump': js}
+        return render(request, 'formdump.html', ctx)
+
+# Pass only the errors back in a list
+class RedirectValidate2(DumpPostView):
+    def get(self, request) :
         old_data = {
             'title': 'SakaiCar', 
             'mileage' : 42, 
@@ -107,7 +110,6 @@ class RedirectValidate(DumpPostView):
         js = json.dumps(request.POST, sort_keys=True, indent=4)        
         ctx = {'title': 'request.POST', 'dump': js}
         return render(request, 'formdump.html', ctx)
-
 # References
 
 # https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message
