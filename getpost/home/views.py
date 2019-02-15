@@ -11,7 +11,8 @@ def index(request):
     logging.error('Index was called...')
     response = """<html><body><p>Welcome to sample getpost code</p><ul>
     <li><p><a href="dump">Dump Request GET and POST</p></li>
-    <li><p><a href="guess">Play a guessing game</p></li>
+    <li><p><a href="simple">Play a guessing game</p></li>
+    <li><p><a href="guess">Play another guessing game</p></li>
     </ul></body></html>"""
     return HttpResponse(response)
 
@@ -38,6 +39,25 @@ def dump(request):
     response += '</p>\n'
 
     return HttpResponse(response)
+
+def simple(request):
+    response = '<p>Impossible guessing game...</p>'
+
+    response += '''<form>
+        <p><label for="guess">Input Guess</label>
+        <input type="text" name="guess" size="40" id="guess"/></p>
+        <input type="submit"/>
+        </form>
+        '''
+
+    if len(request.GET) > 0 :
+        response += '<p>Incoming GET data:<br/>\n'
+        for key, value in request.GET.items():
+            response += html.escape(key) + '=' + html.escape(value) + '</br>\n'
+        response += '</p>\n'
+
+    return HttpResponse(response)
+
 
 def guess(request):
     response = '<p>Guessing game...</p>'
