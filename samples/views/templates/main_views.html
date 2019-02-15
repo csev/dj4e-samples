@@ -1,0 +1,33 @@
+<html><body><p>This is the views main.html sample</p>
+<p>
+<ul>
+    <li>This page is coming from a file in home/templates/main.html</li>
+    <li><a href="funky">Use a view function</a></li>
+    <li>Play <a href="danger?guess=42">a dangerous game</a></li>
+    <li>Play <a href="danger?guess=%3Cb%3EBold%3C%2Fb%3E">a very dangerous game</a></li>
+    <li>Play <a href="danger?guess=%3Cscript%3Ealert%28%27Owned%27%29%3B%3C%2Fscript%3E">
+            a very very dangerous game</a>
+        (see also 
+        <a href="https://en.wikipedia.org/wiki/Code_injection#HTML_script_injection" target="_blank">
+            Script Injection</a>)
+    </li>
+    <li>Play <a href="game?guess=24">a safe game</a></li>
+    <li>Try <a href="game?guess=%3Cb%3EBold%3C%2Fb%3E">to attack a safe game</a>
+        (see also 
+        <a href="https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references" target="_blank">
+            HTML Entities</a>)
+    </li>
+    <li>Play <a href="rest/24">a safe restful game</a></li>
+    <li><a href="main">Use a class-based view</a></li>
+    <li>Pass <a href="remain/abc123-42-xyzzy">a slug to a class-based view</a></li>
+    <li>Explore <a href="bounce">a server-side redirect (a 302 response)</a>
+        (see also <a href="https://en.wikipedia.org/wiki/Server-side_redirect" target="_blank">
+                Documentation</a>)
+    </li>
+</ul>
+</p>
+<p>This sample code is available at
+<a href="https://github.com/csev/dj4e-samples" target="_blank">
+https://github.com/csev/dj4e-samples</a>
+</p>
+</body></html>

@@ -1,0 +1,14 @@
+<h1>Horse List</h1>
+<p>
+{% if horse_list %}
+<ul>
+  {% for horse in horse_list %}
+    <li>
+      <a href="/horse/{{ horse.id }}">{{ horse.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no horses in the database.</p>
+{% endif %}
+</p>

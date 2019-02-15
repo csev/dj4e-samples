@@ -1,0 +1,28 @@
+
+# In linux, mac terminal, or WSL bash do this y
+# python3 manage.py shell < load.txt
+
+# Otherwise make a super user and add the records
+# or run the shell and paset the commands.
+
+from generic.models import Cat, Dog, Horse, Car
+
+x = Cat(name='Sophie')
+x.save()
+x = Cat(name='Frankie')
+x.save()
+
+x = Dog(name='Cutter')
+x.save()
+x = Dog(name='Peanut')
+x.save()
+
+x = Horse(name='Penny')
+x.save()
+x = Horse(name='Bravo')
+x.save()
+
+x = Car(name='SakaiCar')
+x.save()
+x = Car(name='Subaru')
+x.save()

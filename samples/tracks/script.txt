@@ -1,0 +1,52 @@
+from tracks.models import Artist, Genre, Album, Track;
+
+zep = Artist(name='Led Zepplin')
+zep.save()
+zep.id
+    
+abc = Artist(name='ACDC')
+abc.save()
+
+Artist.objects.values()
+
+made = Album(title='Who Made Who', artist=abc)
+made.save()
+zep_iv = Album(title='IV', artist=zep)
+zep_iv.save()
+ROCK = Genre(name='Rock')
+ROCK.save()
+met = Genre(name='Metal')
+met.save()
+
+x = Track(title='Black Dog', rating=5, length=297, count=9, album=zep_iv, genre=ROCK)
+x.save()
+x.id
+    
+x = Track(title='Stairway', rating=5, length=482, count=0, album=zep_iv, genre=ROCK)
+x.save()
+x.id
+    
+x = Track(title='About to Rock', rating=5, length=313, count=0, album=made, genre=met)
+x.save()
+x = Track(title='Who Made Who', rating=5, length=207, count=0, album=made, genre=met)
+x.save()
+    
+Track.objects.values()
+
+first = Track.objects.get(pk=1)
+first
+    
+print(first)
+    
+print(first.genre)
+    
+print(first.genre.name)
+    
+print(first.album)
+    
+print(first.album.artist)
+
+from home.models import Artist, Genre, Album, Track;
+x = Artist.objects.get(pk=1)
+
+x.album_set.values()

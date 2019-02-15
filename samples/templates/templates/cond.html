@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>A conditional template</title>
+</head>
+<body>
+    <p>Your guess was {{ guess }}</p>
+    {% if guess < 42 %}
+        <p>Too low</p>
+    {% elif guess > 42 %}
+        <p>Too high</p>
+    {% else %}
+        <p>Just right</p>
+    {% endif %}
+</body>
+</html>

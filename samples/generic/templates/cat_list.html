@@ -1,0 +1,14 @@
+<h1>Cat List</h1>
+<p>
+{% if cat_list %}
+<ul>
+  {% for cat in cat_list %}
+    <li>
+      <a href="/cat/{{ cat.id }}">{{ cat.name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no cats in the database.</p>
+{% endif %}
+</p>
