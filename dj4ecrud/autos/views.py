@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 
 from autos.models import Auto, Make
 from autos.forms import MakeForm
@@ -27,14 +29,20 @@ class MakeCreate(LoginRequiredMixin, View):
     template = 'autos/make_form.html'
     success_url = reverse_lazy('autos')
     def get(self, request) :
+        # Check if we have been redirected...
+        redirect_html = request.session.pop('form_error_html', False)
+        if redirect_html : return HttpResponse(redirect_html)
+
         form = MakeForm()
         ctx = { 'form': form }
         return render(request, self.template, ctx)
 
     def post(self, request) :
         form = MakeForm(request.POST)
-        if not form.is_valid :
-            request.session['form_error'] = 'Error on form'
+        if not form.is_valid() :
+            ctx = {'form' : form}
+            html = render_to_string(self.template, ctx, request=request)
+            request.session['form_error_html'] = html
             return redirect(request.path)
 
         make = form.save()
@@ -45,6 +53,10 @@ class MakeUpdate(LoginRequiredMixin, View):
     success_url = reverse_lazy('autos')
     template = 'autos/make_form.html'
     def get(self, request, pk) :
+        # Check if we have been redirected...
+        redirect_html = request.session.pop('form_error_html', False)
+        if redirect_html : return HttpResponse(redirect_html)
+
         make = get_object_or_404(self.model, pk=pk) 
         form = MakeForm(instance=make)
         ctx = { 'form': form }
@@ -53,8 +65,10 @@ class MakeUpdate(LoginRequiredMixin, View):
     def post(self, request, pk) :
         make = get_object_or_404(self.model, pk=pk) 
         form = MakeForm(request.POST, instance = make)
-        if not form.is_valid :
-            request.session['form_error'] = 'Error on form'
+        if not form.is_valid() :
+            ctx = {'form' : form}
+            html = render_to_string(self.template, ctx, request=request)
+            request.session['form_error_html'] = html
             return redirect(request.path)
 
         form.save()
