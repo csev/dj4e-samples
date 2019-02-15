@@ -17,7 +17,10 @@ class Make(models.Model):
         return self.name
 
 class Auto(models.Model) : 
-    nickname = models.CharField(max_length=200)
+    nickname = models.CharField(
+            max_length=200,
+            validators=[MinLengthValidator(2, "Make must be greater than 1 character")]
+   )
     make = models.ForeignKey('Make', on_delete=models.CASCADE, null=False)
     mileage = models.PositiveIntegerField()
     comments = models.CharField(max_length=300)
