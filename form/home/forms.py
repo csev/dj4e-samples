@@ -8,6 +8,9 @@ class BasicForm(forms.Form):
     mileage = forms.IntegerField()
     purchase_date = forms.DateField()
 
+
+
+
 # References 
 
 # https://docs.djangoproject.com/en/2.1/ref/forms/api/

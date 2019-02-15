@@ -9,6 +9,7 @@
 <form action="" method="POST">
   {% csrf_token %}
   <input type="submit" value="Yes, delete.">
+  <input type="submit" onclick="window.location='{% url 'autos' %}' ; return false;" value="Cancel">
 </form>
 
 {% endblock %}
