@@ -29,10 +29,6 @@ class MakeCreate(LoginRequiredMixin, View):
     template = 'autos/make_form.html'
     success_url = reverse_lazy('autos')
     def get(self, request) :
-        # Check if we have been redirected...
-        redirect_html = request.session.pop('form_error_html', False)
-        if redirect_html : return HttpResponse(redirect_html)
-
         form = MakeForm()
         ctx = { 'form': form }
         return render(request, self.template, ctx)
@@ -41,9 +37,7 @@ class MakeCreate(LoginRequiredMixin, View):
         form = MakeForm(request.POST)
         if not form.is_valid() :
             ctx = {'form' : form}
-            html = render_to_string(self.template, ctx, request=request)
-            request.session['form_error_html'] = html
-            return redirect(request.path)
+            return render(request, self.template, ctx)
 
         make = form.save()
         return redirect(self.success_url)
@@ -53,10 +47,6 @@ class MakeUpdate(LoginRequiredMixin, View):
     success_url = reverse_lazy('autos')
     template = 'autos/make_form.html'
     def get(self, request, pk) :
-        # Check if we have been redirected...
-        redirect_html = request.session.pop('form_error_html', False)
-        if redirect_html : return HttpResponse(redirect_html)
-
         make = get_object_or_404(self.model, pk=pk) 
         form = MakeForm(instance=make)
         ctx = { 'form': form }
@@ -67,9 +57,7 @@ class MakeUpdate(LoginRequiredMixin, View):
         form = MakeForm(request.POST, instance = make)
         if not form.is_valid() :
             ctx = {'form' : form}
-            html = render_to_string(self.template, ctx, request=request)
-            request.session['form_error_html'] = html
-            return redirect(request.path)
+            return render(request, self.template, ctx)
 
         form.save()
         return redirect(self.success_url)

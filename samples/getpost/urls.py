@@ -6,4 +6,5 @@ urlpatterns = [
     path('dump', views.dump, name='dump'),
     path('simple', views.simple, name='simple'),
     path('guess', views.guess, name='guess'),
+    path('bounce', views.bounce, name='bounce'),
 ]

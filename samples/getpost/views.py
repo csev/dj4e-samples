@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import logging
 import html
 
@@ -8,11 +8,13 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 def index(request):
-    logging.error('Index was called...')
+    logging.error('Logging from index...')
+    print('Printing from index...')
     response = """<html><body><p>Welcome to sample getpost code</p><ul>
     <li><p><a href="dump">Dump Request GET and POST</p></li>
     <li><p><a href="simple">Play a guessing game</p></li>
     <li><p><a href="guess">Play another guessing game</p></li>
+    <li><p><a href="bounce">Play with redirect</p></li>
     </ul></body></html>"""
     return HttpResponse(response)
 
@@ -86,3 +88,6 @@ def guess(request):
 
     return HttpResponse(response)
 
+# Send a 302 and Location: header to the browser
+def bounce(request) :
+    return HttpResponseRedirect('https://www.dj4e.com/lessons')
