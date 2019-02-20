@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 
 class Make(models.Model):
-    """Model representing a book genre."""
     name = models.CharField(
             max_length=200, 
             help_text='Enter a make (e.g. Dodge)',
@@ -18,7 +17,7 @@ class Make(models.Model):
 class Auto(models.Model) : 
     nickname = models.CharField(
             max_length=200,
-            validators=[MinLengthValidator(2, "Make must be greater than 1 character")]
+            validators=[MinLengthValidator(2, "Nickname must be greater than 1 character")]
     )
     mileage = models.PositiveIntegerField()
     comments = models.CharField(max_length=300)
