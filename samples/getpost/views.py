@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 import logging
 import html
+from django.views.decorators.csrf import csrf_exempt
 
 logger = logging.getLogger(__name__)
 
@@ -12,12 +13,14 @@ def index(request):
     print('Printing from index...')
     response = """<html><body><p>Welcome to sample getpost code</p><ul>
     <li><p><a href="dump">Dump Request GET and POST</p></li>
+    <li><p><a href="block">Test missing CSRF</p></li>
     <li><p><a href="simple">Play a guessing game</p></li>
     <li><p><a href="guess">Play another guessing game</p></li>
     <li><p><a href="bounce">Play with redirect</p></li>
     </ul></body></html>"""
     return HttpResponse(response)
 
+@csrf_exempt
 def dump(request):
     response = '<p>Dumping the POST data...</p>'
 
@@ -42,6 +45,19 @@ def dump(request):
 
     return HttpResponse(response)
 
+def block(request):
+    response = '<p>Expect CSRF Failure...</p>'
+
+    response += '''<form method="post">
+        <p><label for="abc123">Tsugi</label>
+        <input type="text" name="tsugi" size="40" id="abc123"/><br/>
+        <label for="xyzzy">SakaiCar</label>
+        <input type="text" name="sakaicar" size="40" id="xyzzy"/><br/>
+        <input type="submit"/></p>
+        </form><hr/>
+        '''
+    return HttpResponse(response)
+
 def simple(request):
     response = '<p>Impossible guessing game...</p>'
 
@@ -60,7 +76,7 @@ def simple(request):
 
     return HttpResponse(response)
 
-
+@csrf_exempt
 def guess(request):
     response = '<p>Guessing game...</p>'
     guess = request.POST.get('guess')
@@ -91,3 +107,8 @@ def guess(request):
 # Send a 302 and Location: header to the browser
 def bounce(request) :
     return HttpResponseRedirect('https://www.dj4e.com/lessons')
+
+
+# References
+
+# https://stackoverflow.com/questions/3289860/how-can-i-embed-django-csrf-token-straight-into-html
