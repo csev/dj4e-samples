@@ -51,10 +51,11 @@ class Validate(DumpPostView):
         if not form.is_valid() :
             ctx = {'form' : form}
             return render(request, 'form.html', ctx)
+        return redirect('/form/success')
 
-        js = json.dumps(request.POST, sort_keys=True, indent=4)        
-        ctx = {'title': 'request.POST', 'dump': js}
-        return render(request, 'formdump.html', ctx)
+def success(request) :
+    return HttpResponse('Thank you!')
+
 
 # References
 

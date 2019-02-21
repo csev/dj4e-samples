@@ -9,4 +9,5 @@ urlpatterns = [
     path('create', views.SimpleCreate.as_view()),
     path('update', views.SimpleUpdate.as_view()),
     path('validate', views.Validate.as_view()),
+    path('success', views.success),
 ]
