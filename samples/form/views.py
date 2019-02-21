@@ -3,7 +3,6 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.views import View
 from form.forms import BasicForm
-from form.library import get_form_errors
 
 from pprint import pprint
 import json
