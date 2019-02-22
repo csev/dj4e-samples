@@ -51,6 +51,7 @@ class Validate(DumpPostView):
         if not form.is_valid() :
             ctx = {'form' : form}
             return render(request, 'form.html', ctx)
+        # Save the Data
         return redirect('/form/success')
 
 def success(request) :
