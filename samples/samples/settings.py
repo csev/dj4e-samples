@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'home.apps.HomeConfig',
     'getpost.apps.GetpostConfig',
     'users.apps.UsersConfig',
@@ -46,7 +47,11 @@ INSTALLED_APPS = [
     'generic.apps.GenericConfig',
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
+    'crispy.apps.CrispyConfig',
 ]
+
+# When we get to crispy forms :)
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

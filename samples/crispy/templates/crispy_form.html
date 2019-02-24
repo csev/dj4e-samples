@@ -1,0 +1,13 @@
+{% extends "crispy_base.html" %}
+{% block title %}DJ4E Crispy Forms{% endblock %}
+{% block content %}
+<p>
+  {% load crispy_forms_tags %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit">
+    <input type="submit" onclick="window.location='{% url 'crispy_main' %}' ; return false;" value="Cancel">
+  </form>
+</p>
+{% endblock %}

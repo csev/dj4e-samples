@@ -28,4 +28,5 @@ urlpatterns = [
     path('generic/', include('generic.urls')),
     path('session/', include('session.urls')),
     path('form/', include('form.urls')),
+    path('crispy/', include('crispy.urls')),
 ]
