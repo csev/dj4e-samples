@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +29,15 @@ urlpatterns = [
     path('generic/', include('generic.urls')),
     path('session/', include('session.urls')),
     path('form/', include('form.urls')),
-    path('crispy/', include('crispy.urls')),
 ]
+
+if 'crispy_forms' in settings.INSTALLED_APPS :
+    url_pattern += [
+        path('crispy/', include('crispy.urls')),
+    ]
+
+if 'rest_framework' in settings.INSTALLED_APPS :
+    url_pattern += [
+        path('rest/', include('rest.urls')),
+    ]
+

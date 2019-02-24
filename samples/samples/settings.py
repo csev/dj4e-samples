@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
     'home.apps.HomeConfig',
     'getpost.apps.GetpostConfig',
     'users.apps.UsersConfig',
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     'generic.apps.GenericConfig',
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
-    'crispy.apps.CrispyConfig',
 ]
 
 # When we get to crispy forms :)
@@ -132,3 +130,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Install optional bits that depend on several pip installs
+try:
+    from rest_framework import serializers
+    INSTALLED_APPS += [
+        'rest_framework',
+        'rest.apps.RestConfig',
+    ]
+except:
+    print('Could not find rest_framework, please see requirements.txt')
+
+try: 
+    from crispy_forms.helper import FormHelper
+    INSTALLED_APPS += [
+        'crispy_forms',
+        'crispy.apps.CrispyConfig',
+    ]
+except:
+    print('Could not find crispy forms, please see requirements.txt')
+
+

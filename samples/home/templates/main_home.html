@@ -15,9 +15,23 @@
         <li><a href="generic" target="_blank">generic</a> - Understanding how the generic views work</li>
         <li><a href="session" target="_blank">session</a> - Cookies and sessions</li>
         <li><a href="form" target="_blank">form</a> - Using the Django forms library</li>
+        {% if 'crispy_forms' in django.conf.settings.INSTALLED_APP %}
         <li><a href="crispy" target="_blank">crispy</a> - Using the Django crispy forms library
             (<a href="https://django-crispy-forms.readthedocs.io/en/latest/" target="_blank">Documentation</a>)
         </li>
+        {% else %}
+        <li>To use the <b>crispy</b> sample code - use 'pip' to install
+            <a href="https://django-crispy-forms.readthedocs.io/en/latest/" target="_blank">Django crispy forms</a>
+        </li>
+        {% endif %}
+        {% if 'rest_framework' in django.conf.settings.INSTALLED_APP %}
+        <li><a href="rest" target="_blank">rest</a> - Using the Django rest framework
+            (<a href="https://www.django-rest-framework.org/" target="_blank">Documentation</a>)
+        </li>
+        {% else %}
+        <li>To use the <b>rest</b> sample code - use 'pip' to install
+            <a href="https://www.django-rest-framework.org/" target="_blank">The Django Rest Framework</a>
+        {% endif %}
     </ul>
     <p>
         You can access the implementation of some of the later projects at
