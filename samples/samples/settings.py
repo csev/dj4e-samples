@@ -151,4 +151,9 @@ try:
 except:
     print('Could not find crispy forms, please see requirements.txt')
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
