@@ -34,6 +34,25 @@
             <a href="https://www.django-rest-framework.org/" target="_blank">The Django Rest Framework</a>
         {% endif %}
     </ul>
+<p>
+{% if islocal %}
+Some of the samples will require a user login.
+</p>
+<p>
+You can play with this code at
+<a href="https://samples.dj4e.com" target="_blank">https://samples.dj4e.com</a>.
+{% else %}
+You
+might need an account and password to log in for certain features.  You might try this:
+<pre>
+Username: dj4e-samples
+Password: dj4e_nn_!
+</pre>
+There is a part of this password that you need to guess.  But if you have done your
+homework, it should only take you one guess (instead of 100 guesses).
+{% endif %}
+</p>
+
     <p>
         You can access the implementation of some of the later projects at
         <a href="https://projects.dj4e.com/" target="_blank">https:/projects.dj4e.com/</a>.
