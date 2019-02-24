@@ -1,17 +1,11 @@
-from django.http import HttpResponse
-import logging
-
-logger = logging.getLogger(__name__)
+from django.shortcuts import render
+from django.views import View
+from django.conf import settings
 
 # Create your views here.
 
-def helloworld(request):
-    logging.error('Hello world DJ4E in the log...')
-    print('Hello world DJ4E in a print statement...')
-    response = """<html><body><p>Hello world DJ4E in HTML</p>
-    <p>This sample code is available at
-    <a href="https://github.com/csev/dj4e-samples">
-    https://github.com/csev/dj4e-samples</a></p>
-    </body></html>"""
-    return HttpResponse(response)
+class HomeView(View):
+    def get(self, request) :
+        context = {'installed' : settings.INSTALLED_APPS }
+        return render(request, 'main_home.html', context)
 

@@ -19,8 +19,9 @@ from django.urls import include
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    path('admin/', admin.site.urls),
+    path('hello/', include('hello.urls')),
     path('getpost/', include('getpost.urls')),
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),
@@ -32,12 +33,12 @@ urlpatterns = [
 ]
 
 if 'crispy_forms' in settings.INSTALLED_APPS :
-    url_pattern += [
+    urlpatterns += [
         path('crispy/', include('crispy.urls')),
     ]
 
 if 'rest_framework' in settings.INSTALLED_APPS :
-    url_pattern += [
+    urlpatterns += [
         path('rest/', include('rest.urls')),
     ]
 
