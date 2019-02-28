@@ -1,0 +1,17 @@
+<h1>{{ article.title }}</h1>
+<p>
+{{ article.text }}
+</p>
+{% if article.owner == user %}
+<p>
+<a href="{% url 'article_update' article.id %}">Edit Article</a> | 
+<a href="{% url 'article_delete' article.id %}">Delete Article</a>
+</p>
+{% endif %}
+<p>
+(Created: {{ article.created_at }}, Updated: {{ article.updated_at }})
+</p>
+<p>
+<a href="{% url 'articles' %}">All articles</a>
+</p>
+

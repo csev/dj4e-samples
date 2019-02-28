@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'generic.apps.GenericConfig',
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
+    'owner.apps.OwnerConfig',
 ]
 
 # When we get to crispy forms :)
@@ -157,3 +158,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+LOGOUT_REDIRECT_URL = '/'

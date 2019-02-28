@@ -1,0 +1,8 @@
+<h1>Delete Article</h1>
+
+<p>Are you sure you want to delete the auto: {{ article }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>

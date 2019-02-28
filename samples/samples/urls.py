@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('hello/', include('hello.urls')),
     path('getpost/', include('getpost.urls')),
     path('users/', include('users.urls')),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('generic/', include('generic.urls')),
     path('session/', include('session.urls')),
     path('form/', include('form.urls')),
+    path('owner/', include('owner.urls')),
 ]
 
 if 'crispy_forms' in settings.INSTALLED_APPS :
