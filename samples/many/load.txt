@@ -1,7 +1,7 @@
-Jane,I,Python
-Ed,L,Python
-Sue,L,Python
-Ed,I,Django
-Sue,L,Django
-Ed,I,SQL
-Jane,L,SQL
+jane@tsugi.org,I,Python
+ed@tsugi.org,L,Python
+sue@tsugi.org,L,Python
+ed@tsugi.org,I,Django
+sue@tsugi.org,L,Django
+ed@tsugi.org,I,SQL
+jane@tsugi.org,L,SQL

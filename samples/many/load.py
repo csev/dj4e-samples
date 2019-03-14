@@ -3,32 +3,33 @@
 
 from many.models import Person, Course, Membership
 
-hand = open('many/load.txt')
+fhand = open('many/load.txt')
 
 Person.objects.all().delete()
 Course.objects.all().delete()
 Membership.objects.all().delete()
 
 # Format
-# Jane,I,Python
-# Ed,L,Python
+# jane@tsugi.org,I,Python
+# ed@tsugi.org,L,Python
 
-for line in hand:
+for line in fhand:
     line = line.strip()
     print(line)
     pieces = line.split(',')
+
     try:
-        p = Person.objects.get(name=pieces[0])
+        p = Person.objects.get(email=pieces[0])
     except:
         print("Inserting person",pieces[0])
-        p = Person(name=pieces[0])
+        p = Person(email=pieces[0])
         p.save()
 
     try:
-        c = Course.objects.get(name=pieces[2])
+        c = Course.objects.get(title=pieces[2])
     except:
         print("Inserting course",pieces[2])
-        c = Course(name=pieces[2])
+        c = Course(title=pieces[2])
         c.save()
 
     r = Membership.LEARNER

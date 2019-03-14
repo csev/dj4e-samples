@@ -1,17 +1,18 @@
 from django.db import models
 
 class Person(models.Model):
-    name = models.CharField(max_length=128, unique=True)
+    email = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=128, null=True)
 
     def __str__(self):
-        return self.name
+        return self.email
 
 class Course(models.Model):
-    name = models.CharField(max_length=128, unique=True)
+    title = models.CharField(max_length=128, unique=True)
     members = models.ManyToManyField(Person, through='Membership')
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class Membership(models.Model):
     LEARNER = 1
@@ -39,6 +40,9 @@ class Membership(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "Person "+ str(self.person.id) + " <--> Course " + str(self.course.id)
 
 # References
 
