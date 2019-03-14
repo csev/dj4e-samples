@@ -1,6 +1,7 @@
 
 Register in admin
 
+python3 manage.py shell < many/load.py 
 
 References
 ----------
