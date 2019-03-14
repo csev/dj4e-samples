@@ -32,6 +32,7 @@ urlpatterns = [
     path('session/', include('session.urls')),
     path('form/', include('form.urls')),
     path('owner/', include('owner.urls')),
+    path('menu/', include('menu.urls')),
 ]
 
 if 'crispy_forms' in settings.INSTALLED_APPS :

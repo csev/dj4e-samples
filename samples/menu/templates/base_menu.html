@@ -1,0 +1,31 @@
+{% extends 'base_bootstrap.html' %}
+{% block navbar %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'menu_main' %}">Menu Sample</a>
+    </div>
+    <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
+    <ul class="nav navbar-nav">
+      {% url 'menu_main' as menu_main %}
+      <li {% if request.get_full_path == menu_main %}class="active"{% endif %}>
+          <a href="{% url 'menu_main' %}">Home</a></li>
+      {% url 'menu_page1' as menu_page1 %}
+      <li {% if request.get_full_path == menu_page1 %}class="active"{% endif %}>
+          <a href="{% url 'menu_page1' %}">Page 1</a></li>
+      {% url 'menu_page2' as menu_page2 %}
+      <li {% if request.get_full_path == menu_page2 %}class="active"{% endif %}>
+          <a href="{% url 'menu_page2' %}">Page 2</a></li>
+      {% url 'menu_page3' as menu_page3 %}
+      <li {% if request.get_full_path == menu_page3 %}class="active"{% endif %}>
+          <a href="{% url 'menu_page3' %}">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block content %}
+<h4>I am content in {{ request.path }} base_menu.html</h4>
+<p>
+Request_path: {{ request.path }}
+</p>
+{% endblock %}

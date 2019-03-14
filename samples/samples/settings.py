@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'generic.apps.GenericConfig',
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
+    'many.apps.ManyConfig',
     'owner.apps.OwnerConfig',
+    'menu.apps.MenuConfig',
 ]
 
 # When we get to crispy forms :)
