@@ -31,7 +31,6 @@ class Membership(models.Model):
 
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-
     
     role = models.IntegerField(
         choices=MEMBER_CHOICES,

@@ -13,7 +13,7 @@ Take a look at models.py.  Make a superuser
 Sample execution
 
     $ python3 manage.py shell
-    >>> from home.models import Artist, Genre, Album, Track;
+    >>> from tracks.models import Artist, Genre, Album, Track;
     >>> zep = Artist(name='Led Zepplin')
     >>> zep.save()
     >>> zep.id
@@ -72,7 +72,7 @@ Sample execution
     Led Zepplin
     >>>
 
-    >>> from home.models import Artist, Genre, Album, Track;
+    >>> from tracks.models import Artist, Genre, Album, Track;
     >>> x = Artist.objects.get(pk=1)
     >>> x
     <Artist: Led Zepplin>
