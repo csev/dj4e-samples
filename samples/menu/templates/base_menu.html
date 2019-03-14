@@ -1,6 +1,7 @@
 {% extends 'base_bootstrap.html' %}
 {% block navbar %}
-<nav class="navbar navbar-default">
+<!-- https://www.w3schools.com/booTsTrap/bootstrap_navbar.asp -->
+<nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
         <a class="navbar-brand" href="{% url 'menu_main' %}">Menu Sample</a>
@@ -17,6 +18,8 @@
       <li {% if request.get_full_path == menu_page2 %}class="active"{% endif %}>
           <a href="{% url 'menu_page2' %}">Page 2</a></li>
       {% url 'menu_page3' as menu_page3 %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
       <li {% if request.get_full_path == menu_page3 %}class="active"{% endif %}>
           <a href="{% url 'menu_page3' %}">Page 3</a></li>
     </ul>
