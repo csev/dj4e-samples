@@ -15,6 +15,11 @@ class Course(models.Model):
         return self.title
 
 class Membership(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     LEARNER = 1
     IA = 1000
     GSI = 2000
@@ -28,17 +33,11 @@ class Membership(models.Model):
         ( INSTRUCTOR, 'Instructor' ),
         ( ADMIN, 'Administrator' ),
     )
-
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     
     role = models.IntegerField(
         choices=MEMBER_CHOICES,
         default=LEARNER,
     )
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "Person "+ str(self.person.id) + " <--> Course " + str(self.course.id)
