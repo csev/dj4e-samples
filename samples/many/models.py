@@ -3,13 +3,15 @@ from django.db import models
 class Person(models.Model):
     email = models.CharField(max_length=128, unique=True)
     name = models.CharField(max_length=128, null=True)
+    # courses will be placed here by Course
 
     def __str__(self):
         return self.email
 
 class Course(models.Model):
     title = models.CharField(max_length=128, unique=True)
-    members = models.ManyToManyField(Person, through='Membership')
+    members = models.ManyToManyField(Person,
+            through='Membership', related_name='courses')
 
     def __str__(self):
         return self.title
