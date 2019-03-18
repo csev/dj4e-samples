@@ -186,7 +186,7 @@ if social_installed :
                     'social_django.context_processors.login_redirect',
         ]
     except:
-        print('Could not import github_settings.py ifor social.login')
+        print('Could not import github_settings.py for social_django')
 
 # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
 # https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
