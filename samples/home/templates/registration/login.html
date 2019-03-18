@@ -34,6 +34,11 @@
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
+{% if backends %}
+<p><strong>-- OR --</strong></p>
+<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+{% endif %}
+
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 

@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.conf import settings
+from django.conf.urls import url
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', include('home.urls')),
@@ -43,5 +45,10 @@ if 'crispy_forms' in settings.INSTALLED_APPS :
 if 'rest_framework' in settings.INSTALLED_APPS :
     urlpatterns += [
         path('rest/', include('rest.urls')),
+    ]
+
+if 'social_django' in settings.INSTALLED_APPS :
+    urlpatterns += [
+        url(r'^oauth/', include('social_django.urls', namespace='social')),
     ]
 

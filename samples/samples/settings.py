@@ -145,6 +145,13 @@ try:
 except:
     print('Could not find rest_framework, please see requirements.txt')
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
 try: 
     from crispy_forms.helper import FormHelper
     INSTALLED_APPS += [
@@ -154,11 +161,42 @@ try:
 except:
     print('Could not find crispy forms, please see requirements.txt')
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    )
-}
+# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
+social_installed = False
+try: 
+    from social_core.utils import setting_name
+    social_installed = True
+except:
+    print('Could not find social django, please see requirements.txt')
+
+if social_installed :
+    try:
+        from . import github_settings 
+        SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
+        SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
+
+        INSTALLED_APPS += [
+            'social_django',
+        ]
+        MIDDLEWARE += [
+            'social_django.middleware.SocialAuthExceptionMiddleware',
+        ]
+        TEMPLATES[0]['OPTIONS']['context_processors'] += [
+                    'social_django.context_processors.backends',
+                    'social_django.context_processors.login_redirect',
+        ]
+    except:
+        print('Could not import github_settings.py ifor social.login')
+
+# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
+# https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    # 'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
