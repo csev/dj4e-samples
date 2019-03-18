@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'social_django',
+    'home.apps.HomeConfig',
     'class.apps.ClassConfig',
 ]
 
