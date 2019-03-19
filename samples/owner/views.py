@@ -6,7 +6,6 @@ from django.shortcuts import render
 
 from owner.util import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 
-
 class ArticleListView(OwnerListView):
     model = Article
     template_name = "article_list.html"
@@ -28,5 +27,4 @@ class ArticleUpdateView(OwnerUpdateView):
 class ArticleDeleteView(OwnerDeleteView):
     model = Article
     template_name = "article_delete.html"
-
 

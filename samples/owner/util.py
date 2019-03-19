@@ -50,7 +50,6 @@ class OwnerDeleteView(LoginRequiredMixin, DeleteView):
         qs = super(OwnerDeleteView, self).get_queryset()
         return qs.filter(owner=self.request.user)
 
-
 # References
 
 # https://stackoverflow.com/questions/5531258/example-of-django-class-based-deleteview
