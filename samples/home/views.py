@@ -26,6 +26,6 @@ from django.utils import timezone
 def cleanup() :
     time_threshold = timezone.now() - timedelta(minutes=30)
     count = Article.objects.filter(created_at__lt=time_threshold).count()
-    if count > 1 :
+    if count > 0 :
         Article.objects.filter(created_at__lt=time_threshold).delete()
         print('Deleted',count,' expired articles')
