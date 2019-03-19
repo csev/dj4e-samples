@@ -1,0 +1,23 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+<h1>Ads</h1>
+<p>
+{% if ad_list %}
+<ul>
+  {% for ad in ad_list %}
+    <li>
+        <a href="{% url 'ad_detail'  ad.id %}">{{ ad.title }}</a>
+        {% if ad.owner == user %}
+        (<a href="{% url 'ad_update' ad.id %}">Edit</a> |
+        <a href="{% url 'ad_delete' ad.id %}">Delete</a>)
+        </p>
+        {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no ads in the database.</p>
+{% endif %}
+</p>
+{% endblock %}

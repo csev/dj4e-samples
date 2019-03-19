@@ -1,0 +1,13 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+<p>
+{% load crispy_forms_tags %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-primary" value="Submit">
+    <a href="/" class="btn btn-secondary">Cancel</a>
+  </form>
+</p>
+{% endblock %}
