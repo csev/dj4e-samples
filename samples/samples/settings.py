@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [ '*' ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +49,11 @@ INSTALLED_APPS = [
     'many.apps.ManyConfig',
     'owner.apps.OwnerConfig',
     'menu.apps.MenuConfig',
+    'crispy_forms',
+    'crispy.apps.CrispyConfig',
+    'rest_framework',
+    'rest.apps.RestConfig',
+    'social_django',
 ]
 
 # When we get to crispy forms :)
@@ -63,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'samples.urls'
@@ -78,6 +83,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -135,16 +142,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Install optional bits that depend on several pip installs
-try:
-    from rest_framework import serializers
-    INSTALLED_APPS += [
-        'rest_framework',
-        'rest.apps.RestConfig',
-    ]
-except:
-    print('Could not find rest_framework, please see requirements.txt')
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
@@ -152,41 +149,31 @@ REST_FRAMEWORK = {
     )
 }
 
+# Make sure the correct requirements are installed - easy fix if these exceptions happen
+# pip install -r requirements.txt    # or pip3
+try:
+    from rest_framework import serializers
+except:
+    raise Exception('rest_framework not installed, please see requirements.txt')
+
 try: 
     from crispy_forms.helper import FormHelper
-    INSTALLED_APPS += [
-        'crispy_forms',
-        'crispy.apps.CrispyConfig',
-    ]
 except:
-    print('Could not find crispy forms, please see requirements.txt')
+    raise Exception('crispy forms not installed, please see requirements.txt')
 
 # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
-social_installed = False
 try: 
     from social_core.utils import setting_name
-    social_installed = True
 except:
-    print('Could not find social django, please see requirements.txt')
+    raise Exception('social django not installed, please see requirements.txt')
 
-if social_installed :
-    try:
-        from . import github_settings 
-        SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
-        SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
-
-        INSTALLED_APPS += [
-            'social_django',
-        ]
-        MIDDLEWARE += [
-            'social_django.middleware.SocialAuthExceptionMiddleware',
-        ]
-        TEMPLATES[0]['OPTIONS']['context_processors'] += [
-                    'social_django.context_processors.backends',
-                    'social_django.context_processors.login_redirect',
-        ]
-    except:
-        print('Could not import github_settings.py for social_django')
+# Configure the social login
+try:
+    from . import github_settings 
+    SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
+    SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
+except:
+    print('Could not import github_settings.py for social_django')
 
 # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
 # https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html

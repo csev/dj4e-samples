@@ -21,35 +21,18 @@
         <li><a href="session" target="_blank">session</a> - Cookies and sessions</li>
         <li><a href="form" target="_blank">form</a> - Using the Django forms library</li>
         <li><a href="owner" target="_blank">owner</a> - Owning rows in a model</li>
-        <!-- <li><a href="many" target="_blank">many</a> - Many to many models</li> -->
-        <li><a href="menu" target="_blank">menu</a> - Making a top menu
-            (<a href="https://getbootstrap.com/docs/3.3/components/#navbar" target="_blank">Bootstrap 3 Documentation</a>)
-        </li>
-        {% if 'crispy_forms' in installed %}
         <li><a href="crispy" target="_blank">crispy</a> - Using the Django crispy forms library
             (<a href="https://django-crispy-forms.readthedocs.io/en/latest/" target="_blank">Django crispy Documentation</a>)
         </li>
-        {% else %}
-        <li>To use the <b>crispy</b> sample code - use 'pip' to install
-            <a href="https://django-crispy-forms.readthedocs.io/en/latest/" target="_blank">Django crispy forms</a>
+        <li><a href="https://python-social-auth.readthedocs.io/en/latest/configuration/django.html"
+            target="_blank">Django Social Login Documentation</a>
         </li>
-        {% endif %}
-        {% if 'rest_framework' in installed %}
+        <li><a href="menu" target="_blank">menu</a> - Making a top menu
+            (<a href="https://getbootstrap.com/docs/3.3/components/#navbar" target="_blank">Bootstrap 3 Documentation</a>)
+        </li>
         <li><a href="rest" target="_blank">rest</a> - Using the Django rest framework
             (<a href="https://www.django-rest-framework.org/" target="_blank">Django Rest Framework Documentation</a>)
         </li>
-        {% else %}
-        <li>To use the <b>rest</b> sample code - use 'pip' to install
-            <a href="https://www.django-rest-framework.org/" target="_blank">The Django Rest Framework</a>
-        {% endif %}
-        {% if 'social_django' in installed %}
-        <li><a href="social" target="_blank">social</a> - Using the Django social login
-            (<a href="https://python-social-auth.readthedocs.io/en/latest/configuration/django.html" target="_blank">Django Social Login Documentation</a>)
-        </li>
-        {% else %}
-        <li>To use the <b>social</b> sample code - use 'pip' to install
-            <a href="https://python-social-auth.readthedocs.io/en/latest/configuration/django.html" target="_blank">Django Social Login</a>
-        {% endif %}
     </ul>
 <p>
 {% if user.is_authenticated %}
