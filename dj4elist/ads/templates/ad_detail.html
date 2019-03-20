@@ -5,6 +5,9 @@
 <p>
 {{ ad.text }}
 </p>
+<p>
+Price: ${{ad.price}}
+</p>
 {% if ad.owner == user %}
 <p>
 <a href="{% url 'ad_update' ad.id %}">Edit Ad</a> | 
