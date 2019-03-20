@@ -20,14 +20,18 @@
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 {{ form|crispy }}
-<input type="submit" value="login" />
+<input type="submit" class="btn btn-primary" value="Login Locally" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
 {% if backends %}
-<p><strong>-- OR --</strong></p>
-<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+<hr/>
+<a class="btn btn-info" role="button" href="{% url 'social:begin' 'github' %}">
+    <i class="fa fa-github" aria-hidden="true"></i>
+    Login with GitHub</a>
 {% endif %}
+
+
 
 {% endblock %}
 
