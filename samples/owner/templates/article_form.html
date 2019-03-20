@@ -1,9 +1,14 @@
+{% extends "base_bootstrap.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
 <p>
   <form action="" method="post">
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
+    {{ form|crispy }}
     <input type="submit" value="Submit">
+    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'articles' %}';return false;">
+    <p>
+</p>
   </form>
 </p>
+{% endblock %}

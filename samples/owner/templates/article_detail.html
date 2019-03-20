@@ -1,3 +1,5 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
 <h1>{{ article.title }}</h1>
 <p>
 {{ article.text }}
@@ -14,4 +16,4 @@
 <p>
 <a href="{% url 'articles' %}">All articles</a>
 </p>
-
+{% endblock %}
