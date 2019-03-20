@@ -1,5 +1,6 @@
 {% extends 'base_bootstrap.html' %}
 {% block navbar %}
+{% load app_tags %}
 <!-- https://www.w3schools.com/booTsTrap/bootstrap_navbar.asp -->
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
@@ -15,10 +16,10 @@
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
         <li>
-        <a href="{% url 'ad_create' %}">New Ad</a>
+        <a href="{% url 'ad_create' %}">Create Ad</a>
         </li>
         <li class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{ user.email }} <b class="caret"></b></a>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
