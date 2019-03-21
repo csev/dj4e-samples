@@ -1,0 +1,30 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<h1>Forums</h1>
+<p>
+{% if forum_list %}
+<ul>
+  {% for forum in forum_list %}
+    <li>
+        <a href="{% url 'forum_detail'  forum.id %}">{{ forum.title }}</a>
+        {% if forum.owner == user %}
+        (<a href="{% url 'forum_update' forum.id %}">Edit</a> |
+        <a href="{% url 'forum_delete' forum.id %}">Delete</a>)
+        </p>
+        {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no forums in the database.</p>
+{% endif %}
+</p>
+<p>
+<a href="{% url 'forum_create' %}">Add an Forum</a> |
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next=/owner">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'forums' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<h1>{{ forum.title }}</h1>
+<p>
+{{ forum.text }}
+</p>
+{% if forum.owner == user %}
+<p>
+<a href="{% url 'forum_update' forum.id %}">Edit Forum</a> | 
+<a href="{% url 'forum_delete' forum.id %}">Delete Forum</a>
+</p>
+{% endif %}
+<p>
+(Created: {{ forum.created_at }}, Updated: {{ forum.updated_at }})
+</p>
+<p>
+<a href="{% url 'forums' %}">All forums</a>
+</p>
+{% endblock %}

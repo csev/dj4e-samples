@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'many.apps.ManyConfig',
     'owner.apps.OwnerConfig',
     'menu.apps.MenuConfig',
+    'forums.apps.ForumsConfig',
     'crispy_forms',
     'crispy.apps.CrispyConfig',
     'rest_framework',
