@@ -1,19 +1,38 @@
 {% extends "base_bootstrap.html" %}
+{% load crispy_forms_tags %}
+{% load humanize %} <!-- https://docs.djangoproject.com/en/2.1/ref/contrib/humanize -->
 {% block content %}
-<h1>{{ forum.title }}</h1>
+<h1>
+{% if forum.owner == user %}
+<span style="float: right;">
+<a href="{% url 'forum_update' forum.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'forum_delete' forum.id %}"><i class="fa fa-trash"></i></a>
+</span>
+{% endif %}
+{{ forum.title }}
+</h1>
 <p>
 {{ forum.text }}
 </p>
-{% if forum.owner == user %}
 <p>
-<a href="{% url 'forum_update' forum.id %}">Edit Forum</a> | 
-<a href="{% url 'forum_delete' forum.id %}">Delete Forum</a>
+({{ forum.updated_at|naturaltime }})
+</p>
+{% if user.is_authenticated %}
+<p>
+<form method="post" action="{% url 'comment_create' forum.id %}">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+<input type="submit" value="Submit">
+<input type="submit" value="All Forums" onclick="window.location.href='{% url 'forums' %}';return false;">
+</form>
 </p>
 {% endif %}
-<p>
-(Created: {{ forum.created_at }}, Updated: {{ forum.updated_at }})
+{% for comment in comments %}
+<p> {{ comment.text }} 
+({{ comment.updated_at|naturaltime }})
+{% if user == comment.owner %}
+<a href="{% url 'comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
 </p>
-<p>
-<a href="{% url 'forums' %}">All forums</a>
-</p>
+{% endfor %}
 {% endblock %}

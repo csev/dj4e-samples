@@ -11,7 +11,11 @@ urlpatterns = [
         views.ForumCreateView.as_view(success_url=reverse_lazy('forums')), name='forum_create'),
     path('forum/<int:pk>/update', 
         views.ForumUpdateView.as_view(success_url=reverse_lazy('forums')), name='forum_update'),
+    path('forum/<int:pk>/comment', 
+        views.CommentCreateView.as_view(), name='comment_create'),
     path('forum/<int:pk>/delete', 
         views.ForumDeleteView.as_view(success_url=reverse_lazy('forums')), name='forum_delete'),
+    path('comment/<int:pk>/delete', 
+        views.CommentDeleteView.as_view(success_url=reverse_lazy('forums')), name='comment_delete'),
 ]
 

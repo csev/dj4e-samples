@@ -23,7 +23,7 @@ class Forum(models.Model) :
 
 class Comment(models.Model) :
     text = models.TextField(
-        validators=[MinLengthValidator(5, "Comment must be greater than 5 characters")]
+        validators=[MinLengthValidator(3, "Comment must be greater than 3 characters")]
     )
 
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
@@ -34,6 +34,6 @@ class Comment(models.Model) :
 
     # Shows up in the admin list
     def __str__(self):
-        if self.text < 15 : return self.text
+        if len(self.text) < 15 : return self.text
         return self.text[:11] + ' ...'
 
