@@ -51,6 +51,7 @@ class OwnerDeleteView(LoginRequiredMixin, DeleteView):
 
 # References
 
+# https://stackoverflow.com/questions/862522/django-populate-user-id-when-saving-a-model
+
 # https://stackoverflow.com/questions/5531258/example-of-django-class-based-deleteview
 
-# https://stackoverflow.com/questions/862522/django-populate-user-id-when-saving-a-model

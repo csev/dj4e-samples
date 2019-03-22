@@ -6,7 +6,7 @@ from django.conf import settings
 class Article(models.Model) :
     title = models.CharField(
             max_length=200,
-            validators=[MinLengthValidator(2, "Nickname must be greater than 1 character")]
+            validators=[MinLengthValidator(2, "Title must be greater than 2 characters")]
     )
     text = models.TextField()
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

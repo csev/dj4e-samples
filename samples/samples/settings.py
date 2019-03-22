@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',  # Add
     'social_django',  # Add
     'home.apps.HomeConfig',  # Add - Common folder
+    # 'ads.apps.AdsConfig',  # Add - Common folder
 
     # Sample Applications - don't copy
     'hello.apps.HelloConfig',
@@ -65,7 +66,7 @@ INSTALLED_APPS = [
 ]
 
 # When we get to crispy forms :)
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap3' # Add
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -36,23 +36,14 @@ urlpatterns = [
     path('generic/', include('generic.urls')),
     path('session/', include('session.urls')),
     path('form/', include('form.urls')),
+    path('crispy/', include('crispy.urls')),
     path('owner/', include('owner.urls')),
     path('menu/', include('menu.urls')),
     path('forums/', include('forums.urls')),
+    path('rest/', include('rest.urls')),
 ]
 
 # Keep everything below this line
-
-if 'crispy_forms' in settings.INSTALLED_APPS :
-    urlpatterns += [
-        path('crispy/', include('crispy.urls')),
-    ]
-
-if 'rest_framework' in settings.INSTALLED_APPS :
-    urlpatterns += [
-        path('rest/', include('rest.urls')),
-    ]
-
 if 'social_django' in settings.INSTALLED_APPS :
     urlpatterns += [
         url(r'^oauth/', include('social_django.urls', namespace='social')),
