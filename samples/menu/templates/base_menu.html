@@ -15,6 +15,7 @@
       {% url 'menu_page1' as menu_page1 %}
       <li {% if request.get_full_path == menu_page1 %}class="active"{% endif %}>
           <a href="{% url 'menu_page1' %}">Page 1</a></li>
+      {% url 'menu_page2' as menu_page2 %}
       <li {% if request.get_full_path == menu_page2 %}class="active"{% endif %}>
           <a href="{% url 'menu_page2' %}">Page 2</a></li>
       <li class="dropdown">
