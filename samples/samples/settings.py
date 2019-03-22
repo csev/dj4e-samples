@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Used for a default title
-APP_NAME = 'DJ4E Samples'
+APP_NAME = 'DJ4E Samples'   # Add
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -38,8 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize',
-    'home.apps.HomeConfig',
+    'django.contrib.humanize',  # Add
+
+    # Extentions - see requirements.txt
+    'crispy_forms',  # Add
+    'rest_framework',  # Add
+    'social_django',  # Add
+    'home.apps.HomeConfig',  # Add - Common folder
+
+    # Sample Applications - don't copy
     'hello.apps.HelloConfig',
     'getpost.apps.GetpostConfig',
     'users.apps.UsersConfig',
@@ -53,11 +60,8 @@ INSTALLED_APPS = [
     'owner.apps.OwnerConfig',
     'menu.apps.MenuConfig',
     'forums.apps.ForumsConfig',
-    'crispy_forms',
     'crispy.apps.CrispyConfig',
-    'rest_framework',
     'rest.apps.RestConfig',
-    'social_django',
 ]
 
 # When we get to crispy forms :)
@@ -71,7 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',   # Add
 ]
 
 ROOT_URLCONF = 'samples.urls'
@@ -86,10 +90,10 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'home.context_processors.settings',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                'django.contrib.messages.context_processors.messages', # Add
+                'home.context_processors.settings',      # Add
+                'social_django.context_processors.backends',  # Add
+                'social_django.context_processors.login_redirect', # Add
             ],
         },
     },
@@ -146,6 +150,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Add the settings below
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

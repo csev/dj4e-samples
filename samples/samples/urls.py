@@ -21,9 +21,12 @@ from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', include('home.urls')),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('home.urls')),  # Keep
+    path('admin/', admin.site.urls),  # Keep
+    path('accounts/', include('django.contrib.auth.urls')),  # Keep
+    # path('ads/', include('ads.urls')),  # Keep
+
+    # Sample applications
     path('hello/', include('hello.urls')),
     path('getpost/', include('getpost.urls')),
     path('users/', include('users.urls')),
@@ -37,6 +40,8 @@ urlpatterns = [
     path('menu/', include('menu.urls')),
     path('forums/', include('forums.urls')),
 ]
+
+# Keep everything below this line
 
 if 'crispy_forms' in settings.INSTALLED_APPS :
     urlpatterns += [
