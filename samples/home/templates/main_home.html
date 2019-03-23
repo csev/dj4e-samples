@@ -24,9 +24,12 @@
         <li><a href="session" target="_blank">session</a> - Cookies and sessions</li>
         <li><a href="form" target="_blank">form</a> - Using the Django forms library</li>
         <li>Add a <a href="/favicon.ico" target="_blank">favicon</a> 
-            in <b>samples/urls.py</b> and <b>home/static</b></li>
+            in <b>samples/urls.py</b> and <b>home/static</b>
+            (<a href="https://favicon.io/favicon-generator/" target="_blank">Make your own</a>)
+        </li>
         <li><a href="crispy" target="_blank">crispy</a> - Using the Django crispy forms library
-            (<a href="https://django-crispy-forms.readthedocs.io/en/latest/" target="_blank">Django crispy Documentation</a>)
+            (<a href="https://django-crispy-forms.readthedocs.io/en/latest/" target="_blank">Installation</a>,
+            <a href="https://django-crispy-forms.readthedocs.io/en/latest/filters.html" target="_blank">Crispy Filter</a>)
         </li>
         <li><a href="https://python-social-auth.readthedocs.io/en/latest/configuration/django.html"
             target="_blank">Django Social Login Documentation</a>
@@ -38,16 +41,16 @@
         <li><a href="rest" target="_blank">rest</a> - Using the Django rest framework
             (<a href="https://www.django-rest-framework.org/" target="_blank">Django Rest Framework Documentation</a>)
         </li>
-        <li><a hres="forums" target="_blank">forums</a> - Many to many comment example</li>
+        <li><a href="forums" target="_blank">forums</a> - Many to many comment example</li>
     </ul>
 <p>
 {% if user.is_authenticated %}
-<!-- https://stackoverflow.com/questions/26879011/check-if-current-user-is-logged-in-using-any-django-social-auth-provider -->
 <p>Authenticated as
 <pre>
 Name: {{ user.get_full_name }}
 Email: {{ user.email }}
 Id: {{ user.id }}
+<!-- https://stackoverflow.com/questions/26879011/check-if-current-user-is-logged-in-using-any-django-social-auth-provider -->
 Type: {% if backends.associated %} GitHub {% else %} Local {% endif %}
 </pre>
 </p>
