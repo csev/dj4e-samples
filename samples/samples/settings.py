@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',  # Add
 
     # Extentions - see requirements.txt
+    'django_extensions', # Add
     'crispy_forms',  # Add
     'rest_framework',  # Add
     'social_django',  # Add
