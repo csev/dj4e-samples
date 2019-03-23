@@ -29,6 +29,7 @@
       {% if user.is_authenticated %}
       <li class="dropdown">
       <!-- gravatar depends on app_tags being loaded -->
+      <!-- https://brobin.me/blog/2016/07/super-simple-django-gravatar/ -->
       <a href="#" data-toggle="dropdown" class="dropdown-toggle"><img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="{% url 'logout' %}?next={{ menu_main }}">Logout</a></li>
@@ -40,10 +41,4 @@
     </ul>
   </div>
 </nav>
-{% endblock %}
-{% block content %}
-<h4>I am content in {{ request.path }} base_menu.html</h4>
-<p>
-Request_path: {{ request.path }}
-</p>
 {% endblock %}
