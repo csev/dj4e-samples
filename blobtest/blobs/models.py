@@ -15,12 +15,12 @@ class Blob(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class File(models.Model):
+    name = models.CharField(max_length=256, help_text='The name of the file when first uploaded.')
     sha256 = models.CharField(max_length=64, help_text='The Checksum of the File.')
     blob = models.ForeignKey('Blob', on_delete=models.CASCADE)
     location = models.CharField(max_length=1024, help_text='The location of this file if it is not a blob')
     deleted = models.BooleanField(default=False)
     contenttype = models.CharField(max_length=256, help_text='The MIMEType of the file when first uploaded')
-    name = models.CharField(max_length=256, help_text='The name of the file when first uploaded.')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     accessed_at = models.DateTimeField(null=True)

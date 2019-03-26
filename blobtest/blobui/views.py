@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 import logging
+
+from blobs.models import File, Blob
 
 import blobs.utils
 
@@ -43,3 +45,21 @@ def upload_file(request):
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
 
+
+# https://djangobook.com/request-response-objects/
+
+from django.shortcuts import get_object_or_404
+def stream_file(request, pk) :
+    blob = get_object_or_404(Blob, id=pk)
+    fdata = get_object_or_404(File, sha256=blob.sha256)
+    response = HttpResponse()
+    response['Content-Type'] = fdata.contenttype
+    response['Content-Length'] = len(blob.content)
+    response.write(blob.content)
+    return response
+
+# Streaming notes...
+
+# https://github.com/edilio/StreamingHttpResponse/blob/master/StreamingHttpResponse/apps/stream/views.py
+# https://docs.djangoproject.com/en/2.1/ref/request-response/#streaminghttpresponse-objects
+# https://www.programcreek.com/python/example/52439/django.http.StreamingHttpResponse
