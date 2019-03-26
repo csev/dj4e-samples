@@ -14,7 +14,7 @@
 $("#upload_form").submit(function() {
   console.log('Checking file size');
   if (window.File && window.FileReader && window.FileList && window.Blob) {
-    var file = $('#id_file_data')[0].files[0];
+      var file = $('#id_{{ form.upload_field_name }}')[0].files[0];
       if (file && file.size > {{ form.max_upload_limit }} ) {
       alert("File " + file.name + " of type " + file.type + " is too large");
       return false;

@@ -12,6 +12,7 @@ class CreateForm(forms.ModelForm):
     # because we need to pull out things like content_type
     picture = forms.FileField(required=False)
     max_upload_limit = 1 * 1024 * 1024
+    upload_field_name = 'picture'
 
     class Meta:
         model = Meal
