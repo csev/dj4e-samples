@@ -16,7 +16,7 @@ $("#upload_form").submit(function() {
   if (window.File && window.FileReader && window.FileList && window.Blob) {
       var file = $('#id_{{ form.upload_field_name }}')[0].files[0];
       if (file && file.size > {{ form.max_upload_limit }} ) {
-      alert("File " + file.name + " of type " + file.type + " is too large");
+          alert("File " + file.name + " of type " + file.type + " must be < {{ form.max_upload_limit_text }}");
       return false;
     }
   }

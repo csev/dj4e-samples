@@ -20,6 +20,8 @@ class MealDetailView(OwnerDetailView):
     template_name = "meal_detail.html"
 
 # This will handle create and update with an optional pk parameter on get and post
+# We don't use the Generic or OwnerGeneric because (a) we need a form with a file
+# and (b) we need to to populate the model with request.FILES
 class MealFormView(LoginRequiredMixin, View):
     template = 'meal_form.html'
     success_url = reverse_lazy('meals')
@@ -43,23 +45,9 @@ class MealFormView(LoginRequiredMixin, View):
             ctx = {'form' : form}
             return render(request, self.template, ctx)
 
-        # Adjust the model before saving
+        # Adjust the model owner before saving
         meal = form.save(commit=False)
         meal.owner = self.request.user
-       
-        # The meal.picture can be one of three things
-        # If this is a create and a picture was not chosen, it is None
-        # If this is an update and with no prior picture and a new picture was not chosen, it is None
-        # If this is an update and with a prior picture and a new picture was not chosen, it is bytes
-        # If a picture was uploaded, it is a django.core.files.uploadedfile.InMemoryUploadedFile
-
-        f = meal.picture  
-        if isinstance(f, InMemoryUploadedFile):  # Pull out the elements we need
-            bytearr = f.read();
-            print('Received a file ',f.name,'size='+str(len(bytearr)),'type='+f.content_type)
-            meal.picture = bytearr
-            meal.content_type = f.content_type
-
         meal.save()
         return redirect(self.success_url)
 
