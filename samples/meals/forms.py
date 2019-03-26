@@ -26,11 +26,10 @@ class CreateForm(forms.ModelForm):
     def save(self, commit=True) :
         instance = super(CreateForm, self).save(commit=False)
 
-        # We only need to process picture if it is a freshly uploaded file
+        # We only need to adjust picture if it is a freshly uploaded file
         f = instance.picture   # Make a copy
         if isinstance(f, InMemoryUploadedFile):  # Extract data from the form to the model
             bytearr = f.read();
-            # print('Received a file ',f.name,'size='+str(len(bytearr)),'type='+f.content_type)
             instance.content_type = f.content_type
             instance.picture = bytearr  # Overwrite with the actual image data
 
