@@ -1,8 +1,8 @@
-
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from owner.util import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 
@@ -26,15 +26,15 @@ class MealCreateView(LoginRequiredMixin, View):
         return render(request, self.template, ctx)
 
     def post(self, request) :
-        form = CreateForm(request.POST)
+        form = CreateForm(request.POST, request.FILES or None)
         if not form.is_valid() :
             ctx = {'form' : form}
             return render(request, self.template, ctx)
 
         meal = form.save(commit=False)
         meal.owner = self.request.user
-        f = self.request.FILES.get('file_data')
-        if f:
+        f = meal.picture  # This is an django.core.files.uploadedfile.InMemoryUploadedFile
+        if f:  # Pull out the elements we need from InMemoryUploadedFile
             bytearr = f.read();
             print('We got a file ',f.name,'size='+str(len(bytearr)),'type='+f.content_type)
             meal.picture = bytearr
@@ -64,4 +64,14 @@ class MealUpdateView(OwnerUpdateView):
 class MealDeleteView(OwnerDeleteView):
     model = Meal
     template_name = "meal_delete.html"
+
+
+from django.shortcuts import get_object_or_404
+def stream_file(request, pk) :
+    meal = get_object_or_404(Meal, id=pk)
+    response = HttpResponse()
+    response['Content-Type'] = meal.content_type
+    response['Content-Length'] = len(meal.picture)
+    response.write(meal.picture)
+    return response
 

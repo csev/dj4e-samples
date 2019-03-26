@@ -13,5 +13,7 @@ urlpatterns = [
         views.MealUpdateView.as_view(success_url=reverse_lazy('meals')), name='meal_update'),
     path('meal/<int:pk>/delete', 
         views.MealDeleteView.as_view(success_url=reverse_lazy('meals')), name='meal_delete'),
+    path('meal_picture/<int:pk>', views.stream_file, name='meal_picture'),
+
 ]
 

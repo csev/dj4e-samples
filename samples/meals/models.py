@@ -11,7 +11,7 @@ class Meal(models.Model) :
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     # Picture
-    picture = models.BinaryField(null=True)
+    picture = models.BinaryField(null=True, editable=True)
     content_type = models.CharField(max_length=256, null=True, help_text='The MIMEType of the file')
 
     created_at = models.DateTimeField(auto_now_add=True)

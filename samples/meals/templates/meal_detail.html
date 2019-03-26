@@ -9,6 +9,9 @@
 {% endif %}
 </span>
 <h1>{{ meal.title }}</h1>
+{% if meal.content_type %}
+<img style="float:right; max-width:50%;" src="{% url 'meal_picture' meal.id %}">
+{% endif %}
 <p>
 {{ meal.text }}
 </p>
