@@ -1,0 +1,30 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<h1>Meals</h1>
+<p>
+{% if meal_list %}
+<ul>
+  {% for meal in meal_list %}
+    <li>
+        <a href="{% url 'meal_detail'  meal.id %}">{{ meal.title }}</a>
+        {% if meal.owner == user %}
+        (<a href="{% url 'meal_update' meal.id %}">Edit</a> |
+        <a href="{% url 'meal_delete' meal.id %}">Delete</a>)
+        {% endif %}
+        </p>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no meals in the database.</p>
+{% endif %}
+</p>
+<p>
+<a href="{% url 'meal_create' %}">Add an Meal</a> |
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next=/meals">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'meals' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}
