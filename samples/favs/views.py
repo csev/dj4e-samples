@@ -8,6 +8,7 @@ from django.db.models import Exists, OuterRef
 
 from owner.util import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 
+# A simple but inefficient View
 class ThingListView(OwnerListView):
     model = Thing
     template_name = "favs/list.html"
@@ -40,8 +41,7 @@ class ThingDeleteView(OwnerDeleteView):
     model = Thing
     template_name = "favs/delete.html"
 
-# Much more efficient
-
+# Much more efficient list view
 class ExistsListView(OwnerListView):
     template_name = "favs/rawsql.html"
 
@@ -62,6 +62,7 @@ class ExistsListView(OwnerListView):
 # Below this line, we see raw sql...   With great power comes great responsibility
 # https://docs.djangoproject.com/en/2.1/topics/db/sql/
 
+# A List view using raw SQL - super efficient
 class RawSQLListView(OwnerListView):
     template_name = "favs/rawsql.html"
 
