@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'crispy.apps.CrispyConfig',
     'meals.apps.MealsConfig',
     'rest.apps.RestConfig',
+    'favs.apps.FavsConfig',
 ]
 
 # When we get to crispy forms :)

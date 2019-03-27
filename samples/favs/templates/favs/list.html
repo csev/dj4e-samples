@@ -1,0 +1,30 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<h1>Favorite Things</h1>
+<p>
+{% if thing_list %}
+<ul>
+  {% for thing in thing_list %}
+    <li>
+        <a href="{% url 'thing_detail'  thing.id %}">{{ thing.title }}</a>
+        {% if thing.owner == user %}
+        (<a href="{% url 'thing_update' thing.id %}">Edit</a> |
+        <a href="{% url 'thing_delete' thing.id %}">Delete</a>)
+        </p>
+        {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no things in the database.</p>
+{% endif %}
+</p>
+<p>
+<a href="{% url 'thing_create' %}">Add a Thing</a> |
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={% url 'things' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'things' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}
