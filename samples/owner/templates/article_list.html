@@ -22,7 +22,7 @@
 <p>
 <a href="{% url 'article_create' %}">Add an Article</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next=/owner">Logout</a>
+<a href="{% url 'logout' %}?next={% url 'articles' %}">Logout</a>
 {% else %}
 <a href="{% url 'login' %}?next={% url 'articles' %}">Login</a>
 {% endif %}
