@@ -11,7 +11,7 @@ class Thing(models.Model) :
     text = models.TextField()
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     favorites = models.ManyToManyField(settings.AUTH_USER_MODEL,
-        through='Favs', related_name='favorite_things')
+        through='Fav', related_name='favorite_things')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -19,7 +19,7 @@ class Thing(models.Model) :
     def __str__(self):
         return self.title
 
-class Favs(models.Model) :
+class Fav(models.Model) :
 
     thing = models.ForeignKey(Thing, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -29,4 +29,4 @@ class Favs(models.Model) :
         unique_together = ('thing', 'user')
 
     def __str__(self) :
-        return '%s %s'%(self.thing.title, self.thing.username)
+        return '%s likes %s'%(self.user.username, self.thing.title[:10])

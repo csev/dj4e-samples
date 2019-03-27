@@ -11,14 +11,13 @@
         (<a href="{% url 'thing_update' thing.id %}">Edit</a> |
         <a href="{% url 'thing_delete' thing.id %}">Delete</a>)
         {% endif %}
-        {% if thing.id in favorites %}
-        <span class="fa-stack" style="vertical-align: middle;" id="favorite_star_{{thing.id}}">
+        {% if thing.FAV_USER_ID == user.id %}
+        <span class="fa-stack" style="vertical-align: middle;">
         <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
         <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
         {% else %}
-        <!-- Weird - fa-stack changes vertical spacing so to be consistent we use it here -->
-        <span class="fa-stack" style="vertical-align: middle;" id="favorite_star_{{thing.id}}">
+        <span class="fa-stack" style="vertical-align: middle;">
         <i class="fa fa-star-o"></i>
         </span>
         {% endif %}
