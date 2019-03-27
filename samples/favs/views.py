@@ -62,22 +62,30 @@ class ExistsListView(OwnerListView):
 # https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.db.utils import IntegrityError
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddFavoriteView(LoginRequiredMixin, View):
     def post(self, request, pk) :
-        print("PK",pk)
+        print("Add PK",pk)
         t = get_object_or_404(Thing, id=pk)
         fav = Fav(user=request.user, thing=t)
-        fav.save()
+        try:
+            fav.save()  # In case of duplicate key
+        except IntegrityError as e:
+            pass
         return HttpResponse()
 
 @method_decorator(csrf_exempt, name='dispatch')
 class DeleteFavoriteView(LoginRequiredMixin, View):
     def post(self, request, pk) :
-        print("PK",pk)
+        print("Delete PK",pk)
         t = get_object_or_404(Thing, id=pk)
-        fav = Fav.objects.get(user=request.user, thing=t).delete()
+        try:
+            fav = Fav.objects.get(user=request.user, thing=t).delete()
+        except Fav.DoesNotExist as e:
+            pass
+
         return HttpResponse()
 
 # https://stackoverflow.com/questions/2314920/django-show-log-orm-sql-calls-from-python-shell

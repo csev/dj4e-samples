@@ -11,22 +11,25 @@
         (<a href="{% url 'thing_update' thing.id %}">Edit</a> |
         <a href="{% url 'thing_delete' thing.id %}">Delete</a>)
         {% endif %}
-        {% if thing.id in favorites %}
-        <a href="#" onclick="favPost('{% url 'thing_unfavorite' thing.id %}');return false;">
+        <a href="#" onclick=
+            "favPost('{% url 'thing_unfavorite' thing.id %}', {{ thing.id }} );return false;"
+            {% if thing.id not in favorites %} style="display: none;" {% endif %}
+            id="favorite_star_{{thing.id}}">
         <span class="fa-stack" style="vertical-align: middle;">
-        <i class="fa fa-star fa-stack-1x" style="color: orange;" id="favorite_star_{{thing.id}}"></i>
+        <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
         <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
         </a>
-        {% else %}
         <!-- Weird - fa-stack changes vertical spacing so to be consistent we use it here -->
-        <a href="#" onclick="favPost('{% url 'thing_favorite' thing.id %}');return false;">
+        <a href="#" onclick=
+             "favPost('{% url 'thing_favorite' thing.id %}', {{ thing.id }} );return false;"
+            {% if thing.id in favorites %} style="display: none;" {% endif %}
+            id="unfavorite_star_{{thing.id}}">
         <span class="fa-stack" style="vertical-align: middle;">
-        <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;" id="favorite_star_{{thing.id}}"></i>
+        <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
         <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
         </a>
-        {% endif %}
     </li>
   {% endfor %}
 </ul>
@@ -43,9 +46,7 @@
 {% endif %}
 </p>
 <script>
-function favPost(url) {
-    console.log('Favorite called');
-    console.log(url);
+function favPost(url, thing_id) {
     fetch(url, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, cors, *same-origin
@@ -57,8 +58,12 @@ function favPost(url) {
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
     }).then(function(data) {
-        console.log('Done');
-  })
+        console.log(url, 'finished');
+        $("#unfavorite_star_"+thing_id).toggle();
+        $("#favorite_star_"+thing_id).toggle();
+    }).catch(function() {
+        console.log(url, 'error');
+    })
 }
 </script>
 {% endblock %}
