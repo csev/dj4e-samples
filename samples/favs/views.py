@@ -1,8 +1,10 @@
-from favs.models import Thing
+from favs.models import Thing, Fav
 
 from django.views import View
 from django.views import generic
 from django.shortcuts import render
+
+from django.db.models import Exists, OuterRef
 
 from owner.util import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 
@@ -38,6 +40,25 @@ class ThingDeleteView(OwnerDeleteView):
     model = Thing
     template_name = "favs/delete.html"
 
+# Much more efficient
+
+class ExistsListView(OwnerListView):
+    template_name = "favs/rawsql.html"
+
+    def get(self, request) :
+        if not request.user.is_authenticated:
+            thing_list = Thing.objects.all()
+        else:
+            thing_list = Thing.objects.annotate(
+                FAV_USER_ID=Exists(Fav.objects.filter(user=self.request.user,thing_id=OuterRef('id')))
+                ).all()
+        ctx = {'thing_list' : thing_list}
+        return render(request, self.template_name, ctx)
+
+# https://stackoverflow.com/questions/2314920/django-show-log-orm-sql-calls-from-python-shell
+# pip install django-extensions
+# ./manage.py shell_plus --print-sql
+
 # Below this line, we see raw sql...   With great power comes great responsibility
 # https://docs.djangoproject.com/en/2.1/topics/db/sql/
 
@@ -55,10 +76,6 @@ class RawSQLListView(OwnerListView):
             thing_list = Thing.objects.raw(sql)
         ctx = {'thing_list' : thing_list}
         return render(request, self.template_name, ctx)
-
-# https://stackoverflow.com/questions/2314920/django-show-log-orm-sql-calls-from-python-shell
-# pip install django-extensions
-# ./manage.py shell_plus --print-sql
 
 # Notes from the shell:
 # sql = "SELECT *, favs_fav.user_id AS FAV_USER_ID FROM favs_thing LEFT JOIN favs_fav ON favs_thing.id = favs_fav.thing_id AND favs_fav.user_id = 1"
