@@ -12,15 +12,20 @@
         <a href="{% url 'thing_delete' thing.id %}">Delete</a>)
         {% endif %}
         {% if thing.id in favorites %}
-        <span class="fa-stack" style="vertical-align: middle;" id="favorite_star_{{thing.id}}">
-        <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
+        <a href="#" onclick="favPost('{% url 'thing_unfavorite' thing.id %}');return false;">
+        <span class="fa-stack" style="vertical-align: middle;">
+        <i class="fa fa-star fa-stack-1x" style="color: orange;" id="favorite_star_{{thing.id}}"></i>
         <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
+        </a>
         {% else %}
         <!-- Weird - fa-stack changes vertical spacing so to be consistent we use it here -->
-        <span class="fa-stack" style="vertical-align: middle;" id="favorite_star_{{thing.id}}">
-        <i class="fa fa-star-o"></i>
+        <a href="#" onclick="favPost('{% url 'thing_favorite' thing.id %}');return false;">
+        <span class="fa-stack" style="vertical-align: middle;">
+        <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;" id="favorite_star_{{thing.id}}"></i>
+        <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
+        </a>
         {% endif %}
     </li>
   {% endfor %}
@@ -37,4 +42,23 @@
 <a href="{% url 'login' %}?next={% url 'things' %}">Login</a>
 {% endif %}
 </p>
+<script>
+function favPost(url) {
+    console.log('Favorite called');
+    console.log(url);
+    fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+    }).then(function(data) {
+        console.log('Done');
+  })
+}
+</script>
 {% endblock %}

@@ -2,7 +2,10 @@ from favs.models import Thing, Fav
 
 from django.views import View
 from django.views import generic
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.db.models import Exists, OuterRef
 
@@ -54,6 +57,28 @@ class ExistsListView(OwnerListView):
                 ).all()
         ctx = {'thing_list' : thing_list}
         return render(request, self.template_name, ctx)
+
+
+# https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AddFavoriteView(LoginRequiredMixin, View):
+    def post(self, request, pk) :
+        print("PK",pk)
+        t = get_object_or_404(Thing, id=pk)
+        fav = Fav(user=request.user, thing=t)
+        fav.save()
+        return HttpResponse()
+
+@method_decorator(csrf_exempt, name='dispatch')
+class DeleteFavoriteView(LoginRequiredMixin, View):
+    def post(self, request, pk) :
+        print("PK",pk)
+        t = get_object_or_404(Thing, id=pk)
+        fav = Fav.objects.get(user=request.user, thing=t).delete()
+        return HttpResponse()
 
 # https://stackoverflow.com/questions/2314920/django-show-log-orm-sql-calls-from-python-shell
 # pip install django-extensions
