@@ -39,11 +39,8 @@ class ForumDeleteView(OwnerDeleteView):
 
 class CommentCreateView(View):
     def post(self, request, pk) :
-        print("SDLKJJKSDLJSDKDJLSK")
         f = get_object_or_404(Forum, id=pk)
         comment_form = CommentForm(request.POST)
-        print(comment_form)
-        print('RP',request.POST['comment'])
 
         comment = Comment(text=request.POST['comment'], owner=request.user, forum=f)
         comment.save()
@@ -57,3 +54,5 @@ class CommentDeleteView(OwnerDeleteView):
     def get_success_url(self):
         forum = self.object.forum
         return reverse_lazy('forum_detail', args=[forum.id])
+
+

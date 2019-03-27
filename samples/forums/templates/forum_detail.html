@@ -18,6 +18,7 @@
 ({{ forum.updated_at|naturaltime }})
 </p>
 {% if user.is_authenticated %}
+<br clear="all"/>
 <p>
 <form method="post" action="{% url 'comment_create' forum.id %}">
     {% csrf_token %}
