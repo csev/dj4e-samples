@@ -22,19 +22,8 @@ def run():
     for row in reader:
         print(row)
 
-        try:
-            p = Person.objects.get(email=row[0])
-        except:
-            print("Inserting person",row[0])
-            p = Person(email=row[0])
-            p.save()
-
-        try:
-            c = Course.objects.get(title=row[2])
-        except:
-            print("Inserting course",row[2])
-            c = Course(title=row[2])
-            c.save()
+        p, created = Person.objects.get_or_create(email=row[0])
+        c, created = Course.objects.get_or_create(title=row[2])
 
         r = Membership.LEARNER
         if row[1] == 'I' : r = Membership.INSTRUCTOR
