@@ -21,7 +21,7 @@ class ThingListView(OwnerListView):
         favorites = list()
         if request.user.is_authenticated:
             # rows = [{'id': 2}]  (A list of rows)
-            rows = request.user.favorite_things.values('id')  
+            rows = request.user.favorite_things.values('id')
             favorites = [ row['id'] for row in rows ]
         ctx = {'thing_list' : thing_list, 'favorites': favorites}
         return render(request, self.template_name, ctx)
@@ -103,7 +103,7 @@ class RawSQLListView(OwnerListView):
         if not request.user.is_authenticated:
             thing_list = Thing.objects.all()
         else:
-            sql = """SELECT *, favs_fav.user_id AS FAV_USER_ID FROM favs_thing 
+            sql = """SELECT *, favs_fav.user_id AS FAV_USER_ID FROM favs_thing
                 LEFT JOIN favs_fav ON favs_thing.id = favs_fav.thing_id
                 AND favs_fav.user_id = """ + str(self.request.user.id)
             print(sql)

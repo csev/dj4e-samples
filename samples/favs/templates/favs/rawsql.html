@@ -7,7 +7,7 @@
   {% for thing in thing_list %}
     <li>
         <a href="{% url 'thing_detail'  thing.id %}">{{ thing.title }}</a>
-        {% if thing.owner == user %}
+        {% if thing.user_id == user.id %}
         (<a href="{% url 'thing_update' thing.id %}">Edit</a> |
         <a href="{% url 'thing_delete' thing.id %}">Delete</a>)
         {% endif %}
