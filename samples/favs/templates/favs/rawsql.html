@@ -11,16 +11,25 @@
         (<a href="{% url 'thing_update' thing.id %}">Edit</a> |
         <a href="{% url 'thing_delete' thing.id %}">Delete</a>)
         {% endif %}
-        {% if thing.FAV_USER_ID %}
+        <a href="#" onclick=
+            "favPost('{% url 'thing_unfavorite' thing.id %}', {{ thing.id }} );return false;"
+            {% if not thing.FAV_USER_ID %} style="display: none;" {% endif %}
+            id="favorite_star_{{thing.id}}">
         <span class="fa-stack" style="vertical-align: middle;">
         <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
         <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
-        {% else %}
+        </a>
+        <a href="#" onclick=
+             "favPost('{% url 'thing_favorite' thing.id %}', {{ thing.id }} );return false;"
+            {% if thing.FAV_USER_ID %} style="display: none;" {% endif %}
+            id="unfavorite_star_{{thing.id}}">
         <span class="fa-stack" style="vertical-align: middle;">
-        <i class="fa fa-star-o"></i>
+        <!-- Weird - fa-stack changes vertical spacing so to be consistent we use it here -->
+        <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
+        <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
-        {% endif %}
+        </a>
     </li>
   {% endfor %}
 </ul>
@@ -36,4 +45,25 @@
 <a href="{% url 'login' %}?next={% url 'things' %}">Login</a>
 {% endif %}
 </p>
+<script>
+function favPost(url, thing_id) {
+    fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        redirect: "follow", // manual, *follow, error
+        referrer: "no-referrer", // no-referrer, *client
+    }).then(function(data) {
+        console.log(url, 'finished');
+        $("#unfavorite_star_"+thing_id).toggle();
+        $("#favorite_star_"+thing_id).toggle();
+    }).catch(function() {
+        console.log(url, 'error');
+    })
+}
+</script>
 {% endblock %}
