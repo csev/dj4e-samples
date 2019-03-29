@@ -207,6 +207,7 @@ LOGIN_REDIRECT_URL = '/'
 # https://coderwall.com/p/uzhyca/quickly-setup-sql-query-logging-django
 # https://stackoverflow.com/questions/12027545/determine-if-django-is-running-under-the-development-server
 
+'''  # Leave off for now
 import sys
 if (len(sys.argv) >= 2 and sys.argv[1] == 'runserver'):
     print('Running locally')
@@ -226,4 +227,4 @@ if (len(sys.argv) >= 2 and sys.argv[1] == 'runserver'):
             },
         }
     }
-
+'''
