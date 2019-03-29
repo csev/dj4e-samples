@@ -3,15 +3,14 @@ from django.db import models
 class Person(models.Model):
     email = models.CharField(max_length=128, unique=True)
     name = models.CharField(max_length=128, null=True)
-    # courses will be placed here by Course
+    courses = models.ManyToManyField('Course', through='Membership')
 
     def __str__(self):
         return self.email
 
 class Course(models.Model):
     title = models.CharField(max_length=128, unique=True)
-    members = models.ManyToManyField(Person,
-            through='Membership', related_name='courses')
+    members = models.ManyToManyField('Person', through='Membership')
 
     def __str__(self):
         return self.title
@@ -19,6 +18,7 @@ class Course(models.Model):
 class Membership(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

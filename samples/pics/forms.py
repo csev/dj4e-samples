@@ -23,6 +23,13 @@ class CreateForm(forms.ModelForm):
         model = Pic
         fields = ['title', 'text', 'picture']  # Picture is manual
 
+    def clean(self) :
+        cleaned_data = super().clean()
+        pic = cleaned_data.get('picture')
+        if pic is None : return
+        if len(pic) > self.max_upload_limit:
+            self.add_error('picture', "File must be < "+self.max_upload_limit_text+" bytes")
+            
     def save(self, commit=True) :
         instance = super(CreateForm, self).save(commit=False)
 
@@ -37,11 +44,4 @@ class CreateForm(forms.ModelForm):
             instance.save()
 
         return instance
-
-    def clean(self) :
-        cleaned_data = super().clean()
-        pic = cleaned_data.get('picture')
-        if pic is None : return
-        if len(pic) > self.max_upload_limit:
-            self.add_error('picture', "File must be < "+self.max_upload_limit_text+" bytes")
 

@@ -5,6 +5,8 @@ from django.views import generic
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from forums.forms import CommentForm
 from myarts.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 
@@ -37,7 +39,7 @@ class ForumDeleteView(OwnerDeleteView):
     model = Forum
     template_name = "forum_delete.html"
 
-class CommentCreateView(View):
+class CommentCreateView(LoginRequiredMixin, View):
     def post(self, request, pk) :
         f = get_object_or_404(Forum, id=pk)
         comment_form = CommentForm(request.POST)
