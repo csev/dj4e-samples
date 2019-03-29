@@ -40,7 +40,7 @@ urlpatterns = [
     path('owner/', include('owner.urls')),
     path('menu/', include('menu.urls')),
     path('forums/', include('forums.urls')),
-    path('meals/', include('meals.urls')),
+    path('pics/', include('pics.urls')),
     path('rest/', include('rest.urls')),
     path('favs/', include('favs.urls')),
 ]

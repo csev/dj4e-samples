@@ -1,7 +1,7 @@
 from django import forms
-from meals.models import Meal
+from pics.models import Pic
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from meals.humanize import naturalsize
+from pics.humanize import naturalsize
 
 # https://docs.djangoproject.com/en/2.1/topics/http/file-uploads/
 # https://stackoverflow.com/questions/2472422/django-file-upload-size-limit
@@ -20,7 +20,7 @@ class CreateForm(forms.ModelForm):
     upload_field_name = 'picture'
 
     class Meta:
-        model = Meal
+        model = Pic
         fields = ['title', 'text', 'picture']  # Picture is manual
 
     def save(self, commit=True) :

@@ -1,0 +1,30 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<h1>Pics</h1>
+<p>
+{% if pic_list %}
+<ul>
+  {% for pic in pic_list %}
+    <li>
+        <a href="{% url 'pic_detail'  pic.id %}">{{ pic.title }}</a>
+        {% if pic.owner == user %}
+        (<a href="{% url 'pic_update' pic.id %}">Edit</a> |
+        <a href="{% url 'pic_delete' pic.id %}">Delete</a>)
+        {% endif %}
+        </p>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no pics in the database.</p>
+{% endif %}
+</p>
+<p>
+<a href="{% url 'pic_create' %}">Add an Pic</a> |
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={% url 'pics' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'pics' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}

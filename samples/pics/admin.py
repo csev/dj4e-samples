@@ -1,7 +1,7 @@
 from django.contrib import admin
-from meals.models import Meal
+from pics.models import Pic
 
 # Register your models here.
 
-admin.site.register(Meal)
+admin.site.register(Pic)
 

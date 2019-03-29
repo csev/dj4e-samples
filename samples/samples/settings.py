@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'menu.apps.MenuConfig',
     'forums.apps.ForumsConfig',
     'crispy.apps.CrispyConfig',
-    'meals.apps.MealsConfig',
+    'pics.apps.PicsConfig',
     'rest.apps.RestConfig',
     'favs.apps.FavsConfig',
 ]
