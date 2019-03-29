@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
     'many.apps.ManyConfig',
-    'owner.apps.OwnerConfig',
+    'myarts.apps.MyartsConfig',
     'menu.apps.MenuConfig',
     'forums.apps.ForumsConfig',
     'crispy.apps.CrispyConfig',

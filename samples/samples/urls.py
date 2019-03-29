@@ -37,7 +37,7 @@ urlpatterns = [
     path('session/', include('session.urls')),
     path('form/', include('form.urls')),
     path('crispy/', include('crispy.urls')),
-    path('owner/', include('owner.urls')),
+    path('myarts/', include('myarts.urls')),
     path('menu/', include('menu.urls')),
     path('forums/', include('forums.urls')),
     path('pics/', include('pics.urls')),
