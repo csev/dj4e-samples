@@ -16,13 +16,13 @@ class Validate(View):
         }
         form = BasicForm(initial=old_data)
         ctx = {'form' : form}
-        return render(request, 'crispy_form.html', ctx)
+        return render(request, 'crispy/form.html', ctx)
 
     def post(self, request) :
         form = BasicForm(request.POST)
         if not form.is_valid() :
             ctx = {'form' : form}
-            return render(request, 'crispy_form.html', ctx)
+            return render(request, 'crispy/form.html', ctx)
 
         # Save the Data and send a flash!
         messages.add_message(request, messages.SUCCESS, 'Data saved.')
