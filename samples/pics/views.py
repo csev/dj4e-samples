@@ -57,7 +57,9 @@ class PicUpdateView(LoginRequiredMixin, View):
             ctx = {'form' : form}
             return render(request, self.template, ctx)
 
+        pic = form.save(commit=False)
         pic.save()
+
         return redirect(self.success_url)
 
 class PicDeleteView(OwnerDeleteView):
