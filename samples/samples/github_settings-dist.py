@@ -20,6 +20,9 @@
 # Application Description: Whatever
 # Authorization callback URL: https://drchuck.pythonanywhere.com/oauth/complete/github/
 
+# Also on PythonAnywhere, go into the Web tab and enable "Force HTTPS"
+# so you don't get a redirect URI mismatch.
+
 # Then copy the client_key and secret to this file
 
 SOCIAL_AUTH_GITHUB_KEY = '224642424242424230ee'
