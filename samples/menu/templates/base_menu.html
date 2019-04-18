@@ -32,11 +32,11 @@
       <!-- https://brobin.me/blog/2016/07/super-simple-django-gravatar/ -->
       <a href="#" data-toggle="dropdown" class="dropdown-toggle"><img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="{% url 'logout' %}?next={{ menu_main }}">Logout</a></li>
+            <li><a href="{% url 'logout' %}?next={% url 'menu_main' %}">Logout</a></li>
         </ul>
        </li>
        {% else %}
-       <li><a href="{% url 'login' %}?next={{ menu_main }}">Login</a></li>
+       <li><a href="{% url 'login' %}?next={% url 'menu_main' %}">Login</a></li>
        {% endif %}
     </ul>
   </div>
