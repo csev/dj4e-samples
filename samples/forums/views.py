@@ -12,11 +12,11 @@ from myarts.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerU
 
 class ForumListView(OwnerListView):
     model = Forum
-    template_name = "forum_list.html"
+    template_name = "forums/list.html"
 
 class ForumDetailView(OwnerDetailView):
     model = Forum
-    template_name = "forum_detail.html"
+    template_name = "forums/detail.html"
     def get(self, request, pk) :
         forum = Forum.objects.get(id=pk)
         comments = Comment.objects.filter(forum=forum).order_by('-updated_at')
@@ -28,16 +28,16 @@ class ForumDetailView(OwnerDetailView):
 class ForumCreateView(OwnerCreateView):
     model = Forum
     fields = ['title', 'text']
-    template_name = "forum_form.html"
+    template_name = "forums/form.html"
 
 class ForumUpdateView(OwnerUpdateView):
     model = Forum
     fields = ['title', 'text']
-    template_name = "forum_form.html"
+    template_name = "forums/form.html"
 
 class ForumDeleteView(OwnerDeleteView):
     model = Forum
-    template_name = "forum_delete.html"
+    template_name = "forums/delete.html"
 
 class CommentCreateView(LoginRequiredMixin, View):
     def post(self, request, pk) :
@@ -50,7 +50,7 @@ class CommentCreateView(LoginRequiredMixin, View):
 
 class CommentDeleteView(OwnerDeleteView):
     model = Comment
-    template_name = "comment_delete.html"
+    template_name = "forums/comment_delete.html"
 
     # https://stackoverflow.com/questions/26290415/deleteview-with-a-dynamic-success-url-dependent-on-id
     def get_success_url(self):

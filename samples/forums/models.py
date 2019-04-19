@@ -12,7 +12,7 @@ class Forum(models.Model) :
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, related_name='forums_owned')
     comments = models.ManyToManyField(settings.AUTH_USER_MODEL, 
-        through='Comment', related_name='comments_owned')
+        through='Comment', related_name='forum_comments')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
