@@ -6,4 +6,4 @@ from django.views import View
 class TheView(View) :
     def get(self, request) :
         x = { 'request' : request }
-        return render(request, 'main_menu.html', x)
+        return render(request, 'menu/main_menu.html', x)
