@@ -4,7 +4,7 @@
 <ul>
   {% for cat in cat_list %}
     <li>
-      <a href="/cat/{{ cat.id }}">{{ cat.name }}</a>
+      <a href="{% url 'gview_cat' cat.id %}">{{ cat.name }}</a>
     </li>
   {% endfor %}
 </ul>

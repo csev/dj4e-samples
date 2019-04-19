@@ -1,4 +1,4 @@
-from generic.models import Cat, Dog, Horse, Car
+from gview.models import Cat, Dog, Horse, Car
 
 from django.views import View
 from django.shortcuts import render
@@ -9,13 +9,13 @@ class CatListView(View):
     def get(self, request) :
         stuff = Cat.objects.all()
         cntx = { 'cat_list': stuff }
-        return render(request, 'cat_list.html', cntx)
+        return render(request, 'gview/cat_list.html', cntx)
     
 class CatDetailView(View):
     def get(self, request, pk_from_url) :
         obj = Cat.objects.get(pk=pk_from_url)
         cntx = { 'cat': obj }
-        return render(request, 'cat_detail.html', cntx)
+        return render(request, 'gview/cat_detail.html', cntx)
 
 # Lets apply the "DRY" pattern - "Don't Repeat Yourself"
 class DogListView(View):
@@ -24,7 +24,7 @@ class DogListView(View):
         modelname = self.model._meta.verbose_name.title().lower()
         stuff = self.model.objects.all()
         cntx = { modelname+'_list': stuff }
-        return render(request, modelname+'_list.html', cntx)
+        return render(request, 'gview/'+modelname+'_list.html', cntx)
     
 class DogDetailView(View):
     model = Dog
@@ -32,7 +32,7 @@ class DogDetailView(View):
         modelname = self.model._meta.verbose_name.title().lower()
         obj = self.model.objects.get(pk=pk)
         cntx = { modelname : obj }
-        return render(request, modelname+'_detail.html', cntx)
+        return render(request, 'gview/'+modelname+'_detail.html', cntx)
 
 # Lets save time and use the built-in generics
 # https://docs.djangoproject.com/en/2.1/topics/class-based-views/generic-display/
@@ -51,14 +51,14 @@ class DJ4EListView(View):
         modelname = self.model._meta.verbose_name.title().lower()
         stuff = self.model.objects.all()
         cntx = { modelname+'_list': stuff }
-        return render(request, modelname+'_list.html', cntx)
+        return render(request, 'gview/'+modelname+'_list.html', cntx)
     
 class DJ4EDetailView(View):
     def get(self, request, pk) :
         modelname = self.model._meta.verbose_name.title().lower()
         obj = self.model.objects.get(pk=pk)
         cntx = { modelname : obj }
-        return render(request, modelname+'_detail.html', cntx)
+        return render(request, 'gview/'+modelname+'_detail.html', cntx)
 
 # Lets reuse those "generic" classes
 class CarListView(DJ4EListView):

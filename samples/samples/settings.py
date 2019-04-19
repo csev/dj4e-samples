@@ -55,11 +55,10 @@ INSTALLED_APPS = [
     'tracks.apps.TracksConfig',
     'views.apps.ViewsConfig',
     'templates.apps.TemplatesConfig',
-    'generic.apps.GenericConfig',
+    'gview.apps.GviewConfig',
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
     'many.apps.ManyConfig',
-    'owner.apps.OwnerConfig',   # TODO: Delete later
     'myarts.apps.MyartsConfig',
     'menu.apps.MenuConfig',
     'forums.apps.ForumsConfig',

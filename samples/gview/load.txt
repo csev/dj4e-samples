@@ -5,7 +5,7 @@
 # Otherwise make a super user and add the records
 # or run the shell and paset the commands.
 
-from generic.models import Cat, Dog, Horse, Car
+from gview.models import Cat, Dog, Horse, Car
 
 x = Cat(name='Sophie')
 x.save()
