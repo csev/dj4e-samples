@@ -16,13 +16,13 @@ class DumpPostView(View):  # Reusable bit...
     def post(self, request) :
         js = json.dumps(request.POST, sort_keys=True, indent=4)        
         ctx = {'title': 'request.POST', 'dump': js}
-        return render(request, 'dump.html', ctx)
+        return render(request, 'form/dump.html', ctx)
 
 class SimpleCreate(DumpPostView): 
     def get(self, request) :
         form = BasicForm()
         ctx = {'form' : form}
-        return render(request, 'form.html', ctx)
+        return render(request, 'form/form.html', ctx)
 
 class SimpleUpdate(DumpPostView):
     def get(self, request) :
@@ -33,7 +33,7 @@ class SimpleUpdate(DumpPostView):
         }
         form = BasicForm(old_data)
         ctx = {'form' : form}
-        return render(request, 'form.html', ctx)
+        return render(request, 'form/form.html', ctx)
 
 class Validate(DumpPostView):
     def get(self, request) :
@@ -44,13 +44,13 @@ class Validate(DumpPostView):
         }
         form = BasicForm(initial=old_data)
         ctx = {'form' : form}
-        return render(request, 'form.html', ctx)
+        return render(request, 'form/form.html', ctx)
 
     def post(self, request) :
         form = BasicForm(request.POST)
         if not form.is_valid() :
             ctx = {'form' : form}
-            return render(request, 'form.html', ctx)
+            return render(request, 'form/form.html', ctx)
         # Save the Data
         return redirect('/form/success')
 
