@@ -44,6 +44,7 @@ urlpatterns = [
     path('pics/', include('pics.urls')),
     path('rest/', include('rest.urls')),
     path('favs/', include('favs.urls')),
+    path('favsql/', include('favsql.urls', namespace='favsql')),
 ]
 
 # Keep everything below this line

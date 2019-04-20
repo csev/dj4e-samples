@@ -10,9 +10,9 @@ class Thing(models.Model) :
     )
     text = models.TextField()
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-            related_name='fav_thing_owner')
+        related_name='favsql_thing_owner')
     favorites = models.ManyToManyField(settings.AUTH_USER_MODEL,
-        through='Fav', related_name='favorite_things')
+        through='Fav', related_name='favsql_favorite_things')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -24,7 +24,7 @@ class Fav(models.Model) :
 
     thing = models.ForeignKey(Thing, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-        related_name='favs_users')
+        related_name='favsql_users')
 
     # https://docs.djangoproject.com/en/2.1/ref/models/options/#unique-together
     class Meta:
