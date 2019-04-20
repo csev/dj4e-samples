@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'views.apps.ViewsConfig',
     'tmpl.apps.TmplConfig',
     'gview.apps.GviewConfig',
+    'route.apps.RouteConfig',
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
     'many.apps.ManyConfig',

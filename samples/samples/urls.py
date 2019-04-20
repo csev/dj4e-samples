@@ -34,6 +34,7 @@ urlpatterns = [
     path('views/', include('views.urls')),
     path('tmpl/', include('tmpl.urls')),
     path('gview/', include('gview.urls')),
+    path('route/', include('route.urls', namespace='route')),
     path('session/', include('session.urls')),
     path('form/', include('form.urls')),
     path('crispy/', include('crispy.urls')),
@@ -62,4 +63,8 @@ urlpatterns += [
         }
     ),
 ]
+
+# References
+
+# https://docs.djangoproject.com/en/2.2/ref/urls/#include
 
