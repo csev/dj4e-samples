@@ -1,8 +1,7 @@
 
 
-TODO:
+After checkout, run
 
-Delete owners
-
-Unmerge PicForm
+    cd dj4e-samples/samples
+    pip3 install -r requirements.txt
 
