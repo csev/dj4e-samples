@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 # https://docs.djangoproject.com/en/2.1/topics/http/urls/
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='main_views.html')),
+    path('', TemplateView.as_view(template_name='views/main.html')),
     path('funky', views.funky),
     path('danger', views.danger),
     path('game', views.game),
