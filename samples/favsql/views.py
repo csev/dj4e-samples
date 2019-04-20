@@ -15,6 +15,8 @@ from pprint import pprint
 from django.db import connection
 import re
 
+from . import sqldebug 
+
 class ThingListView(OwnerListView):
     model = Thing
     template_name = "favsql/list.html"
@@ -27,12 +29,10 @@ class ThingListView(OwnerListView):
             rows = request.user.favsql_favorite_things.values('id')
             favorites = [ row['id'] for row in rows ]
         ctx = {'thing_list' : thing_list, 'favorites': favorites}
-        for i, query in enumerate(connection.queries):
-            sql = re.split(r'(SELECT|FROM|WHERE|GROUP BY|ORDER BY|INNER JOIN|LIMIT)', query['sql'])
-            if not sql[0]: sql = sql[1:]
-            sql = [(' ' if i % 2 else '') + x for i, x in enumerate(sql)]
-            print('\n### {} ({} seconds)\n\n{};\n'.format(i, query['time'], '\n'.join(sql)))
-        return render(request, self.template_name, ctx)
+        retval = render(request, self.template_name, ctx)
+        
+        sqldebug.print_queries()
+        return retval
 
 class SQLListView(OwnerListView):
     template_name = "favsql/list_sql.html"
@@ -44,19 +44,13 @@ class SQLListView(OwnerListView):
             sql = """SELECT *, favsql_fav.user_id AS FAV_USER_ID FROM favsql_thing
                 LEFT JOIN favsql_fav ON favsql_thing.id = favsql_fav.thing_id
                 AND favsql_fav.user_id = """ + str(self.request.user.id)
-            print(sql)
-            thing_list = Thing.objects.raw(sql)
-            for obj in thing_list:
-                print(obj.owner_id)
             thing_list = Thing.objects.raw(sql)
 
-        for i, query in enumerate(connection.queries):
-            sql = re.split(r'(SELECT|FROM|WHERE|GROUP BY|ORDER BY|INNER JOIN|LIMIT)', query['sql'])
-            if not sql[0]: sql = sql[1:]
-            sql = [(' ' if i % 2 else '') + x for i, x in enumerate(sql)]
-            print('\n### {} ({} seconds)\n\n{};\n'.format(i, query['time'], '\n'.join(sql)))
         ctx = {'thing_list' : thing_list}
-        return render(request, self.template_name, ctx)
+        retval = render(request, self.template_name, ctx)
+
+        sqldebug.print_queries()
+        return retval
 
 class ThingDetailView(OwnerDetailView):
     model = Thing
