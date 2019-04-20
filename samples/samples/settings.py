@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'tracks.apps.TracksConfig',
     'views.apps.ViewsConfig',
-    'templates.apps.TemplatesConfig',
+    'tmpl.apps.TmplConfig',
     'gview.apps.GviewConfig',
     'session.apps.SessionConfig',
     'form.apps.FormConfig',
