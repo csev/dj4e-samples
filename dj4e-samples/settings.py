@@ -84,7 +84,7 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',   # Add
 ]
 
-ROOT_URLCONF = 'samples.urls'
+ROOT_URLCONF = 'dj4e-samples.urls'
 
 TEMPLATES = [
     {
@@ -105,7 +105,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'samples.wsgi.application'
+WSGI_APPLICATION = 'dj4e-samples.wsgi.application'
 
 
 # Database
