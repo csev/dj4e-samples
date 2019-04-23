@@ -9,6 +9,7 @@
     </div>
     <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
     <ul class="nav navbar-nav">
+      <!-- Assign output of url function to a variable named 'xyz' to use in the if statement -->
       {% url 'menu:main' as xyz %}
       <li {% if request.get_full_path == xyz %}class="active"{% endif %}>
           <a href="{% url 'menu:main' %}">Home</a></li>
