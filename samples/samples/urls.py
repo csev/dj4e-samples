@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('home.urls')),  # Keep
     path('admin/', admin.site.urls),  # Keep
     path('accounts/', include('django.contrib.auth.urls')),  # Keep
+    url(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
     # path('ads/', include('ads.urls')),  # Keep
 
     # Sample applications
@@ -31,26 +32,20 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),
     path('views/', include('views.urls')),
-    path('route/', include('route.urls', namespace='route')),
+    path('route/', include('route.urls')),
     path('tmpl/', include('tmpl.urls')),
-    path('gview/', include('gview.urls', namespace='gview')),
+    path('gview/', include('gview.urls')),
     path('session/', include('session.urls')),
-    path('form/', include('form.urls', namespace='form')),
+    path('form/', include('form.urls')),
     path('crispy/', include('crispy.urls')),
     path('myarts/', include('myarts.urls')),
     path('menu/', include('menu.urls')),
-    path('forums/', include('forums.urls', namespace='forums')),
-    path('pics/', include('pics.urls', namespace='pics')),
-    path('favs/', include('favs.urls', namespace='favs')),
-    path('favsql/', include('favsql.urls', namespace='favsql')),
+    path('forums/', include('forums.urls')),
+    path('pics/', include('pics.urls')),
+    path('favs/', include('favs.urls')),
+    path('favsql/', include('favsql.urls')),
     path('rest/', include('rest.urls')),
 ]
-
-# Keep everything below this line
-if 'social_django' in settings.INSTALLED_APPS :
-    urlpatterns += [
-        url(r'^oauth/', include('social_django.urls', namespace='social')),
-    ]
 
 # Serve the favicon
 import os

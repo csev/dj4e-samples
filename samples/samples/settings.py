@@ -38,15 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize',  # Add
+    'django.contrib.humanize',
 
     # Extentions - see requirements.txt
-    'django_extensions', # Add
-    'crispy_forms',  # Add
-    'rest_framework',  # Add
-    'social_django',  # Add
-    'home.apps.HomeConfig',  # Add - Common folder
-    # 'ads.apps.AdsConfig',  # Add - Common folder
+    'django_extensions', 
+    'crispy_forms',  
+    'rest_framework', 
+    'social_django',  
+    'home.apps.HomeConfig',  
 
     # Sample Applications - don't copy
     'hello.apps.HelloConfig',
@@ -165,24 +164,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
-
-# Make sure the correct requirements are installed - easy fix if these exceptions happen
-# pip install -r requirements.txt    # or pip3
-try:
-    from rest_framework import serializers
-except:
-    raise Exception('rest_framework not installed, please see requirements.txt')
-
-try: 
-    from crispy_forms.helper import FormHelper
-except:
-    raise Exception('crispy forms not installed, please see requirements.txt')
-
-# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
-try: 
-    from social_core.utils import setting_name
-except:
-    raise Exception('social django not installed, please see requirements.txt')
 
 # Configure the social login
 try:
