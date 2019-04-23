@@ -41,7 +41,7 @@ urlpatterns = [
     path('myarts/', include('myarts.urls')),
     path('menu/', include('menu.urls')),
     path('forums/', include('forums.urls', namespace='forums')),
-    path('pics/', include('pics.urls')),
+    path('pics/', include('pics.urls', namespace='pics')),
     path('favs/', include('favs.urls')),
     path('favsql/', include('favsql.urls', namespace='favsql')),
     path('rest/', include('rest.urls')),

@@ -4,13 +4,13 @@
 <span style="float: right;">
 ({{ pic.updated_at|naturaltime }})
 {% if pic.owner == user %}
-<a href="{% url 'pic_update' pic.id %}"><i class="fa fa-pencil"></i></a>
-<a href="{% url 'pic_delete' pic.id %}"><i class="fa fa-trash"></i></a>
+<a href="{% url 'pics:pic_update' pic.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'pics:pic_delete' pic.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
 </span>
 <h1>{{ pic.title }}</h1>
 {% if pic.content_type %}
-<img style="float:right; max-width:50%;" src="{% url 'pic_picture' pic.id %}">
+<img style="float:right; max-width:50%;" src="{% url 'pics:pic_picture' pic.id %}">
 {% endif %}
 <p>
 {{ pic.text }}
@@ -18,6 +18,6 @@
 <p>
 </p>
 <p>
-<a href="{% url 'pics' %}">All pics</a>
+<a href="{% url 'pics:all' %}">All pics</a>
 </p>
 {% endblock %}

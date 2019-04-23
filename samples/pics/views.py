@@ -21,7 +21,7 @@ class PicDetailView(OwnerDetailView):
 
 class PicCreateView(LoginRequiredMixin, View):
     template = 'pics/form.html'
-    success_url = reverse_lazy('pics')
+    success_url = reverse_lazy('pics:all')
     def get(self, request, pk=None) :
         form = CreateForm()
         ctx = { 'form': form }
@@ -42,7 +42,7 @@ class PicCreateView(LoginRequiredMixin, View):
 
 class PicUpdateView(LoginRequiredMixin, View):
     template = 'pics/form.html'
-    success_url = reverse_lazy('pics')
+    success_url = reverse_lazy('pics:all')
     def get(self, request, pk) :
         pic = get_object_or_404(Pic, id=pk, owner=self.request.user)
         form = CreateForm(instance=pic)
@@ -81,7 +81,7 @@ def stream_file(request, pk) :
 # and (b) we need to to populate the model with request.FILES
 class PicFormView(LoginRequiredMixin, View):
     template = 'pics/form.html'
-    success_url = reverse_lazy('pics')
+    success_url = reverse_lazy('pics:all')
     def get(self, request, pk=None) :
         if not pk : 
             form = CreateForm()
