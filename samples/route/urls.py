@@ -2,7 +2,9 @@ from django.urls import path
 from . import views
 from django.views.generic import TemplateView
 
-app_name = 'route'
+# To make {% url 'route:first-view' %} work in templates
+# Also, add namespace in project urls.py
+app_name = 'route'  
 
 # https://docs.djangoproject.com/en/2.1/topics/http/urls/
 urlpatterns = [
