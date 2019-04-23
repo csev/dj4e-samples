@@ -2,9 +2,7 @@ from django.urls import path
 from . import views
 from django.views.generic import TemplateView
 
-# https://docs.djangoproject.com/en/2.1/topics/http/urls/
 app_name='form'
-
 urlpatterns = [
     path('', TemplateView.as_view(template_name='form/main.html')),
     path('example', views.example),
