@@ -22,9 +22,9 @@
 <p>
 <a href="{% url 'forums:forum_create' %}">Add an Forum</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'forums:forums' %}">Logout</a>
+<a href="{% url 'logout' %}?next={% url 'forums:all' %}">Logout</a>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'forums:forums' %}">Login</a>
+<a href="{% url 'login' %}?next={% url 'forums:all' %}">Login</a>
 {% endif %}
 </p>
 {% endblock %}

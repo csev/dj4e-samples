@@ -6,7 +6,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     <input type="submit" value="Submit">
-    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'forums:forums' %}';return false;">
+    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'forums:all' %}';return false;">
     <p>
 </p>
   </form>
