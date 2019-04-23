@@ -3,7 +3,8 @@ from . import views
 from django.views.generic import TemplateView
 
 # To make {% url 'route:first-view' %} work in templates
-# Also, add namespace in project urls.py
+# Also, add namespace in project urls.py 
+# Otherwise the name='' values will be global across all applications
 app_name = 'route'  
 
 # https://docs.djangoproject.com/en/2.1/topics/http/urls/
