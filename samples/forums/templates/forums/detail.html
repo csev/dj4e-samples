@@ -5,8 +5,8 @@
 <h1>
 {% if forum.owner == user %}
 <span style="float: right;">
-<a href="{% url 'forum_update' forum.id %}"><i class="fa fa-pencil"></i></a>
-<a href="{% url 'forum_delete' forum.id %}"><i class="fa fa-trash"></i></a>
+<a href="{% url 'forums:forum_update' forum.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'forums:forum_delete' forum.id %}"><i class="fa fa-trash"></i></a>
 </span>
 {% endif %}
 {{ forum.title }}
@@ -20,11 +20,11 @@
 {% if user.is_authenticated %}
 <br clear="all"/>
 <p>
-<form method="post" action="{% url 'forum_comment_create' forum.id %}">
+<form method="post" action="{% url 'forums:forum_comment_create' forum.id %}">
     {% csrf_token %}
     {{ comment_form|crispy }}
 <input type="submit" value="Submit">
-<input type="submit" value="All Forums" onclick="window.location.href='{% url 'forums' %}';return false;">
+<input type="submit" value="All Forums" onclick="window.location.href='{% url 'forums:forums' %}';return false;">
 </form>
 </p>
 {% endif %}
@@ -32,7 +32,7 @@
 <p> {{ comment.text }} 
 ({{ comment.updated_at|naturaltime }})
 {% if user == comment.owner %}
-<a href="{% url 'forum_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
+<a href="{% url 'forums:forum_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
 </p>
 {% endfor %}
