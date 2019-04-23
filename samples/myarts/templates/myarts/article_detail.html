@@ -4,8 +4,8 @@
 <span style="float: right;">
 ({{ article.updated_at|naturaltime }})
 {% if article.owner == user %}
-<a href="{% url 'article_update' article.id %}"><i class="fa fa-pencil"></i></a>
-<a href="{% url 'article_delete' article.id %}"><i class="fa fa-trash"></i></a>
+<a href="{% url 'myarts:article_update' article.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'myarts:article_delete' article.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
 </span>
 <h1>{{ article.title }}</h1>
@@ -15,6 +15,6 @@
 <p>
 </p>
 <p>
-<a href="{% url 'articles' %}">All articles</a>
+<a href="{% url 'myarts:all' %}">All articles</a>
 </p>
 {% endblock %}

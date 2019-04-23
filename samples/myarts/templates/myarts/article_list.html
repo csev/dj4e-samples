@@ -6,10 +6,10 @@
 <ul>
   {% for article in article_list %}
     <li>
-        <a href="{% url 'article_detail'  article.id %}">{{ article.title }}</a>
+        <a href="{% url 'myarts:article_detail'  article.id %}">{{ article.title }}</a>
         {% if article.owner == user %}
-        (<a href="{% url 'article_update' article.id %}">Edit</a> |
-        <a href="{% url 'article_delete' article.id %}">Delete</a>)
+        (<a href="{% url 'myarts:article_update' article.id %}">Edit</a> |
+        <a href="{% url 'myarts:article_delete' article.id %}">Delete</a>)
         </p>
         {% endif %}
     </li>
@@ -20,11 +20,11 @@
 {% endif %}
 </p>
 <p>
-<a href="{% url 'article_create' %}">Add an Article</a> |
+<a href="{% url 'myarts:article_create' %}">Add an Article</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'articles' %}">Logout</a>
+<a href="{% url 'logout' %}?next={% url 'myarts:all' %}">Logout</a>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'articles' %}">Login</a>
+<a href="{% url 'login' %}?next={% url 'myarts:all' %}">Login</a>
 {% endif %}
 </p>
 {% endblock %}
