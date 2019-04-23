@@ -1,0 +1,22 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+  <h1>Make List</h1>
+  {% if make_list %}
+  <ul>
+    {% for make in make_list %}
+      <li>
+          {{ make.name }}
+         (<a href="{% url 'autos:make_update' make.id %}">Update</a> |
+          <a href="{% url 'autos:make_delete' make.id %}">Delete</a>)
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no makes in the library.</p>
+  {% endif %}
+  <p><a href="{% url 'autos:make_create' %}">Add a make</a></p>
+  <p>
+    <a href="{% url 'autos:all' %}">Back to autos</a>
+  </p>
+{% endblock %}

@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'rest.apps.RestConfig',
     'favs.apps.FavsConfig',
     'favsql.apps.FavsqlConfig',
+    'autos.apps.AutosConfig',
 ]
 
 # When we get to crispy forms :)
