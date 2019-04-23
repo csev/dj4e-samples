@@ -6,14 +6,14 @@
 <ul>
   {% for thing in thing_list %}
     <li>
-        <a href="{% url 'thing_detail'  thing.id %}">{{ thing.title }}</a>
+        <a href="{% url 'favs:thing_detail'  thing.id %}">{{ thing.title }}</a>
         {% if thing.owner_id == user.id %}
-        (<a href="{% url 'thing_update' thing.id %}">Edit</a> |
-        <a href="{% url 'thing_delete' thing.id %}">Delete</a>)
+        (<a href="{% url 'favs:thing_update' thing.id %}">Edit</a> |
+        <a href="{% url 'favs:thing_delete' thing.id %}">Delete</a>)
         {% endif %}
         {% if user.is_authenticated %}
         <a href="#" onclick=
-            "favPost('{% url 'thing_unfavorite' thing.id %}', {{ thing.id }} );return false;"
+            "favPost('{% url 'favs:thing_unfavorite' thing.id %}', {{ thing.id }} );return false;"
             {% if thing.id not in favorites %} style="display: none;" {% endif %}
             id="favorite_star_{{thing.id}}">
         <span class="fa-stack" style="vertical-align: middle;">
@@ -23,7 +23,7 @@
         </a>
         <!-- Weird - fa-stack changes vertical spacing so to be consistent we use it here -->
         <a href="#" onclick=
-             "favPost('{% url 'thing_favorite' thing.id %}', {{ thing.id }} );return false;"
+             "favPost('{% url 'favs:thing_favorite' thing.id %}', {{ thing.id }} );return false;"
             {% if thing.id in favorites %} style="display: none;" {% endif %}
             id="unfavorite_star_{{thing.id}}">
         <span class="fa-stack" style="vertical-align: middle;">
@@ -40,11 +40,11 @@
 {% endif %}
 </p>
 <p>
-<a href="{% url 'thing_create' %}">Add a Thing</a> |
+<a href="{% url 'favs:thing_create' %}">Add a Thing</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'things' %}">Logout</a>
+<a href="{% url 'logout' %}?next={% url 'favs:all' %}">Logout</a>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'things' %}">Login</a>
+<a href="{% url 'login' %}?next={% url 'favs:all' %}">Login</a>
 {% endif %}
 </p>
 <script>
