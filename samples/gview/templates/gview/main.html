@@ -3,10 +3,10 @@
 This page is coming from a file in gview/templates/gview/main.html
 </p>
 <ul>
-    <li><a href="cats">A list of cats</a></li>
-    <li><a href="dogs">A list of dogs</a></li>
-    <li><a href="horses">A list of horses</a></li>
-    <li><a href="cars">A list of cars</a></li>
+    <li><a href="{% url 'gview:cats' %}">A list of cats</a></li>
+    <li><a href="{% url 'gview:dogs' %}">A list of dogs</a></li>
+    <li><a href="{% url 'gview:horses' %}">A list of horses</a></li>
+    <li><a href="{% url 'gview:cars' %}">A list of cars</a></li>
 </ul>
 </p>
 <p>

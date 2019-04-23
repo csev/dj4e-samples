@@ -4,7 +4,7 @@
 <ul>
   {% for dog in dog_list %}
     <li>
-      <a href="{% url 'gview_dog' dog.id %}">{{ dog.name }}</a>
+      <a href="{% url 'gview:dog' dog.id %}">{{ dog.name }}</a>
     </li>
   {% endfor %}
 </ul>
