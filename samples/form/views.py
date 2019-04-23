@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.views import View
+from django.urls import reverse_lazy
 from form.forms import BasicForm
 
 from pprint import pprint
@@ -52,7 +53,9 @@ class Validate(DumpPostView):
             ctx = {'form' : form}
             return render(request, 'form/form.html', ctx)
         # Save the Data
-        return redirect('/form/success')
+        # Look up the url for the next view in urls.py
+        x = reverse_lazy('form:success')
+        return redirect(x)
 
 def success(request) :
     return HttpResponse('Thank you!')

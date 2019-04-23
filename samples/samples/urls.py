@@ -36,7 +36,7 @@ urlpatterns = [
     path('tmpl/', include('tmpl.urls')),
     path('gview/', include('gview.urls', namespace='gview')),
     path('session/', include('session.urls')),
-    path('form/', include('form.urls')),
+    path('form/', include('form.urls', namespace='form')),
     path('crispy/', include('crispy.urls')),
     path('myarts/', include('myarts.urls')),
     path('menu/', include('menu.urls')),
