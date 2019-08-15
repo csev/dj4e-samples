@@ -5,7 +5,7 @@ DJ4E Samples
 This is a set of Django projects that provide free sample code to
 support the www.dj4e.com web site.
 
-You can seem some of the samples at
+You can see some of the samples working at
 
 http://samples.dj4e.com
 
