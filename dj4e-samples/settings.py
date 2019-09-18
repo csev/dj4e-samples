@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'hello.apps.HelloConfig',
     'getpost.apps.GetpostConfig',
     'users.apps.UsersConfig',
+    'bookone.apps.BookoneConfig',
     'tracks.apps.TracksConfig',
     'views.apps.ViewsConfig',
     'tmpl.apps.TmplConfig',
