@@ -1,4 +1,3 @@
-
 import csv  # https://docs.python.org/3/library/csv.html
 
 # https://django-extensions.readthedocs.io/en/latest/runscript.html
@@ -29,5 +28,4 @@ def run():
         if row[1] == 'I' : r = Membership.INSTRUCTOR
         m = Membership(role=r,person=p, course=c)
         m.save()
-
 
