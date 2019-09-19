@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    # Extentions - see requirements.txt
+    # Extensions - see requirements.txt
     'django_extensions', 
     'crispy_forms',  
     'rest_framework', 
