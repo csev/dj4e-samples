@@ -19,9 +19,6 @@ class Membership(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
     LEARNER = 1
     IA = 1000
     GSI = 2000
