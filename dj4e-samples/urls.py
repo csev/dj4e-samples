@@ -28,7 +28,6 @@ urlpatterns = [
 
     # Sample applications
     path('hello/', include('hello.urls')),
-    path('getpost/', include('getpost.urls')),
     path('users/', include('users.urls')),
     path('tracks/', include('tracks.urls')),
     path('views/', include('views.urls')),
@@ -36,6 +35,7 @@ urlpatterns = [
     path('tmpl/', include('tmpl.urls')),
     path('gview/', include('gview.urls')),
     path('session/', include('session.urls')),
+    path('getpost/', include('getpost.urls')),
     path('form/', include('form.urls')),
     path('crispy/', include('crispy.urls')),
     path('myarts/', include('myarts.urls')),

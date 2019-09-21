@@ -49,16 +49,16 @@ INSTALLED_APPS = [
 
     # Sample Applications - don't copy
     'hello.apps.HelloConfig',
-    'getpost.apps.GetpostConfig',
     'users.apps.UsersConfig',
     'bookone.apps.BookoneConfig',
     'bookmany.apps.BookmanyConfig',
     'tracks.apps.TracksConfig',
     'views.apps.ViewsConfig',
     'tmpl.apps.TmplConfig',
-    'gview.apps.GviewConfig',
     'route.apps.RouteConfig',
+    'gview.apps.GviewConfig',
     'session.apps.SessionConfig',
+    'getpost.apps.GetpostConfig',
     'form.apps.FormConfig',
     'many.apps.ManyConfig',
     'myarts.apps.MyartsConfig',
