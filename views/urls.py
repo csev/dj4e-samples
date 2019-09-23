@@ -5,13 +5,16 @@ from django.views.generic import TemplateView
 # https://docs.djangoproject.com/en/2.1/topics/http/urls/
 app_name='views'
 urlpatterns = [
+    # pre-defined class from Django
     path('', TemplateView.as_view(template_name='views/main.html')),
+    # function from views.py
     path('funky', views.funky),
     path('danger', views.danger),
     path('game', views.game),
     path('rest/<int:guess>', views.rest),
     path('bounce', views.bounce),
     path('main', views.MainView.as_view()),
+    # class from views.py
     path('remain/<slug:guess>', views.RestMainView.as_view()),
 ]
 
