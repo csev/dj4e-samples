@@ -10,22 +10,30 @@
 
 from gview.models import Cat, Dog, Horse, Car
 
-x = Cat(name='Sophie')
-x.save()
-x = Cat(name='Frankie')
-x.save()
+def run() :
+    Cat.objects.all().delete()
+    Dog.objects.all().delete()
+    Horse.objects.all().delete()
+    Car.objects.all().delete()
 
-x = Dog(name='Cutter')
-x.save()
-x = Dog(name='Peanut')
-x.save()
+    x = Cat(name='Sophie')
+    x.save()
+    x = Cat(name='Frankie')
+    x.save()
 
-x = Horse(name='Penny')
-x.save()
-x = Horse(name='Bravo')
-x.save()
+    x = Dog(name='Shelby')
+    x.save()
+    x = Dog(name='Luna')
+    x.save()
 
-x = Car(name='SakaiCar')
-x.save()
-x = Car(name='Subaru')
-x.save()
+    x = Horse(name='Penny')
+    x.save()
+    x = Horse(name='Bravo')
+    x.save()
+
+    x = Car(name='SakaiCar')
+    x.save()
+    x = Car(name='Subaru')
+    x.save()
+
+    print('gview data loaded')
