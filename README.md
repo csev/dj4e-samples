@@ -17,10 +17,11 @@ out into some folder:
     cd dj4e-samples
     pip3 install -r requirements.txt
     python3 manage.py migrate
+    python3 manage.py createsuperuser
     python3 manage.py runscript gview_load
     python3 manage.py runscript many_load
 
-These samples may be updated from time to tims so you might want to get updates
+These samples may be updated from time to time so you might want to get updates
 using `git pull`.  Also if there are bugs, you are welcome to submit
 a Pull Request on github.
 
