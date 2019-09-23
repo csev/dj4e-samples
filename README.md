@@ -9,10 +9,16 @@ You can see some of the samples working at
 
 http://samples.dj4e.com
 
-To set this up, simply check it out into some folder
+To set this up, go into your virtual environment if needed, and then check this
+out into some folder:
 
     cd ...wherever...
     git clone https://github.com/csev/dj4e-samples.git
+    cd dj4e-samples
+    pip3 install -r requirements.txt
+    python3 manage.py migrate
+    python3 manage.py runscript gview_load
+    python3 manage.py runscript many_load
 
 These samples may be updated from time to tims so you might want to get updates
 using `git pull`.  Also if there are bugs, you are welcome to submit
@@ -26,10 +32,9 @@ Running Locally
 ---------------
 
 If you have Django installed on your local computer you can test any of the sample
-applications bygoing into the folder and starting the server:
+applications by going into the folder and starting the server:
 
     cd dj4e-samples
-    python3 manage.py migrate
     python3 manage.py runserver
 
 And visit `http://localhost:8000`.
@@ -37,16 +42,12 @@ And visit `http://localhost:8000`.
 Running on PythonAnywhere
 -------------------------
 
-If you are using PythonAnywhere.com to run your Django applications, you
-can check all the sample code out as follows:
+Once you have checked out the code under `django_projects`, and
+ran the migrations and load scripts,
+go under the Web tab, update the config files to point to your new application:
 
-    cd ~
-    git clone https://github.com/csev/dj4e-samples.git
-
-Then under the Web tab, update the config files to point to your new application:
-
-    Source code:                /home/--your-account--/dj4e-samples
-    Working Directory:          /home/--your-account--/dj4e-samples
+    Source code:                /home/--your-account--/django_projects/dj4e-samples
+    Working Directory:          /home/--your-account--/django_projects/dj4e-samples
 
 Use this as your `WGSI configuration file`:
 
@@ -62,6 +63,6 @@ Use this as your `WGSI configuration file`:
     application = StaticFilesHandler(get_wsgi_application())
 
 You can edit these files and settings in the Web tab to switch between
-your various projects on PythonAnywhere.  Make sure to reload after
-every flie or configuration change.
+your various projects on PythonAnywhere.  Make sure to reload under the Web tab after
+every file or configuration change.
 
