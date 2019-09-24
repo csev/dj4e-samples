@@ -3,9 +3,7 @@ from django.http import HttpResponseRedirect
 from django.utils.html import escape
 from django.views import View
 
-
 # Create your views here.
-
 def funky(request):
     response = """<html><body><p>This is the funky function sample</p>
     <p>This sample code is available at
