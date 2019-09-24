@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 
 # To make {% url 'gview:cats' %} work in templates
 # Also, add namespace in project urls.py
+
 app_name = 'gview'
 
 # Note use of plural for list view and singular for detail view

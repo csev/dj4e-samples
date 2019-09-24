@@ -1,6 +1,10 @@
 <h1>Using the url tag</h2>
 <ul>
     <li>
+        <a href="/route/second-view">
+        hard-coded</a> (not DRY)
+    </li>
+    <li>
         {% url 'route:first-view' %}
         (url 'route:first-view')
     </li>
@@ -9,20 +13,16 @@
         url 'route:second-view'</a>
     </li>
     <li>
-        <a href="/route/second-view">
-        hard-coded</a>
-    </li>
-    <li>
-        {% url 'nsroute:second-view' %}
-        (url 'nsroute:first-view') from dj4e-samples/urls.py
-    </li>
-    <li>
         {% url 'gview:cats' %}
         (url 'gview:cats') from gview/urls.py
     </li>
     <li>
         {% url 'gview:cat' 42 %}
         (url 'gview:cat' 42) from gview/urls.py
+    </li>
+    <li>
+        {% url 'nsroute:second-view' %}
+        (url 'nsroute:second-view') from dj4e-samples/urls.py
     </li>
 </ul>
 <p>
