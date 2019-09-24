@@ -1,12 +1,24 @@
-<h1>Page 1</h2>
+<h1>Using the url tag</h2>
 <ul>
     <li>
         {% url 'route:first-view' %}
-        (route:first-view)
+        (url 'route:first-view')
+    </li>
+    <li>
+        <a href="{% url 'route:second-view' %}">
+        url 'route:second-view'</a>
     </li>
     <li>
         {% url 'nsroute:second-view' %}
-        (nsroute:first-view)
+        (url 'nsroute:first-view') from dj4e-samples/urls.py
+    </li>
+    <li>
+        {% url 'gview:cats' %}
+        (url 'gview:cats') from gview/urls.py
+    </li>
+    <li>
+        {% url 'gview:cat' 42 %}
+        (url 'gview:cat' 42) from gview/urls.py
     </li>
 </ul>
 <p>
