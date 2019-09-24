@@ -32,7 +32,7 @@ def rest(request, guess) :
 
 # This is a command to the browser
 def bounce(request) :
-    return HttpResponseRedirect('https://www.dj4e.com/lessons')
+    return HttpResponseRedirect('https://www.dj4e.com/simple.htm')
 
 # https://docs.djangoproject.com/en/2.1/topics/class-based-views/
 class MainView(View) :
