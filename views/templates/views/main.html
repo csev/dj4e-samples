@@ -20,8 +20,8 @@
         <a href="danger?guess=%3Cscript%3Ealert%28%27Owned%27%29%3B%3C%2Fscript%3E">
             a very very dangerous game</a>
         (see also
-        <a href="https://en.wikipedia.org/wiki/Code_injection#HTML_script_injection"
-            target="_blank"> Script Injection</a>)
+        <a href="https://en.wikipedia.org/wiki/Cross-site_scripting"
+            target="_blank">Cross-site scripting</a>)
     </li>
     <li>Play <a href="game?guess=24">a safe game</a></li>
     <li>Try <a href="game?guess=%3Cb%3EBold%3C%2Fb%3E">to attack a safe game</a>
@@ -34,7 +34,9 @@
     <li>Pass <a href="remain/abc123-42-xyzzy">a slug to a class-based view</a></li>
     <li>Explore <a href="bounce">a server-side redirect (a 302 response)</a>
         (see also <a href="https://en.wikipedia.org/wiki/Server-side_redirect" target="_blank">
-                Documentation</a>)
+                Redirect</a> and
+            <a href="https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.HttpResponseRedirect"
+               target="_blank">HttpResponseRedirect Object</a>)
     </li>
 </ul>
 </p>

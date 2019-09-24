@@ -12,6 +12,7 @@ urlpatterns = [
     path('danger', views.danger),
     path('game', views.game),
     path('rest/<int:guess>', views.rest),
+    # Play with redirect
     path('bounce', views.bounce),
     # our class from views.py
     path('main', views.MainView.as_view()),
