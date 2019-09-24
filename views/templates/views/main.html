@@ -2,20 +2,32 @@
 <p>
 <ul>
     <li>This page is coming from a file in templates/views/main.html</li>
-    <li><a href="funky">Use a view function</a></li>
-    <li>Play <a href="danger?guess=42">a dangerous game</a></li>
-    <li>Play <a href="danger?guess=%3Cb%3EBold%3C%2Fb%3E">a very dangerous game</a></li>
-    <li>Play <a href="danger?guess=%3Cscript%3Ealert%28%27Owned%27%29%3B%3C%2Fscript%3E">
+    <li><a href="funky">Use a view function</a>
+        (see also
+        <a href="https://docs.djangoproject.com/en/2.2/topics/http/urls/"
+           target="_blank">URL Dispatcher</a>)
+    </li>
+    <li>Play <a href="danger?guess=42">a dangerous game</a>
+        (see also
+        <a href="https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.HttpRequest"
+           target="_blank">HttpRequest</a> and
+        <a href="https://docs.djangoproject.com/en/2.2/ref/request-response/#django.http.HttpResponse"
+           target="_blank">HttpResponse</a>)
+    </li>
+    <li>Play <a href="danger?guess=%3Cb%3EBold%3C%2Fb%3E">
+            a very dangerous game</a></li>
+    <li>Play
+        <a href="danger?guess=%3Cscript%3Ealert%28%27Owned%27%29%3B%3C%2Fscript%3E">
             a very very dangerous game</a>
-        (see also 
-        <a href="https://en.wikipedia.org/wiki/Code_injection#HTML_script_injection" target="_blank">
-            Script Injection</a>)
+        (see also
+        <a href="https://en.wikipedia.org/wiki/Code_injection#HTML_script_injection"
+            target="_blank"> Script Injection</a>)
     </li>
     <li>Play <a href="game?guess=24">a safe game</a></li>
     <li>Try <a href="game?guess=%3Cb%3EBold%3C%2Fb%3E">to attack a safe game</a>
-        (see also 
-        <a href="https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references" target="_blank">
-            HTML Entities</a>)
+        (see also
+        <a href="https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references"
+           target="_blank"> HTML Entities</a>)
     </li>
     <li>Play <a href="rest/24">a safe restful game</a></li>
     <li><a href="main">Use a class-based view</a></li>

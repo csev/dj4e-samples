@@ -13,8 +13,8 @@ urlpatterns = [
     path('game', views.game),
     path('rest/<int:guess>', views.rest),
     path('bounce', views.bounce),
+    # our class from views.py
     path('main', views.MainView.as_view()),
-    # class from views.py
     path('remain/<slug:guess>', views.RestMainView.as_view()),
 ]
 
