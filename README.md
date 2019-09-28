@@ -17,7 +17,9 @@ out into some folder:
     cd dj4e-samples
     pip3 install -r requirements.txt
     python3 manage.py migrate
-    python3 manage.py createsuperuser
+    python3 manage.py createsuperuser --username dj4e-samples
+    # python3 manage.py changepassword dj4e-samples
+    # dj4e_nn_!
     python3 manage.py runscript gview_load
     python3 manage.py runscript many_load
 
