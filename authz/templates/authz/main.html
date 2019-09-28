@@ -1,4 +1,14 @@
-<h1><Authorization and Login</h1>
-<p>
-Yada
+<h1>Authorization and Login</h1>
+{% if user.is_authenticated %}
+<p>Authenticated as
+<pre>
+Name: {{ user.get_full_name }}
+Email: {{ user.email }}
+Id: {{ user.id }}
+</pre>
 </p>
+<p>You can <a href="/accounts/logout">Logout</a></p>
+{% else %}
+<p>You are not logged in</p>
+<p>You can <a href="/accounts/login">Login</a> if you like.</p>
+{% endif %}
