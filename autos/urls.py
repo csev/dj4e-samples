@@ -15,3 +15,5 @@ urlpatterns = [
     path('lookup/<int:pk>/delete/', views.MakeDelete.as_view(), name='make_delete'),
 ]
 
+# Note that make_ and auto_ give us uniqueness within this application
+
