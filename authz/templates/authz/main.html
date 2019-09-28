@@ -7,8 +7,18 @@ Email: {{ user.email }}
 Id: {{ user.id }}
 </pre>
 </p>
-<p>You can <a href="/accounts/logout">Logout</a></p>
+<p>You can <a href="/accounts/logout?next={% url 'authz:open' %}">Logout</a></p>
 {% else %}
 <p>You are not logged in</p>
-<p>You can <a href="/accounts/login">Login</a> if you like.</p>
+<p>You can <a href="/accounts/login?next={% url 'authz:protect' %}">Login</a> if you like.</p>
 {% endif %}
+<ul>
+    <li>
+        Go to <a href="{% url 'authz:open' %}">{% url 'authz:open' %}</a>
+            (not protected by LoginRequiredMixin}
+    </li>
+    <li>
+        Go to <a href="{% url 'authz:protect' %}">{% url 'authz:protect' %}</a>
+            (protected by LoginRequiredMixin}
+    </li>
+</ul>
