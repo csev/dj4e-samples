@@ -1,7 +1,6 @@
-<html>
-    <title>Login Page</title>
-</head>
-<body>
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
 
 {% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
@@ -16,10 +15,23 @@
   {% endif %}
 {% endif %}
 
+{% load crispy_forms_tags %}
+
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
-{{ form }}
+{{ form|crispy }}
 <input type="submit" class="btn btn-primary" value="Login Locally" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-</body>
+
+{% if settings.SOCIAL_AUTH_GITHUB_KEY %}
+<hr/>
+<a class="btn btn-info" role="button" href="{% url 'social:begin' 'github' %}?next={{ next }}">
+    <i class="fa fa-github" aria-hidden="true"></i>
+    Login with GitHub</a>
+{% endif %}
+
+<!-- ROOT_URLCONF {{ settings.ROOT_URLCONF }} -->
+
+{% endblock %}
+
