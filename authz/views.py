@@ -7,6 +7,10 @@ class OpenView(View) :
     def get(self, request):
         return render(request, 'authz/open.html')
 
+class ApereoView(View) :
+    def get(self, request):
+        return render(request, 'authz/apereo.html')
+
 class ProtectView(LoginRequiredMixin, View) :
     def get(self, request):
         return render(request, 'authz/protect.html')

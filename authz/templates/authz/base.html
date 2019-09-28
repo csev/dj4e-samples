@@ -1,7 +1,6 @@
-<h1>Authorization and Login</h1>
-<p>
+<h1>
 {% block whereami %}In authz/base.html{% endblock %}
-</p>
+</h1>
 {% if user.is_authenticated %}
 <p>Authenticated as
 <pre>
@@ -18,6 +17,10 @@ Id: {{ user.id }}
 <ul>
     <li>
         Go to <a href="{% url 'authz:open' %}">{% url 'authz:open' %}</a>
+            (not protected by LoginRequiredMixin}
+    </li>
+    <li>
+        Go to <a href="{% url 'authz:apereo' %}">{% url 'authz:apereo' %}</a>
             (not protected by LoginRequiredMixin}
     </li>
     <li>
