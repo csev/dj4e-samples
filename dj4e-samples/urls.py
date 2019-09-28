@@ -35,6 +35,7 @@ urlpatterns = [
     path('tmpl/', include('tmpl.urls')),
     path('gview/', include('gview.urls')),
     path('session/', include('session.urls')),
+    path('authz/', include('authz.urls')),
     path('getpost/', include('getpost.urls')),
     path('form/', include('form.urls')),
     path('crispy/', include('crispy.urls')),

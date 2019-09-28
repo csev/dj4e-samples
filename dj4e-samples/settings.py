@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'gview.apps.GviewConfig',
     'route.apps.RouteConfig',
     'session.apps.SessionConfig',
+    'authz.apps.AuthzConfig',
     'getpost.apps.GetpostConfig',
     'form.apps.FormConfig',
     'many.apps.ManyConfig',
@@ -189,6 +190,9 @@ AUTHENTICATION_BACKENDS = (
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
+# Don't set default LOGIN_URL - let django.contrib.auth set it when it is loaded
+# LOGIN_URL = '/accounts/login'
+
 # https://coderwall.com/p/uzhyca/quickly-setup-sql-query-logging-django
 # https://stackoverflow.com/questions/12027545/determine-if-django-is-running-under-the-development-server
 
@@ -213,3 +217,4 @@ if (len(sys.argv) >= 2 and sys.argv[1] == 'runserver'):
         }
     }
 '''
+
