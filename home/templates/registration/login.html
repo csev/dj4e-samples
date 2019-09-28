@@ -18,12 +18,8 @@
 
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
-{{ form }}
-<input type="submit" class="btn btn-primary" value="Login Locally" />
+{{ form.as_p }}
+<input type="submit" class="btn btn-primary" value="Login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
-<p>
-<a href="https://docs.djangoproject.com/en/2.2/topics/auth/default/#django.contrib.auth.views.LoginView"
-   target="_blank">Setting up a loginView</a> (Documentation)
 </body>
