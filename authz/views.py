@@ -5,15 +5,15 @@ from django.urls import reverse
 
 class OpenView(View) :
     def get(self, request):
-        return render(request, 'authz/open.html')
+        return render(request, 'authz/main.html')
 
 class ApereoView(View) :
     def get(self, request):
-        return render(request, 'authz/apereo.html')
+        return render(request, 'authz/main.html')
 
 class ProtectView(LoginRequiredMixin, View) :
     def get(self, request):
-        return render(request, 'authz/protect.html')
+        return render(request, 'authz/main.html')
 
 from django.http import HttpResponse
 

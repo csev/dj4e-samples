@@ -1,6 +1,4 @@
-<h1>
-{% block whereami %}In authz/base.html{% endblock %}
-</h1>
+<h1>Current request.path {{ request.path }}</h1>
 {% if user.is_authenticated %}
 <p>Authenticated as
 <pre>
@@ -9,7 +7,7 @@ Email: {{ user.email }}
 Id: {{ user.id }}
 </pre>
 </p>
-<p>You can <a href="{% url 'logout' %}?next={% url 'authz:open' %}">Logout</a></p>
+<p>You can <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></p>
 {% else %}
 <p>You are not logged in</p>
 <p>You can <a href="{% url 'login' %}?next={% url 'authz:protect' %}">Login</a> if you like.</p>
