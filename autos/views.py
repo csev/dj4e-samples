@@ -94,3 +94,8 @@ class AutoDelete(LoginRequiredMixin, DeleteView):
     fields = '__all__'
     success_url = reverse_lazy('autos:all')
 
+# We use reverse_lazy rather than reverse in the constructor attributes below
+# because views.py is loaded by urls.py and in urls.py as_view() causes
+# the constructor for the view class to run before urls.py has been
+# completely loaded and urlpatterns has been processed.
+

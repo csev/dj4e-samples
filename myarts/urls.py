@@ -13,3 +13,4 @@ urlpatterns = [
         views.ArticleDeleteView.as_view(success_url=reverse_lazy('myarts:all')), name='article_delete'),
 ]
 
+# We use reverse_lazy in urls.py to delay looking up the view until all the paths are defined

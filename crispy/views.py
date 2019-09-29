@@ -3,7 +3,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.views import View
 from crispy.forms import BasicForm
-from django.urls import reverse_lazy
+from django.urls import reverse
 
 from django.contrib import messages
 
@@ -26,6 +26,6 @@ class Validate(View):
 
         # Save the Data and send a flash!
         messages.add_message(request, messages.SUCCESS, 'Data saved.')
-        return redirect(reverse_lazy('crispy_main'))
+        return redirect(reverse('crispy_main'))
 
 

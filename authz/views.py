@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 class OpenView(View) :
     def get(self, request):
@@ -16,14 +17,18 @@ class ProtectView(LoginRequiredMixin, View) :
 
 from django.http import HttpResponse
 
-class DoItInPython(View) :
+class DumpPython(View) :
     def get(self, req):
         resp = "<pre>\nUser Data in Python:\n\n"
+        resp += "Login url: " + reverse('login') + "\n"
+        resp += "Logout url: " + reverse('logout') + "\n\n"
         if req.user.is_authenticated:
             resp += "User: " + req.user.username + "\n"
             resp += "Email: " + req.user.email + "\n"
         else:
-            resp += "User is not logged in"
+            resp += "User is not logged in\n"
+
+        resp += "\n"
         resp += "</pre>\n"
         resp += """<p><a href="/authz">Go back</a></p>"""
         return HttpResponse(resp)

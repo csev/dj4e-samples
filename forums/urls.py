@@ -20,3 +20,5 @@ urlpatterns = [
         views.CommentDeleteView.as_view(success_url=reverse_lazy('forums:all')), name='forum_comment_delete'),
 ]
 
+# We use reverse_lazy in urls.py to delay looking up the view until all the paths are defined
+
