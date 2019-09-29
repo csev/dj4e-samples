@@ -22,6 +22,10 @@ Id: {{ user.id }}
             (not protected by LoginRequiredMixin}
     </li>
     <li>
+        Go to <a href="{% url 'authz:manual' %}">{% url 'authz:manual' %}</a>
+            (protected by user.is_authenticated}
+    </li>
+    <li>
         Go to <a href="{% url 'authz:protect' %}">{% url 'authz:protect' %}</a>
             (protected by LoginRequiredMixin}
     </li>
