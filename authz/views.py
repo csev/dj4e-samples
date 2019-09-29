@@ -30,7 +30,7 @@ class DumpPython(View) :
 
         resp += "\n"
         resp += "</pre>\n"
-        resp += """<p><a href="/authz">Go back</a></p>"""
+        resp += """<a href="/authz">Go back</a>"""
         return HttpResponse(resp)
 
 
