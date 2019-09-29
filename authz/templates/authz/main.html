@@ -15,19 +15,19 @@ Id: {{ user.id }}
 <ul>
     <li>
         Go to <a href="{% url 'authz:open' %}">{% url 'authz:open' %}</a>
-            (not protected by LoginRequiredMixin}
+            (no login required)
     </li>
     <li>
         Go to <a href="{% url 'authz:apereo' %}">{% url 'authz:apereo' %}</a>
-            (not protected by LoginRequiredMixin}
+            (no login required)
     </li>
     <li>
         Go to <a href="{% url 'authz:manual' %}">{% url 'authz:manual' %}</a>
-            (protected by user.is_authenticated}
+            (protected by user.is_authenticated)
     </li>
     <li>
         Go to <a href="{% url 'authz:protect' %}">{% url 'authz:protect' %}</a>
-            (protected by LoginRequiredMixin}
+            (protected by LoginRequiredMixin)
     </li>
     <li>
         Go to <a href="{% url 'authz:python' %}">{% url 'authz:python' %}</a>
