@@ -9,7 +9,7 @@ def cookie(request):
     print(request.COOKIES)
     resp = HttpResponse('C is for cookie and that is good enough for me...')
     if not request.COOKIES.get('zap') :
-        resp.set_cookie('zap', 42) # No epired data = until browser close
+        resp.set_cookie('zap', 42) # No expired date = until browser close
     resp.set_cookie('sakaicar', 42, max_age=1000) # seconds until expire
     return resp
 
