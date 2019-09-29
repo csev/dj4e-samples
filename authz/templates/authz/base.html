@@ -27,4 +27,8 @@ Id: {{ user.id }}
         Go to <a href="{% url 'authz:protect' %}">{% url 'authz:protect' %}</a>
             (protected by LoginRequiredMixin}
     </li>
+    <li>
+        Go to <a href="{% url 'authz:python' %}">{% url 'authz:python' %}</a>
+            dump request.user data in python
+    </li>
 </ul>
