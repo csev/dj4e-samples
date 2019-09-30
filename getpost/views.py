@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-import logging
 import html
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 
-logger = logging.getLogger(__name__)
+# Call as dumpdata('GET', request.GET)
 
 def dumpdata(place, data) :
     retval = ""
@@ -17,67 +16,64 @@ def dumpdata(place, data) :
     return retval
 
 def getform(request):
-    response = '<p>Impossible GET guessing game...</p>'
-
-    response += '''<form>
+    response = """<p>Impossible GET guessing game...</p>
+        <form>
         <p><label for="guess">Input Guess</label>
         <input type="text" name="guess" size="40" id="guess"/></p>
         <input type="submit"/>
-        </form>
-        '''
+        </form>"""
+
     response += dumpdata('GET', request.GET)
     return HttpResponse(response)
 
 @csrf_exempt
 def postform(request):
-    response = '<p>Impossible POST guessing game...</p>'
-
-    response += '''<form method="POST">
+    response = """<p>Impossible POST guessing game...</p>
+        <form method="POST">
         <p><label for="guess">Input Guess</label>
         <input type="text" name="guess" size="40" id="guess"/></p>
         <input type="submit"/>
-        </form>
-        '''
+        </form>"""
+
     response += dumpdata('POST', request.POST)
     return HttpResponse(response)
 
 def failform(request):
-    response = '<p>CSRF Fail guessing game...</p>'
-
-    response += '''<form method="POST">
+    response = """<p>CSRF Fail guessing game...</p>
+        <form method="post">
         <p><label for="guess">Input Guess</label>
         <input type="text" name="guess" size="40" id="guess"/></p>
         <input type="submit"/>
-        </form>
-        '''
+        </form>"""
+
     response += dumpdata('POST', request.POST)
     return HttpResponse(response)
 
 from django.middleware.csrf import get_token
 
 def csrfform(request):
-    response = '<p>CSRF Success guessing game...</p>'
-    
-    token = get_token(request)
-
-    response += '''<form method="POST">
+    response = """<p>CSRF Success guessing game...</p>
+        <form method="POST">
         <p><label for="guess">Input Guess</label>
         <input type="text" name="guess" size="40" id="guess"/></p>
         <input type="hidden" name="csrfmiddlewaretoken"
-           value="'''+html.escape(token)+'''"/>
+            value="__token__"/>
         <input type="submit"/>
-        </form>
-        '''
+        </form>"""
+
+    token = get_token(request)
+    response = response.replace('__token__', html.escape(token))
     response += dumpdata('POST', request.POST)
     return HttpResponse(response)
 
+# Call as checkguess('42')
 def checkguess(guess) :
     msg = False
     if guess :
         try:
-            if int(guess) < 42 : 
+            if int(guess) < 42 :
                 msg = 'Guess too low'
-            elif int(guess) > 42 : 
+            elif int(guess) > 42 :
                 msg = 'Guess too high'
             else:
                 msg = 'Congratulations!'
