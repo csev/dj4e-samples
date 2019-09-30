@@ -1,11 +1,15 @@
 from django.urls import path
 from . import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('dump', views.dump, name='dump'),
-    path('block', views.block, name='block'),
-    path('simple', views.simple, name='simple'),
+    path('', TemplateView.as_view(template_name='getpost/main.html')),
+    path('getform', views.getform, name='getform'),
+    path('postform', views.postform, name='postform'),
+    path('failform', views.failform, name='failform'),
+    path('csrfform', views.csrfform, name='csrfform'),
     path('guess', views.guess, name='guess'),
+    path('classy', views.ClassyView.as_view(), name='classy'),
     path('bounce', views.bounce, name='bounce'),
+    path('awesome', views.AwesomeView.as_view(), name='awesome'),
 ]

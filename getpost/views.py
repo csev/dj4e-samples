@@ -1,65 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 import logging
 import html
 from django.views.decorators.csrf import csrf_exempt
+from django.views import View
 
 logger = logging.getLogger(__name__)
 
-# Create your views here.
+def dumpdata(place, data) :
+    retval = ""
+    if len(data) > 0 :
+        retval += '<p>Incoming '+place+' data:<br/>\n'
+        for key, value in data.items():
+            retval += html.escape(key) + '=' + html.escape(value) + '</br>\n'
+        retval += '</p>\n'
+    return retval
 
-def index(request):
-    logging.error('Logging from index...')
-    print('Printing from index...')
-    response = """<html><body><p>Welcome to sample getpost code</p><ul>
-    <li><p><a href="dump">Dump Request GET and POST</p></li>
-    <li><p><a href="block">Test missing CSRF</p></li>
-    <li><p><a href="simple">Play a guessing game</p></li>
-    <li><p><a href="guess">Play another guessing game</p></li>
-    <li><p><a href="bounce">Play with redirect</p></li>
-    </ul></body></html>"""
-    return HttpResponse(response)
-
-@csrf_exempt
-def dump(request):
-    response = '<p>Dumping the POST data...</p>'
-
-    response += '''<form method="post">
-        <p><label for="abc123">Tsugi</label>
-        <input type="text" name="tsugi" size="40" id="abc123"/><br/>
-        <label for="xyzzy">SakaiCar</label>
-        <input type="text" name="sakaicar" size="40" id="xyzzy"/><br/>
-        <input type="submit"/></p>
-        </form><hr/>
-        '''
-    response += '<p>Incoming GET data:<br/>\n'
-    for key, value in request.GET.items():
-        response += html.escape(key) + '=' + html.escape(value) + '</br>\n'
-    response += '</p>\n'
-
-
-    response += '<p>Incoming POST data:<br/>\n'
-    for key, value in request.POST.items():
-        response += html.escape(key) + '=' + html.escape(value) + '</br>\n'
-    response += '</p>\n'
-
-    return HttpResponse(response)
-
-def block(request):
-    response = '<p>Expect CSRF Failure...</p>'
-
-    response += '''<form method="post">
-        <p><label for="abc123">Tsugi</label>
-        <input type="text" name="tsugi" size="40" id="abc123"/><br/>
-        <label for="xyzzy">SakaiCar</label>
-        <input type="text" name="sakaicar" size="40" id="xyzzy"/><br/>
-        <input type="submit"/></p>
-        </form><hr/>
-        '''
-    return HttpResponse(response)
-
-def simple(request):
-    response = '<p>Impossible guessing game...</p>'
+def getform(request):
+    response = '<p>Impossible GET guessing game...</p>'
 
     response += '''<form>
         <p><label for="guess">Input Guess</label>
@@ -67,21 +25,55 @@ def simple(request):
         <input type="submit"/>
         </form>
         '''
-
-    if len(request.GET) > 0 :
-        response += '<p>Incoming GET data:<br/>\n'
-        for key, value in request.GET.items():
-            response += html.escape(key) + '=' + html.escape(value) + '</br>\n'
-        response += '</p>\n'
-
+    response += dumpdata('GET', request.GET)
     return HttpResponse(response)
 
 @csrf_exempt
-def guess(request):
-    response = '<p>Guessing game...</p>'
-    guess = request.POST.get('guess')
+def postform(request):
+    response = '<p>Impossible POST guessing game...</p>'
+
+    response += '''<form method="POST">
+        <p><label for="guess">Input Guess</label>
+        <input type="text" name="guess" size="40" id="guess"/></p>
+        <input type="submit"/>
+        </form>
+        '''
+    response += dumpdata('POST', request.POST)
+    return HttpResponse(response)
+
+def failform(request):
+    response = '<p>CSRF Fail guessing game...</p>'
+
+    response += '''<form method="POST">
+        <p><label for="guess">Input Guess</label>
+        <input type="text" name="guess" size="40" id="guess"/></p>
+        <input type="submit"/>
+        </form>
+        '''
+    response += dumpdata('POST', request.POST)
+    return HttpResponse(response)
+
+from django.middleware.csrf import get_token
+
+def csrfform(request):
+    response = '<p>CSRF Success guessing game...</p>'
+    
+    token = get_token(request)
+
+    response += '''<form method="POST">
+        <p><label for="guess">Input Guess</label>
+        <input type="text" name="guess" size="40" id="guess"/></p>
+        <input type="hidden" name="csrfmiddlewaretoken"
+           value="'''+html.escape(token)+'''"/>
+        <input type="submit"/>
+        </form>
+        '''
+    response += dumpdata('POST', request.POST)
+    return HttpResponse(response)
+
+def checkguess(guess) :
     msg = False
-    if guess :   # We have a guess in POST data
+    if guess :
         try:
             if int(guess) < 42 : 
                 msg = 'Guess too low'
@@ -91,24 +83,41 @@ def guess(request):
                 msg = 'Congratulations!'
         except:
             msg = 'Bad format for guess:' + html.escape(guess)
-        
-    if msg : 
-        response += '<p>' + msg + '</p>\n'
+    return msg
 
-    response += '''<form method="post">
-        <p><label for="guess">Input Guess</label>
-        <input type="text" name="guess" size="40" id="guess"/></p>
-        <input type="submit"/>
-        </form>
-        '''
+def guess(request):
+    guess = request.POST.get('guess')
+    msg = checkguess(guess)
+    return render(request, 'getpost/guess.html', {'message' : msg })
 
-    return HttpResponse(response)
+class ClassyView(View) :
+    def get(self, request):
+        return render(request, 'getpost/guess.html')
+
+    def post(self, request):
+        guess = request.POST.get('guess')
+        msg = checkguess(guess)
+        return render(request, 'getpost/guess.html', {'message' : msg })
 
 # Send a 302 and Location: header to the browser
 def bounce(request) :
-    return HttpResponseRedirect('https://www.dj4e.com/lessons')
+    return HttpResponseRedirect('https://www.dj4e.com/simple.htm')
+
+class AwesomeView(View) :
+    def get(self, request):
+        msg = request.session.get('msg', False)
+        if ( msg ) : del(request.session['msg'])
+        return render(request, 'getpost/guess.html', {'message' : msg })
+
+    def post(self, request):
+        guess = request.POST.get('guess')
+        msg = checkguess(guess)
+        request.session['msg'] = msg
+        return redirect(request.path)
 
 
 # References
 
 # https://stackoverflow.com/questions/3289860/how-can-i-embed-django-csrf-token-straight-into-html
+
+# https://stackoverflow.com/questions/36347512/how-can-i-get-csrftoken-in-view

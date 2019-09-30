@@ -5,7 +5,6 @@ from django.views import View
 from django.urls import reverse
 from form.forms import BasicForm
 
-from pprint import pprint
 import json
 
 # Create your views here.
