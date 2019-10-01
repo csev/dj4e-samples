@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.views import View
 from django.urls import reverse
