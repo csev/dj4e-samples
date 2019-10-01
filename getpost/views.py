@@ -38,6 +38,16 @@ def postform(request):
     response += dumpdata('POST', request.POST)
     return HttpResponse(response)
 
+@csrf_exempt
+def html4(request):
+    dump = dumpdata('POST', request.POST)
+    return render(request, 'getpost/html4.html', {'data' : dump })
+
+@csrf_exempt
+def html5(request):
+    dump = dumpdata('POST', request.POST)
+    return render(request, 'getpost/html5.html', {'data' : dump })
+
 def failform(request):
     response = """<p>CSRF Fail guessing game...</p>
         <form method="post">
