@@ -25,6 +25,8 @@ class MakeView(LoginRequiredMixin,View) :
         ctx = { 'make_list': ml };
         return render(request, 'autos/make_list.html', ctx)
 
+# We use reverse_lazy() because we are in "constructor code"
+# that is run before urls.py is cmopletely loaded
 class MakeCreate(LoginRequiredMixin, View):
     template = 'autos/make_form.html'
     success_url = reverse_lazy('autos:all')
@@ -47,13 +49,13 @@ class MakeUpdate(LoginRequiredMixin, View):
     success_url = reverse_lazy('autos:all')
     template = 'autos/make_form.html'
     def get(self, request, pk) :
-        make = get_object_or_404(self.model, pk=pk) 
+        make = get_object_or_404(self.model, pk=pk)
         form = MakeForm(instance=make)
         ctx = { 'form': form }
         return render(request, self.template, ctx)
 
     def post(self, request, pk) :
-        make = get_object_or_404(self.model, pk=pk) 
+        make = get_object_or_404(self.model, pk=pk)
         form = MakeForm(request.POST, instance = make)
         if not form.is_valid() :
             ctx = {'form' : form}
@@ -68,13 +70,13 @@ class MakeDelete(LoginRequiredMixin, DeleteView):
     template = 'autos/make_confirm_delete.html'
 
     def get(self, request, pk) :
-        make = get_object_or_404(self.model, pk=pk) 
+        make = get_object_or_404(self.model, pk=pk)
         form = MakeForm(instance=make)
         ctx = { 'make': make }
         return render(request, self.template, ctx)
 
     def post(self, request, pk) :
-        make = get_object_or_404(self.model, pk=pk) 
+        make = get_object_or_404(self.model, pk=pk)
         make.delete()
         return redirect(self.success_url)
 
