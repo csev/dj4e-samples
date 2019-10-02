@@ -1,8 +1,8 @@
 <html><body>
 <p>Dump of {{ title }}:
-<pre>
-{{ dump }}
-</pre>
+<p>
+{{ dump|safe }}
+</p>
 </p>
 <a href="{% url 'form:main' %}">Back</a>
 </body></html>

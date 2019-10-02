@@ -3,18 +3,26 @@ from django.http import HttpResponse
 from django.views import View
 from django.urls import reverse
 from form.forms import BasicForm
+import html
 
-import json
-
-# Create your views here.
 def example(request) :
     form = BasicForm()
     return HttpResponse(form.as_table())
 
+# Call as dumpdata('GET', request.GET)
+def dumpdata(place, data) :
+    retval = ""
+    if len(data) > 0 :
+        retval += '<p>Incoming '+place+' data:<br/>\n'
+        for key, value in data.items():
+            retval += html.escape(key) + '=' + html.escape(value) + '</br>\n'
+        retval += '</p>\n'
+    return retval
+
 class DumpPostView(View):  # Reusable bit...
     def post(self, request) :
-        js = json.dumps(request.POST, sort_keys=True, indent=4)        
-        ctx = {'title': 'request.POST', 'dump': js}
+        dump = dumpdata('POST', request.POST)
+        ctx = {'title': 'request.POST', 'dump': dump}
         return render(request, 'form/dump.html', ctx)
 
 class SimpleCreate(DumpPostView): 
@@ -50,8 +58,7 @@ class Validate(DumpPostView):
         if not form.is_valid() :
             ctx = {'form' : form}
             return render(request, 'form/form.html', ctx)
-        # Save the Data
-        # Look up the url for the next view in urls.py
+        # If there are no errors, we would save the data
         x = reverse('form:success')
         return redirect(x)
 
