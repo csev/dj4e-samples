@@ -9,6 +9,8 @@ from many.models import Person, Course, Membership
 def run():
     fhand = open('many/load.csv')
     reader = csv.reader(fhand)
+    # Uncomment the line below if you are reading a file with a header
+    # next(reader)
 
     Person.objects.all().delete()
     Course.objects.all().delete()
