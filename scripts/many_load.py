@@ -9,14 +9,14 @@ from many.models import Person, Course, Membership
 def run():
     fhand = open('many/load.csv')
     reader = csv.reader(fhand)
-    # Uncomment the line below if you are reading a file with a header
-    # next(reader)
+    next(reader) # Advance past the header
 
     Person.objects.all().delete()
     Course.objects.all().delete()
     Membership.objects.all().delete()
 
     # Format
+    # email,role,course
     # jane@tsugi.org,I,Python
     # ed@tsugi.org,L,Python
 
