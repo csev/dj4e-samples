@@ -1,7 +1,6 @@
-<html>
-    <title>Login Page</title>
-</head>
-<body>
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
 
 {% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
@@ -13,4 +12,4 @@
 <input type="submit" class="btn btn-primary" value="Login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-</body>
+{% endblock %}
