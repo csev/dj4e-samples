@@ -1,0 +1,18 @@
+<p>
+<a href="#" onclick="add();return false;" id="the-href">
+More</a>
+</p>
+<ul id="the-list">
+<li>First Item</li>
+</ul>
+<script>
+counter = 1;
+console.log(document.getElementById('the-list'))
+function add() {
+    var x = document.createElement('li');
+    x.className = "list-item";
+    x.innerHTML = "The counter is "+counter;
+    document.getElementById('the-list').appendChild(x);
+    counter++;
+}
+</script>

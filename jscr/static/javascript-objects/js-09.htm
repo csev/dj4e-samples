@@ -1,0 +1,16 @@
+<p>js-09.htm</p>
+<script type="text/javascript">
+balls = {"golf": "Golf balls",
+    "tennis": "Tennis balls", 
+    "ping": "Ping Pong balls"};
+
+balls.kick = function () {
+   console.log('Boom!');
+}
+
+for (ball in balls) {
+   val = balls[ball];
+   if ( typeof val != "string" ) continue;
+   console.log(ball+' = '+balls[ball]);
+}
+</script>

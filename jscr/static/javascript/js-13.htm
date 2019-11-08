@@ -1,0 +1,10 @@
+<p>
+Hello <b><span id="person">Chuck</span></b> there.
+</p> 
+<script type="text/javascript">
+console.dir(document.getElementById('person'));
+st = document.getElementById('person').innerHTML;
+console.log("ST = "+st);
+alert('Hi there ' + st);
+document.getElementById('person').innerHTML = 'Joseph';
+</script>

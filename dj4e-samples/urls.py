@@ -47,6 +47,7 @@ urlpatterns = [
     path('favsql/', include('favsql.urls')),
     path('rest/', include('rest.urls')),
     path('autos/', include('autos.urls')),
+    path('jscr/', include('jscr.urls')),
 ]
 
 # Serve the favicon

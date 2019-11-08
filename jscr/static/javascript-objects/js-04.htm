@@ -1,0 +1,17 @@
+<script type="text/javascript">
+function PartyAnimal(nam) {
+    this.x = 0;
+    this.name = nam;
+    console.log("Built "+nam);
+    this.party = function () {
+        this.x = this.x + 1;
+        console.log(nam+"="+this.x);
+    }
+}
+s = new PartyAnimal("Sally");
+s.party();
+
+j = new PartyAnimal("Jim");
+j.party();
+s.party();
+</script>
