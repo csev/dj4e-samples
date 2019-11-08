@@ -1,5 +1,4 @@
 {% extends "base_bootstrap.html" %}
-{% load crispy_forms_tags %}
 {% load humanize %} <!-- https://docs.djangoproject.com/en/2.1/ref/contrib/humanize -->
 {% block content %}
 <h1>
@@ -20,6 +19,7 @@
 {% if user.is_authenticated %}
 <br clear="all"/>
 <p>
+{% load crispy_forms_tags %}
 <form method="post" action="{% url 'forums:forum_comment_create' forum.id %}">
     {% csrf_token %}
     {{ comment_form|crispy }}
