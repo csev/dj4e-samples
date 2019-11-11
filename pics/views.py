@@ -75,35 +75,3 @@ def stream_file(request, pk) :
     response.write(pic.picture)
     return response
 
-# Another way to do it.
-# This will handle create and update with an optional pk parameter on get and post
-# We don't use the Generic or OwnerGeneric because (a) we need a form with a file
-# and (b) we need to to populate the model with request.FILES
-class PicFormView(LoginRequiredMixin, View):
-    template = 'pics/form.html'
-    success_url = reverse_lazy('pics:all')
-    def get(self, request, pk=None) :
-        if not pk : 
-            form = CreateForm()
-        else: 
-            pic = get_object_or_404(Pic, id=pk, owner=self.request.user)
-            form = CreateForm(instance=pic)
-        ctx = { 'form': form }
-        return render(request, self.template, ctx)
-
-    def post(self, request, pk=None) :
-        if not pk:
-            form = CreateForm(request.POST, request.FILES or None)
-        else:
-            pic = get_object_or_404(Pic, id=pk, owner=self.request.user)
-            form = CreateForm(request.POST, request.FILES or None, instance=pic)
-
-        if not form.is_valid() :
-            ctx = {'form' : form}
-            return render(request, self.template, ctx)
-
-        # Adjust the model owner before saving
-        pic = form.save(commit=False)
-        pic.owner = self.request.user
-        pic.save()
-        return redirect(self.success_url)

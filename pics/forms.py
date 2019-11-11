@@ -19,6 +19,7 @@ class CreateForm(forms.ModelForm):
     picture = forms.FileField(required=False, label='File to Upload <= '+max_upload_limit_text)
     upload_field_name = 'picture'
 
+    # Hint: this will need to be changed for use in the ads application :)
     class Meta:
         model = Pic
         fields = ['title', 'text', 'picture']  # Picture is manual

@@ -42,8 +42,6 @@ class ForumDeleteView(OwnerDeleteView):
 class CommentCreateView(LoginRequiredMixin, View):
     def post(self, request, pk) :
         f = get_object_or_404(Forum, id=pk)
-        comment_form = CommentForm(request.POST)
-
         comment = Comment(text=request.POST['comment'], owner=request.user, forum=f)
         comment.save()
         return redirect(reverse('forums:forum_detail', args=[pk]))

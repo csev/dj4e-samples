@@ -7,6 +7,9 @@ from django import template
 # People must register their email address and then upload a gravatar
 # If an email address has no gravatar, a generic image is put in its place
 
+# To use the gravatar filter in a template include
+# {% load app_tags %}
+
 register = template.Library()
 
 @register.filter(name='gravatar')
