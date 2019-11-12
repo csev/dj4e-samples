@@ -20,11 +20,10 @@ from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', include('home.urls')),  # Keep
+    path('', include('home.urls')),  # Change to ads.urls
     path('admin/', admin.site.urls),  # Keep
     path('accounts/', include('django.contrib.auth.urls')),  # Keep
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
-    # path('ads/', include('ads.urls')),  # Keep
 
     # Sample applications
     path('hello/', include('hello.urls')),
@@ -50,7 +49,7 @@ urlpatterns = [
     path('jscr/', include('jscr.urls')),
 ]
 
-# Serve the favicon
+# Serve the favicon - Keep for later
 import os
 from django.views.static import serve
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -62,10 +61,7 @@ urlpatterns += [
     ),
 ]
 
-# The obtuse code below can be ignored - It dynamically switches
-# between non-social login.html and social_login.html when we notice
-# that social login has been configured in settings.py (later in the course)
-# Or just uncomment the path above when you enable social login
+# Switch to social login if it is configured - Keep for later
 
 try:
     from . import github_settings
