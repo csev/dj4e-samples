@@ -1,0 +1,10 @@
+<h1>Add a user</h1>
+<form>
+<select name="user_id">
+<option value="0">-- Please Select --</option>
+{% for user in ulist %}
+<option value="{{user.id}}">{{ user.email }}</option>
+{% endfor %}
+</select>
+<input type="submit">
+</form>
