@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 import time
 
-# Create your views here.
-
-from django.http import JsonResponse
+class HomeView(View) :
+    def get(self, request):
+        return render(request, 'jsonsample/main.html')
 
 def jsonfun(request):
     time.sleep(2)
@@ -12,6 +15,10 @@ def jsonfun(request):
         'second': 'second thing'
     }
     return JsonResponse(stuff)
+
+class ChatMain(View) :
+    def get(self, request):
+        return render(request, 'jsonsample/chat.html')
 
 
 # References
