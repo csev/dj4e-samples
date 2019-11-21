@@ -1,0 +1,19 @@
+{% extends 'base_bootstrap.html' %}
+{% block content %}
+<p>Howdy - Lets get some JSON</p>
+<p id="back">This text will be replaced in 2 seconds</p>
+<p>
+<a href="{% url 'jsonsample:syntax' %}" target="_new">JSON and JavaScript</a> |
+<a href="{% url 'jsonsample:jsonfun' %}" target="_blank">JSON Endpoint</a> 
+</p>
+<script type="text/javascript">
+$(document).ready( function () {
+    $.getJSON('{% url 'jsonsample:jsonfun' %}', function(data) {
+      $("#back").html(data.first);
+      window.console && console.log(data);
+    })
+  }
+);
+</script>
+{% endblock %}
+</body>
