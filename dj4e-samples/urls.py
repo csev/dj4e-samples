@@ -48,7 +48,7 @@ urlpatterns = [
     path('autos/', include('autos.urls')),
     path('jscr/', include('jscr.urls')),
     path('usermodel/', include('usermodel.urls')),
-    path('jsonsample/', include('jsonsample.urls')),
+    path('chat/', include('chat.urls')),
 ]
 
 # Serve the favicon - Keep for later

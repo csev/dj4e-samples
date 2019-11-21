@@ -3,12 +3,13 @@
 <p>Howdy - Lets get some JSON</p>
 <p id="back">This text will be replaced in 2 seconds</p>
 <p>
-<a href="{% url 'jsonsample:syntax' %}" target="_new">JSON and JavaScript</a> |
-<a href="{% url 'jsonsample:jsonfun' %}" target="_blank">JSON Endpoint</a> 
+<a href="{% url 'chat:syntax' %}" target="_new">JSON and JavaScript</a> |
+<a href="{% url 'chat:jsonfun' %}" target="_blank">JSON Endpoint</a>  |
+<a href="{% url 'chat:talk' %}" target="_blank">Chat</a>
 </p>
 <script type="text/javascript">
 $(document).ready( function () {
-    $.getJSON('{% url 'jsonsample:jsonfun' %}', function(data) {
+    $.getJSON('{% url 'chat:jsonfun' %}', function(data) {
       $("#back").html(data.first);
       window.console && console.log(data);
     })

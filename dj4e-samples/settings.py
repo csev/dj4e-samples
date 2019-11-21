@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     'favsql.apps.FavsqlConfig',
     'autos.apps.AutosConfig',
     'usermodel.apps.UsermodelConfig',
-    'jsonsample.apps.JsonsampleConfig',
+    'chat.apps.ChatConfig',
 ]
 
 # When we get to crispy forms :)
