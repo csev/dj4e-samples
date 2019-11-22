@@ -2,10 +2,12 @@ from django.urls import path, reverse_lazy
 from . import views
 from django.views.generic import TemplateView
 
-# In views.py reverse_lazy('favs:all')
+# In urls.py reverse_lazy('favs:all')
+# In views.py class initialization reverse_lazy('favs:all')
+# In views.py methods reverse('favs:all')
 # In templates {% url 'favs:thing_update' thing.id %}
-app_name='favs'
 
+app_name='favs'
 urlpatterns = [
     path('', views.ThingListView.as_view(), name='all'),
     path('thing/<int:pk>', views.ThingDetailView.as_view(), name='thing_detail'),

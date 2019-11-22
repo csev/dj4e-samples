@@ -41,6 +41,7 @@ class ThingDeleteView(OwnerDeleteView):
     model = Thing
     template_name = "favs/delete.html"
 
+# csrf exemption in class based views
 # https://stackoverflow.com/questions/16458166/how-to-disable-djangos-csrf-validation
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
