@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'autos.apps.AutosConfig',
     'usermodel.apps.UsermodelConfig',
     'chat.apps.ChatConfig',
+    'util.apps.UtilConfig',
 ]
 
 # When we get to crispy forms :)

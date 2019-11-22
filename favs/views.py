@@ -17,8 +17,9 @@ class ThingListView(OwnerListView):
         thing_list = Thing.objects.all()
         favorites = list()
         if request.user.is_authenticated:
-            # rows = [{'id': 2}]  (A list of rows)
+            # rows = [{'id': 2}, {'id': 4} ... ]  (A list of rows)
             rows = request.user.favorite_things.values('id')
+            # favorites = [2, 4, ...] using list comprehension
             favorites = [ row['id'] for row in rows ]
         ctx = {'thing_list' : thing_list, 'favorites': favorites}
         return render(request, self.template_name, ctx)
