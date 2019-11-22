@@ -56,7 +56,7 @@ function favPost(url, thing_id) {
         $("#unfavorite_star_"+thing_id).toggle();
         $("#favorite_star_"+thing_id).toggle();
     }).fail(function(xhr) {
-        console.log(url, 'error', xhr.status);
+        alert('Url failed with '+xhr.status+' '+url);
     });
 }
 </script>
