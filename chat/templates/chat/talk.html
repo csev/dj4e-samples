@@ -32,7 +32,7 @@ function updateMsg() {
 // Make sure JSON requests are not cached
 $(document).ready(function() {
   $.ajaxSetup({ cache: false });
-  updateMsg();
+  setTimeout('updateMsg()', 2000);
 });
 </script>
 {% endblock %}
