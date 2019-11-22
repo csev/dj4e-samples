@@ -11,7 +11,7 @@
 $(document).ready( function () {
     $.getJSON('{% url 'chat:jsonfun' %}', function(data) {
       $("#back").html(data.first);
-      window.console && console.log(data);
+      console.log(data);
     })
   }
 );

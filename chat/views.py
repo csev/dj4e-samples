@@ -19,7 +19,7 @@ def jsonfun(request):
     }
     return JsonResponse(stuff)
 
-class TalkMain(View, LoginRequiredMixin) :
+class TalkMain(LoginRequiredMixin, View) :
     def get(self, request):
         # Clean up old records
         time_threshold = datetime.now() - timedelta(minutes=60)
@@ -34,7 +34,7 @@ class TalkMain(View, LoginRequiredMixin) :
 
         return
 
-class TalkMessages(View, LoginRequiredMixin) :
+class TalkMessages(LoginRequiredMixin, View) :
     def get(self, request):
         messages = Message.objects.all().order_by('-created_at')[:10]
         results = []

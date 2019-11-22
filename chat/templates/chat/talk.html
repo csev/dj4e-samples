@@ -1,21 +1,22 @@
 {% extends 'base_bootstrap.html' %}
 {% block content %}
-      <h1>Chat</h1>
-      <form method="post">
-      {% csrf_token %}
-      <input type="text" name="message" size="60"/>
-      <input type="submit" value="Chat"/> 
-      <input type="submit" name="reset" value="Reset"/> 
-      <a href="{% url 'chat:main' %}" target="_blank">Cancel</a>
-      </p>
-      </form>
-      <div id="chatcontent">
-          <img src="{% url 'chat:static' 'spinner.gif' %}" alt="Loading..."/>
-      </div>
+<h1>Chat</h1>
+<form method="post">
+{% csrf_token %}
+<input type="text" name="message" size="60"/>
+<input type="submit" value="Chat"/> 
+<input type="submit" name="reset" value="Reset"/> 
+<a href="{% url 'chat:main' %}" target="_blank">Cancel</a>
+</p>
+</form>
+
+<div id="chatcontent">
+<img src="{% url 'chat:static' 'spinner.gif' %}" alt="Loading..."/>
+</div>
 
 <script type="text/javascript">
 function updateMsg() {
-  window.console && console.log('Requesting JSON'); 
+    console.log('Requesting JSON'); 
     $.getJSON('{% url 'chat:messages' %}', function(rowz){
       window.console && console.log('JSON Received'); 
       window.console && console.log(rowz);
