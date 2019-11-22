@@ -12,6 +12,7 @@
         <a href="{% url 'favs:thing_delete' thing.id %}">Delete</a>)
         {% endif %}
         {% if user.is_authenticated %}
+        <!-- Two hrefs with two stacked icons each - one showing and one hidden -->
         <a href="#" onclick=
             "favPost('{% url 'favs:thing_unfavorite' thing.id %}', {{ thing.id }} );return false;"
             {% if thing.id not in favorites %} style="display: none;" {% endif %}
@@ -21,7 +22,7 @@
         <i class="fa fa-star-o fa-stack-1x"></i>
         </span>
         </a>
-        <!-- Weird - fa-stack changes vertical spacing so to be consistent we use it here -->
+        <!-- the second href -->
         <a href="#" onclick=
              "favPost('{% url 'favs:thing_favorite' thing.id %}', {{ thing.id }} );return false;"
             {% if thing.id in favorites %} style="display: none;" {% endif %}
@@ -49,23 +50,14 @@
 </p>
 <script>
 function favPost(url, thing_id) {
-    fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        redirect: "follow", // manual, *follow, error
-        referrer: "no-referrer", // no-referrer, *client
-    }).then(function(data) {
+    console.log('Requesting JSON');
+    $.post(url, {},  function(rowz){
         console.log(url, 'finished');
         $("#unfavorite_star_"+thing_id).toggle();
         $("#favorite_star_"+thing_id).toggle();
-    }).catch(function() {
-        console.log(url, 'error');
-    })
+    }).fail(function(xhr) {
+        console.log(url, 'error', xhr.status);
+    });
 }
 </script>
 {% endblock %}
