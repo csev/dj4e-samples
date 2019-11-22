@@ -32,8 +32,6 @@ class TalkMain(LoginRequiredMixin, View) :
         message.save()
         return redirect(reverse('chat:talk'))
 
-        return
-
 class TalkMessages(LoginRequiredMixin, View) :
     def get(self, request):
         messages = Message.objects.all().order_by('-created_at')[:10]
