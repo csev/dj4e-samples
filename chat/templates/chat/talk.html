@@ -18,8 +18,7 @@
 function updateMsg() {
     console.log('Requesting JSON'); 
     $.getJSON('{% url 'chat:messages' %}', function(rowz){
-      window.console && console.log('JSON Received'); 
-      window.console && console.log(rowz);
+      console.log('JSON', rowz);
       $('#chatcontent').empty();
       for (var i = 0; i < rowz.length; i++) {
         arow = rowz[i];
