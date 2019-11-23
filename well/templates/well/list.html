@@ -1,6 +1,16 @@
 {% extends "base_bootstrap.html" %}
 {% block content %}
 <h1>Our Blog</h1>
+<div style="float:right">
+<!-- https://www.w3schools.com/howto/howto_css_search_button.asp -->
+<form>
+  <input type="text" placeholder="Search.." name="search"
+  {% if search %} value="{{ search }}" {% endif %}
+  >
+  <button type="submit"><i class="fa fa-search"></i></button>
+<a href="{% url 'well:all' %}"><i class="fa fa-undo"></i></a>
+</form>
+</div>
 <p>
 {% if post_list %}
 <ul>
@@ -10,7 +20,22 @@
         {% if post.owner_id == user.id %}
         (<a href="{% url 'well:post_update' post.id %}">Edit</a> |
         <a href="{% url 'well:post_delete' post.id %}">Delete</a>)
+        <br/>
+        <div style="left:10px">
+            {% if post.text|length < 100 %}
+                {{ post.text }}
+            {% else %}
+                {{ post.text|slice:"0:99" }}
+                <a href="{% url 'well:post_detail'  post.id %}">...</a>
+            {% endif %}
+        </div>
         {% endif %}
+        <small>
+        {% if post.owner.username %}
+            posted by {{ post.owner.username }}
+        {% endif %}
+        {{ post.natural_updated }}
+        </small>
     </li>
   {% endfor %}
 </ul>
