@@ -1,6 +1,5 @@
 from django.urls import path, reverse_lazy
 from . import views
-from django.views.generic import TemplateView
 
 # In urls.py reverse_lazy('favs:all')
 # In views.py class initialization reverse_lazy('favs:all')

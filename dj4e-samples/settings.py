@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'usermodel.apps.UsermodelConfig',
     'chat.apps.ChatConfig',
     'util.apps.UtilConfig',
+    'well.apps.WellConfig',
 ]
 
 # When we get to crispy forms :)
