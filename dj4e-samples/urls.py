@@ -13,11 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from django.views.static import serve
 
 urlpatterns = [
     path('', include('home.urls')),  # Change to ads.urls
@@ -52,10 +54,17 @@ urlpatterns = [
     path('well/', include('well.urls')),
 ]
 
-# Serve the favicon - Keep for later
-import os
-from django.views.static import serve
+# Serve the static HTML
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+urlpatterns += [
+    url(r'^site/(?P<path>.*)$', serve,
+        {'document_root': os.path.join(BASE_DIR, 'site'),
+           'show_indexes': True},
+        name='site_path'
+    ),
+]
+
+# Serve the favicon - Keep for later
 urlpatterns += [
     path('favicon.ico', serve, {
             'path': 'favicon.ico',
@@ -65,7 +74,6 @@ urlpatterns += [
 ]
 
 # Switch to social login if it is configured - Keep for later
-
 try:
     from . import github_settings
     social_login = 'registration/login_social.html'
