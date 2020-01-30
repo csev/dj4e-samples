@@ -10,7 +10,7 @@ class CatListView(View):
         stuff = Cat.objects.all()
         cntx = { 'cat_list': stuff }
         return render(request, 'gview/cat_list.html', cntx)
-    
+
 class CatDetailView(View):
     def get(self, request, pk_from_url) :
         obj = Cat.objects.get(pk=pk_from_url)
@@ -25,7 +25,7 @@ class DogListView(View):
         stuff = self.model.objects.all()
         cntx = { modelname+'_list': stuff }
         return render(request, 'gview/'+modelname+'_list.html', cntx)
-    
+
 class DogDetailView(View):
     model = Dog
     def get(self, request, pk) :
@@ -35,7 +35,7 @@ class DogDetailView(View):
         return render(request, 'gview/'+modelname+'_detail.html', cntx)
 
 # Lets save time and use the built-in generics
-# https://docs.djangoproject.com/en/2.1/topics/class-based-views/generic-display/
+# https://docs.djangoproject.com/en/3.0/topics/class-based-views/generic-display/
 from django.views import generic
 
 class HorseListView(generic.ListView):
@@ -52,7 +52,7 @@ class DJ4EListView(View):
         stuff = self.model.objects.all()
         cntx = { modelname+'_list': stuff }
         return render(request, 'gview/'+modelname+'_list.html', cntx)
-    
+
 class DJ4EDetailView(View):
     def get(self, request, pk) :
         modelname = self.model._meta.verbose_name.title().lower()
@@ -67,7 +67,19 @@ class CarListView(DJ4EListView):
 class CarDetailView(DJ4EDetailView):
     model = Car
 
+# Lets explore how (badly) we can override some of what goes on...
+class WackyEquinesView(generic.ListView):
+    model = Car
+    template_name = 'gview/wacky.html'  # Convention: gview/car_list.html
+
+    # Override a method in ListView
+    def get_context_data(self, **kwargs):
+        crazy = Horse.objects.all()    # Convention: Car
+        context = {}
+        context['ponies'] = crazy      # Convention: cars
+        return context
+
 # There is much more to learn
-# https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView
-# https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-display/#django.views.generic.detail.ListView
+# https://docs.djangoproject.com/en/3.0/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView
+# https://docs.djangoproject.com/en/3.0/ref/class-based-views/generic-display/#django.views.generic.detail.ListView
 
