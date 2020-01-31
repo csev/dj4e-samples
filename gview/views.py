@@ -72,8 +72,9 @@ class WackyEquinesView(generic.ListView):
     model = Car
     template_name = 'gview/wacky.html'  # Convention: gview/car_list.html
 
-    def get_query_set(self, **kwargs):
+    def get_queryset(self, **kwargs):
         crazy = Horse.objects.all()    # Convention: Car
+        print('CRAZY')
         return crazy
 
     # Add something to the context

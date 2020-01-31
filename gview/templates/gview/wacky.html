@@ -1,8 +1,8 @@
 <h1>List of {{ crazy_thing }}s</h1>
 <p>
-{% if car_list %}
+{% if horse_list %}
 <ul>
-  {% for xyz in car_list %}
+  {% for xyz in horse_list %}
     <li>
       <a href="{% url 'gview:horse' xyz.id %}">{{ xyz.name }}</a>
     </li>
