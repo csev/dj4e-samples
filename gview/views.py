@@ -72,11 +72,14 @@ class WackyEquinesView(generic.ListView):
     model = Car
     template_name = 'gview/wacky.html'  # Convention: gview/car_list.html
 
-    # Override a method in ListView
-    def get_context_data(self, **kwargs):
+    def get_query_set(self, **kwargs):
         crazy = Horse.objects.all()    # Convention: Car
-        context = {}
-        context['ponies'] = crazy      # Convention: cars
+        return crazy
+
+    # Add something to the context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['crazy_thing'] = 'CRAZY THING'
         return context
 
 # There is much more to learn

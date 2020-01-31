@@ -1,14 +1,14 @@
-<h1>Wacky List</h1>
+<h1>List of {{ crazy_thing }}s</h1>
 <p>
-{% if ponies %}
+{% if car_list %}
 <ul>
-  {% for xyz in ponies %}
+  {% for xyz in car_list %}
     <li>
       <a href="{% url 'gview:horse' xyz.id %}">{{ xyz.name }}</a>
     </li>
   {% endfor %}
 </ul>
 {% else %}
-  <p>There are no horses in the database.</p>
+  <p>There are no {{ crazy_thing }}s in the database.</p>
 {% endif %}
 </p>
