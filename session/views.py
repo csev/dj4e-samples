@@ -2,7 +2,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-# https://docs.djangoproject.com/en/2.1/ref/request-response/#django.http.HttpRequest.COOKIES
+# https://docs.djangoproject.com/en/3.0/ref/request-response/#django.http.HttpRequest.COOKIES
 # HttpResponse.set_cookie(key, value='', max_age=None, expires=None, path='/', 
 #     domain=None, secure=None, httponly=False, samesite=None)
 def cookie(request):

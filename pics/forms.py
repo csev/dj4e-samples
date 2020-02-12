@@ -3,10 +3,10 @@ from pics.models import Pic
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from pics.humanize import naturalsize
 
-# https://docs.djangoproject.com/en/2.1/topics/http/file-uploads/
+# https://docs.djangoproject.com/en/3.0/topics/http/file-uploads/
 # https://stackoverflow.com/questions/2472422/django-file-upload-size-limit
 # https://stackoverflow.com/questions/32007311/how-to-change-data-in-django-modelform
-# https://docs.djangoproject.com/en/2.1/ref/forms/validation/#cleaning-and-validating-fields-that-depend-on-each-other
+# https://docs.djangoproject.com/en/3.0/ref/forms/validation/#cleaning-and-validating-fields-that-depend-on-each-other
 
 # Create the form class.
 class CreateForm(forms.ModelForm):

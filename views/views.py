@@ -34,7 +34,7 @@ def rest(request, guess) :
 def bounce(request) :
     return HttpResponseRedirect('https://www.dj4e.com/simple.htm')
 
-# https://docs.djangoproject.com/en/2.1/topics/class-based-views/
+# https://docs.djangoproject.com/en/3.0/topics/class-based-views/
 class MainView(View) :
     def get(self, request):
         response = """<html><body><p>Hello world MainView in HTML</p>

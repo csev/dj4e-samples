@@ -42,5 +42,5 @@ class DumpPython(View) :
         return HttpResponse(resp)
 
 
-# https://docs.djangoproject.com/en/2.2/topics/auth/default/#authentication-in-web-requests
+# https://docs.djangoproject.com/en/3.0/topics/auth/default/#authentication-in-web-requests
 
