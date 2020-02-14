@@ -14,10 +14,10 @@ class ApereoView(View) :
 
 class ManualProtect(View) :
     def get(self, request):
-        if request.user.is_authenticated :
-            return render(request, 'authz/main.html')
-        loginurl = reverse('login')+'?'+urlencode({'next': request.path})
-        return redirect(loginurl)
+        if not request.user.is_authenticated :
+            loginurl = reverse('login')+'?'+urlencode({'next': request.path})
+            return redirect(loginurl)
+        return render(request, 'authz/main.html')
 
 class ProtectView(LoginRequiredMixin, View) :
     def get(self, request):
