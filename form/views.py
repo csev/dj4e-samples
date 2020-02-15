@@ -1,8 +1,9 @@
-from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views import View
 from django.urls import reverse
-from form.forms import BasicForm
+from django.shortcuts import render, redirect, get_object_or_404
+from form.forms import BasicForm, CatForm
+from form.models import Cat
 import html
 
 def example(request) :
@@ -64,6 +65,41 @@ class Validate(DumpPostView):
 
 def success(request) :
     return HttpResponse('Thank you!')
+
+class CatCreate(View): 
+    def get(self, request) :
+        form = CatForm()
+        ctx = {'form' : form}
+        return render(request, 'form/form.html', ctx)
+
+    def post(self, request) :
+        form = CatForm(request.POST)
+        if not form.is_valid() :
+            ctx = {'form' : form}
+            return render(request, 'form/form.html', ctx)
+
+        # Save the form and get a model object
+        cat = form.save()
+        x = reverse('form:main') + '#' + str(cat.id)
+        return redirect(x)
+
+class CatUpdate(View):
+    def get(self, request, pk) :
+        oldcat = get_object_or_404(Cat, pk=pk)
+        form = CatForm(instance=oldcat)
+        ctx = { 'form': form }
+        return render(request, 'form/form.html', ctx)
+
+    def post(self, request, pk) :
+        oldcat = get_object_or_404(Cat, pk=pk)
+        form = CatForm(request.POST, instance = oldcat)
+        if not form.is_valid() :
+            ctx = {'form' : form}
+            return render(request, 'form/form.html', ctx)
+
+        make = form.save()
+        x = reverse('form:main')
+        return redirect(x)
 
 
 # References

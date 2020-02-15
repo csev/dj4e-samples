@@ -9,5 +9,7 @@ urlpatterns = [
     path('create', views.SimpleCreate.as_view()),
     path('update', views.SimpleUpdate.as_view()),
     path('validate', views.Validate.as_view()),
+    path('meow', views.CatCreate.as_view()),
+    path('cat/<int:pk>/update', views.CatUpdate.as_view()),
     path('success', views.success, name='success'),
 ]

@@ -8,6 +8,17 @@ class BasicForm(forms.Form):
     mileage = forms.IntegerField()
     purchase_date = forms.DateField()
 
+from django.forms import ModelForm
+from form.models import Cat
+
+# Create the form class.
+class CatForm(ModelForm):
+    class Meta:
+        model = Cat
+        fields = '__all__'
+
+
+
 # References 
 
 # https://docs.djangoproject.com/en/3.0/ref/forms/api/
