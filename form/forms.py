@@ -15,8 +15,8 @@ from form.models import Cat
 class CatForm(ModelForm):
     class Meta:
         model = Cat
+        # fields = ['name', 'breed', 'comments']
         fields = '__all__'
-
 
 
 # References 

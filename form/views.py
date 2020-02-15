@@ -79,8 +79,8 @@ class CatCreate(View):
             return render(request, 'form/form.html', ctx)
 
         # Save the form and get a model object
-        cat = form.save()
-        x = reverse('form:main') + '#' + str(cat.id)
+        newcat = form.save()
+        x = reverse('form:main') + '#' + str(newcat.id)
         return redirect(x)
 
 class CatUpdate(View):
@@ -92,15 +92,14 @@ class CatUpdate(View):
 
     def post(self, request, pk) :
         oldcat = get_object_or_404(Cat, pk=pk)
-        form = CatForm(request.POST, instance = oldcat)
+        form = CatForm(request.POST, instance=oldcat)
         if not form.is_valid() :
             ctx = {'form' : form}
             return render(request, 'form/form.html', ctx)
 
-        make = form.save()
+        editcat = form.save()
         x = reverse('form:main')
         return redirect(x)
-
 
 # References
 
