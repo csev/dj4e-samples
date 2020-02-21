@@ -103,7 +103,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages', # Add
+                'django.contrib.messages.context_processors.messages',
                 'home.context_processors.settings',      # Add
                 'social_django.context_processors.backends',  # Add
                 'social_django.context_processors.login_redirect', # Add
