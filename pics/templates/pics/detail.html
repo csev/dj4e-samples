@@ -1,6 +1,26 @@
 {% extends "base_bootstrap.html" %}
 {% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
+{% block head %}
+<style>
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+  background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+</style>
+{% endblock %}
 {% block content %}
+{% if pic.content_type %}
+<div id="overlay" class="overlay" style="text-align: center;"
+   onclick="document.getElementById('overlay').style.display = 'none';" >
+<img style="width:90%;margin-top: 50px; border:3px solid black;" src="{% url 'pics:pic_picture' pic.id %}">
+</div>
+{% endif %}
 <span style="float: right;">
 ({{ pic.updated_at|naturaltime }})
 {% if pic.owner == user %}
@@ -10,7 +30,8 @@
 </span>
 <h1>{{ pic.title }}</h1>
 {% if pic.content_type %}
-<img style="float:right; max-width:50%;" src="{% url 'pics:pic_picture' pic.id %}">
+<img style="float:right; max-width:50%;" src="{% url 'pics:pic_picture' pic.id %}"
+    onclick="document.getElementById('overlay').style.display = 'block';">
 {% endif %}
 <p>
 {{ pic.text }}
