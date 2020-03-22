@@ -1,9 +1,9 @@
 from myarts.models import Article
-
 from myarts.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 
 class ArticleListView(OwnerListView):
     model = Article
+    # By convention:
     # template_name = "myarts/article_list.html"
 
 class ArticleDetailView(OwnerDetailView):

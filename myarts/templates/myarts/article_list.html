@@ -10,7 +10,6 @@
         {% if article.owner == user %}
         (<a href="{% url 'myarts:article_update' article.id %}">Edit</a> |
         <a href="{% url 'myarts:article_delete' article.id %}">Delete</a>)
-        </p>
         {% endif %}
     </li>
   {% endfor %}
