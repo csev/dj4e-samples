@@ -19,6 +19,7 @@ class OwnerCreateView(LoginRequiredMixin, CreateView):
     and add the owner to the saved object.
     """
 
+    # Saves the form instance, sets the current object for the view, and redirects to get_success_url().
     def form_valid(self, form):
         print('form_valid called')
         object = form.save(commit=False)
@@ -50,6 +51,8 @@ class OwnerDeleteView(LoginRequiredMixin, DeleteView):
         return qs.filter(owner=self.request.user)
 
 # References
+
+# https://docs.djangoproject.com/en/3.0/ref/class-based-views/mixins-editing/#django.views.generic.edit.ModelFormMixin.form_valid
 
 # https://stackoverflow.com/questions/862522/django-populate-user-id-when-saving-a-model
 
