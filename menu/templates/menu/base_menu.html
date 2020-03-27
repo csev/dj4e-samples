@@ -1,7 +1,7 @@
 {% extends 'base_bootstrap.html' %}
-{% load app_tags %} <!-- see home/templatetags/app_tags.py -->
+{% load app_tags %} <!-- see home/templatetags/app_tags.py and dj4e-samples/settings.py -->
 {% block navbar %}
-<!-- https://www.w3schools.com/booTsTrap/bootstrap_navbar.asp -->
+<!-- https://www.w3schools.com/bootstrap/bootstrap_navbar.asp -->
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -9,18 +9,24 @@
     </div>
     <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
     <ul class="nav navbar-nav">
-      <!-- Assign output of url function to a variable named 'xyz' to use in the if statement -->
+
+      <!-- Assign output of url function to a variable named
+          'xyz' to use in the if statement -->
       {% url 'menu:main' as xyz %}
       <li {% if request.get_full_path == xyz %}class="active"{% endif %}>
           <a href="{% url 'menu:main' %}">Home</a></li>
+
       {% url 'menu:page1' as abc1 %}
       <li {% if request.get_full_path == abc1 %}class="active"{% endif %}>
           <a href="{% url 'menu:page1' %}">Page 1</a></li>
+
       {% url 'menu:page2' as abc2 %}
       <li {% if request.get_full_path == abc2 %}class="active"{% endif %}>
           <a href="{% url 'menu:page2' %}">Page 2</a></li>
+
       <li class="dropdown">
-      <a href="#" data-toggle="dropdown" class="dropdown-toggle">Drop Down<b class="caret"></b></a>
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle">Drop Down
+          <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="{% url 'menu:page3' %}">Page 3</a></li>
         </ul>
@@ -31,7 +37,8 @@
       <li class="dropdown">
       <!-- gravatar depends on app_tags being loaded -->
       <!-- https://brobin.me/blog/2016/07/super-simple-django-gravatar/ -->
-      <a href="#" data-toggle="dropdown" class="dropdown-toggle"><img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b></a>
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+        <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="{% url 'logout' %}?next={% url 'menu:main' %}">Logout</a></li>
         </ul>
