@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 class MyView(View):
-    template_name = None # see urls.py
+    template_name = None # so we can override in urls.py
     def get(self, request) :
         old_data = {
             'title': 'SakaiCar', 
