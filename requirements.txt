@@ -1,6 +1,6 @@
 # To activate this run
 #
-# pip install -r requirements.txt   (or pip3)
+# pip3 install -r requirements.txt
 #
 Django>=3.0.1
 django-crispy-forms>=1.8.1
