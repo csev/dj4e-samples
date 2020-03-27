@@ -5,7 +5,8 @@ from django.views.generic import TemplateView
 # https://docs.djangoproject.com/en/3.0/topics/http/urls/
 app_name='crispy'
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='crispy/main.html'), name="crispy_main"),
-    path('validate', views.Validate.as_view()),
+    path('', TemplateView.as_view(template_name='crispy/main.html'), name="main"),
+    path('boring', views.MyView.as_view(template_name='crispy/boring.html')),
+    path('awesome', views.MyView.as_view(template_name='crispy/awesome.html')),
 ]
 

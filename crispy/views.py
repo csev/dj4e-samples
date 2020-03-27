@@ -7,7 +7,8 @@ from django.urls import reverse
 
 from django.contrib import messages
 
-class Validate(View):
+class MyView(View):
+    template_name = None # see urls.py
     def get(self, request) :
         old_data = {
             'title': 'SakaiCar', 
@@ -16,16 +17,15 @@ class Validate(View):
         }
         form = BasicForm(initial=old_data)
         ctx = {'form' : form}
-        return render(request, 'crispy/form.html', ctx)
+        return render(request, self.template_name, ctx)
 
     def post(self, request) :
         form = BasicForm(request.POST)
         if not form.is_valid() :
             ctx = {'form' : form}
-            return render(request, 'crispy/form.html', ctx)
+            return render(request, self.template_name, ctx)
 
         # Save the Data and send a flash!
         messages.add_message(request, messages.SUCCESS, 'Data saved.')
-        return redirect(reverse('crispy_main'))
-
+        return redirect(reverse('crispy:main'))
 
