@@ -3,11 +3,6 @@ from pics.models import Pic
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from pics.humanize import naturalsize
 
-# https://docs.djangoproject.com/en/3.0/topics/http/file-uploads/
-# https://stackoverflow.com/questions/2472422/django-file-upload-size-limit
-# https://stackoverflow.com/questions/32007311/how-to-change-data-in-django-modelform
-# https://docs.djangoproject.com/en/3.0/ref/forms/validation/#cleaning-and-validating-fields-that-depend-on-each-other
-
 # Create the form class.
 class CreateForm(forms.ModelForm):
     max_upload_limit = 2 * 1024 * 1024
@@ -47,4 +42,9 @@ class CreateForm(forms.ModelForm):
             instance.save()
 
         return instance
+
+# https://docs.djangoproject.com/en/3.0/topics/http/file-uploads/
+# https://stackoverflow.com/questions/2472422/django-file-upload-size-limit
+# https://stackoverflow.com/questions/32007311/how-to-change-data-in-django-modelform
+# https://docs.djangoproject.com/en/3.0/ref/forms/validation/#cleaning-and-validating-fields-that-depend-on-each-other
 
