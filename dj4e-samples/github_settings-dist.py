@@ -30,3 +30,5 @@
 SOCIAL_AUTH_GITHUB_KEY = '224642424242424230ee'
 SOCIAL_AUTH_GITHUB_SECRET = 'f1afce7ffa5424242424242424242412af40ec57'
 
+# For detail: https://readthedocs.org/projects/python-social-auth/downloads/pdf/latest/
+
