@@ -16,6 +16,8 @@ urlpatterns = [
 
     path('talk', views.TalkMain.as_view(), name='talk'),
     path('messages', views.TalkMessages.as_view(), name='messages'),
+
+    # Serve up a local static folder to serve spinner.gif
     url(r'^static/(?P<path>.*)$', serve,
         {'document_root': os.path.join(BASE_DIR, 'static'), 'show_indexes': True},
         name='static'
