@@ -21,6 +21,7 @@
         (<a href="{% url 'well:post_update' post.id %}">Edit</a> |
         <a href="{% url 'well:post_delete' post.id %}">Delete</a>)
         <br/>
+        {% endif %}
         <div style="left:10px">
             {% if post.text|length < 100 %}
                 {{ post.text }}
@@ -29,7 +30,6 @@
                 <a href="{% url 'well:post_detail'  post.id %}">...</a>
             {% endif %}
         </div>
-        {% endif %}
         <small>
         {% if post.owner.username %}
             posted by {{ post.owner.username }}
