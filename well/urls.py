@@ -36,9 +36,5 @@ urlpatterns = [
             template_name = app_name+"/delete.html"
         ), name='post_delete'),
 
-    # path('well/<int:pk>/favorite', 
-        # views.AddFavoriteView.as_view(), name='well_favorite'),
-    # path('well/<int:pk>/unfavorite', 
-        # views.DeleteFavoriteView.as_view(), name='well_unfavorite'),
 ]
 

@@ -8,7 +8,6 @@ from well.utils import dump_queries
 from django.db.models import Q
 
 class PostListView(View):
-    model = Post
     template_name = "well/list.html"
 
     def get(self, request) :
