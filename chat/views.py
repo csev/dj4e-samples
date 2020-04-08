@@ -21,10 +21,6 @@ def jsonfun(request):
 
 class TalkMain(LoginRequiredMixin, View) :
     def get(self, request):
-        # Clean up old records
-        time_threshold = datetime.now() - timedelta(minutes=60)
-        Message.objects.filter(created_at__lt=time_threshold).delete()
-
         return render(request, 'chat/talk.html')
 
     def post(self, request) :
