@@ -11,16 +11,16 @@ from autos.forms import MakeForm
 
 class MainView(LoginRequiredMixin, View) :
     def get(self, request):
-        mc = Make.objects.all().count();
-        al = Auto.objects.all();
+        mc = Make.objects.count()
+        al = Auto.objects.all()
 
         ctx = { 'make_count': mc, 'auto_list': al };
         return render(request, 'autos/auto_list.html', ctx)
 
 class MakeView(LoginRequiredMixin,View) :
     def get(self, request):
-        ml = Make.objects.all();
-        ctx = { 'make_list': ml };
+        ml = Make.objects.all()
+        ctx = { 'make_list': ml }
         return render(request, 'autos/make_list.html', ctx)
 
 # We use reverse_lazy() because we are in "constructor attribute" code
@@ -72,7 +72,6 @@ class MakeDelete(LoginRequiredMixin, View):
 
     def get(self, request, pk) :
         make = get_object_or_404(self.model, pk=pk)
-        form = MakeForm(instance=make)
         ctx = { 'make': make }
         return render(request, self.template, ctx)
 
@@ -97,7 +96,6 @@ class AutoUpdate(LoginRequiredMixin, UpdateView):
 
 class AutoDelete(LoginRequiredMixin, DeleteView):
     model = Auto
-    fields = '__all__'
     success_url = reverse_lazy('autos:all')
 
 # We use reverse_lazy rather than reverse in the class attributes
