@@ -3,7 +3,7 @@ from . import views
 from django.views.generic import TemplateView
 
 # https://docs.djangoproject.com/en/3.0/topics/http/urls/
-app_name='autos'
+app_name = 'autos'
 urlpatterns = [
     path('', views.MainView.as_view(), name='all'),
     path('main/create/', views.AutoCreate.as_view(), name='auto_create'),
@@ -16,4 +16,3 @@ urlpatterns = [
 ]
 
 # Note that make_ and auto_ give us uniqueness within this application
-
