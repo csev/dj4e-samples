@@ -27,7 +27,7 @@ SECRET_KEY = 'g$iqqu&*mw4_sg3(#ld0sqaalxebel&168^yj%i&sgrw(fmn@w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '*' ]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -78,7 +78,7 @@ INSTALLED_APPS = [
 ]
 
 # When we get to crispy forms :)
-CRISPY_TEMPLATE_PACK = 'bootstrap3' # Add
+CRISPY_TEMPLATE_PACK = 'bootstrap3'  # Add
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -221,4 +221,3 @@ if (len(sys.argv) >= 2 and sys.argv[1] == 'runserver'):
         }
     }
 '''
-

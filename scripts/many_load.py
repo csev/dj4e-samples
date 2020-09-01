@@ -6,10 +6,11 @@ import csv  # https://docs.python.org/3/library/csv.html
 
 from many.models import Person, Course, Membership
 
+
 def run():
     fhand = open('many/load.csv')
     reader = csv.reader(fhand)
-    next(reader) # Advance past the header
+    next(reader)  # Advance past the header
 
     Person.objects.all().delete()
     Course.objects.all().delete()
@@ -27,7 +28,7 @@ def run():
         c, created = Course.objects.get_or_create(title=row[2])
 
         r = Membership.LEARNER
-        if row[1] == 'I' : r = Membership.INSTRUCTOR
-        m = Membership(role=r,person=p, course=c)
+        if row[1] == 'I':
+            r = Membership.INSTRUCTOR
+        m = Membership(role=r, person=p, course=c)
         m.save()
-

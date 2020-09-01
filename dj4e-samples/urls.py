@@ -59,9 +59,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 urlpatterns += [
     url(r'^site/(?P<path>.*)$', serve,
         {'document_root': os.path.join(BASE_DIR, 'site'),
-           'show_indexes': True},
+         'show_indexes': True},
         name='site_path'
-    ),
+        ),
 ]
 
 # Serve the favicon - Keep for later
@@ -78,13 +78,12 @@ try:
     from . import github_settings
     social_login = 'registration/login_social.html'
     urlpatterns.insert(0,
-        path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login))
-    )
-    print('Using',social_login,'as the login template')
+                       path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login))
+                       )
+    print('Using', social_login, 'as the login template')
 except:
     print('Using registration/login.html as the login template')
 
 # References
 
 # https://docs.djangoproject.com/en/3.0/ref/urls/#include
-
