@@ -4,4 +4,3 @@ from myarts.models import Article
 # Register your models here.
 
 admin.site.register(Article)
-
