@@ -17,8 +17,9 @@ class PostListView(View):
             # objects = Post.objects.filter(title__contains=strval).select_related().order_by('-updated_at')[:10]
 
             # Multi-field search
-            query = Q(title__contains=strval)
-            query.add(Q(text__contains=strval), Q.OR)
+            # __icontains for case-insensitive search
+            query = Q(title__icontains=strval) 
+            query.add(Q(text__icontains=strval), Q.OR)
             objects = Post.objects.filter(query).select_related().order_by('-updated_at')[:10]
         else :
             # try both versions with > 4 posts and watch the queries that happen
