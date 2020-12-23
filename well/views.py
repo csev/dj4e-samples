@@ -34,7 +34,7 @@ class PostListView(View):
         retval = render(request, self.template_name, ctx)
 
         dump_queries()
-        return retval;
+        return retval
 
 # References
 
