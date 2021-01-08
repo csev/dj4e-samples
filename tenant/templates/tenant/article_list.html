@@ -1,0 +1,29 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<h1>Articles</h1>
+<p>
+{% if article_list %}
+<ul>
+  {% for article in article_list %}
+    <li>
+        <a href="{% url 'myarts:article_detail'  article.id %}">{{ article.title }}</a>
+        {% if article.owner == user %}
+        (<a href="{% url 'myarts:article_update' article.id %}">Edit</a> |
+        <a href="{% url 'myarts:article_delete' article.id %}">Delete</a>)
+        {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no articles in the database.</p>
+{% endif %}
+</p>
+<p>
+<a href="{% url 'myarts:article_create' %}">Add an Article</a> |
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={% url 'myarts:all' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'myarts:all' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}

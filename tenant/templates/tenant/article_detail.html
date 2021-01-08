@@ -1,0 +1,20 @@
+{% extends "base_bootstrap.html" %}
+{% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
+{% block content %}
+<span style="float: right;">
+({{ article.updated_at|naturaltime }})
+{% if article.owner == user %}
+<a href="{% url 'myarts:article_update' article.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'myarts:article_delete' article.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</span>
+<h1>{{ article.title }}</h1>
+<p>
+{{ article.text }}
+</p>
+<p>
+</p>
+<p>
+<a href="{% url 'myarts:all' %}">All articles</a>
+</p>
+{% endblock %}
