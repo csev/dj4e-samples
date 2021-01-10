@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
-from django.contrib.auth.models import User
 from django.conf import settings
 
 # https://books.agiliq.com/projects/django-multi-tenant/en/latest/shared-database-shared-schema.html
