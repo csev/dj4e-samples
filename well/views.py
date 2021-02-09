@@ -22,15 +22,13 @@ class PostListView(View):
             query.add(Q(text__icontains=strval), Q.OR)
             objects = Post.objects.filter(query).select_related().order_by('-updated_at')[:10]
         else :
-            # try both versions with > 4 posts and watch the queries that happen
             objects = Post.objects.all().order_by('-updated_at')[:10]
-            # objects = Post.objects.select_related().all().order_by('-updated_at')[:10]
 
         # Augment the post_list
         for obj in objects:
             obj.natural_updated = naturaltime(obj.updated_at)
 
-        ctx = {'post_list' : objects, 'search': strval}
+        ctx = {'forum_list' : objects, 'search': strval}
         retval = render(request, self.template_name, ctx)
 
         dump_queries()

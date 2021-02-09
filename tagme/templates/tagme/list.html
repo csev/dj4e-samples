@@ -1,6 +1,16 @@
 {% extends "base_bootstrap.html" %}
 {% block content %}
 <h1>Taggable Forums</h1>
+<div style="float:right">
+<!-- https://www.w3schools.com/howto/howto_css_search_button.asp -->
+<form>
+  <input type="text" placeholder="Search.." name="search"
+  {% if search %} value="{{ search }}" {% endif %}
+  >
+  <button type="submit"><i class="fa fa-search"></i></button>
+<a href="{% url 'tagme:all' %}"><i class="fa fa-undo"></i></a>
+</form>
+</div>
 <p>
 {% if forum_list %}
 <ul>
@@ -16,7 +26,11 @@
   {% endfor %}
 </ul>
 {% else %}
+  {% if search %}
+  <p>There are no forums that match your search criteria.</p>
+  {% else %}
   <p>There are no forums in the database.</p>
+  {% endif %}
 {% endif %}
 </p>
 <p>

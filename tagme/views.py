@@ -4,15 +4,37 @@ from django.views import View
 from django.views import generic
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 from tagme.forms import CommentForm
 from myarts.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 
 class ForumListView(OwnerListView):
-    model = Forum
     template_name = "tagme/list.html"
+
+    def get(self, request) :
+        strval =  request.GET.get("search", False)
+        if strval :
+            # Simple title-only search
+            # __icontains for case-insensitive search
+            query = Q(title__icontains=strval)
+            query.add(Q(text__icontains=strval), Q.OR)
+            query.add(Q(tags__name__in=[strval]), Q.OR)
+            objects = Forum.objects.filter(query).select_related().order_by('-updated_at')[:10]
+        else :
+            objects = Forum.objects.all().order_by('-updated_at')[:10]
+
+        # Augment the post_list
+        for obj in objects:
+            obj.natural_updated = naturaltime(obj.updated_at)
+
+        ctx = {'forum_list' : objects, 'search': strval}
+        retval = render(request, self.template_name, ctx)
+
+        return retval
 
 class ForumDetailView(OwnerDetailView):
     model = Forum
