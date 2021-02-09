@@ -1,0 +1,14 @@
+{% extends "base_bootstrap.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<p>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit">
+    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'tagme:all' %}';return false;">
+    <p>
+</p>
+  </form>
+</p>
+{% endblock %}

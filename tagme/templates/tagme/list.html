@@ -1,0 +1,30 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<h1>Forums</h1>
+<p>
+{% if tagme_list %}
+<ul>
+  {% for forum in tagme_list %}
+    <li>
+        <a href="{% url 'tagme:tagme_detail'  forum.id %}">{{ forum.title }}</a>
+        {% if forum.owner == user %}
+        (<a href="{% url 'tagme:tagme_update' forum.id %}">Edit</a> |
+        <a href="{% url 'tagme:tagme_delete' forum.id %}">Delete</a>)
+        </p>
+        {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no forums in the database.</p>
+{% endif %}
+</p>
+<p>
+<a href="{% url 'tagme:tagme_create' %}">Add an Forum</a> |
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={% url 'tagme:all' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'tagme:all' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}

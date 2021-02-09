@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'chat.apps.ChatConfig',
     'util.apps.UtilConfig',
     'well.apps.WellConfig',
+    'tagme.apps.TagmeConfig',
 ]
 
 # When we get to crispy forms :)
