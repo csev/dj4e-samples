@@ -27,12 +27,12 @@ class ForumDetailView(OwnerDetailView):
 
 class ForumCreateView(OwnerCreateView):
     model = Forum
-    fields = ['title', 'text']
+    fields = ['title', 'text', 'tags']
     template_name = "tagme/form.html"
 
 class ForumUpdateView(OwnerUpdateView):
     model = Forum
-    fields = ['title', 'text']
+    fields = ['title', 'text', 'tags']
     template_name = "tagme/form.html"
 
 class ForumDeleteView(OwnerDeleteView):

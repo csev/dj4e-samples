@@ -2,9 +2,9 @@
 {% block content %}
 <h1>Taggable Forums</h1>
 <p>
-{% if tagme_list %}
+{% if forum_list %}
 <ul>
-  {% for forum in tagme_list %}
+  {% for forum in forum_list %}
     <li>
         <a href="{% url 'tagme:tagme_detail'  forum.id %}">{{ forum.title }}</a>
         {% if forum.owner == user %}

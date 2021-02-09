@@ -13,6 +13,13 @@
 <p>
 {{ forum.text }}
 </p>
+{% if forum.tags.all %}
+<p>Tags: 
+  {% for tag in forum.tags.all %}
+  <span style="border:1px grey solid; background-color: LightGreen;">{{ tag }}</span>
+  {% endfor %}
+</p>
+{% endif %}
 <p>
 ({{ forum.updated_at|naturaltime }})
 </p>

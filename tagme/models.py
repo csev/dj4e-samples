@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from django.contrib.auth.models import User
 from django.conf import settings
+from taggit.managers import TaggableManager
 
 class Forum(models.Model) :
     title = models.CharField(
@@ -9,6 +10,10 @@ class Forum(models.Model) :
             validators=[MinLengthValidator(5, "Title must be greater than 5 characters")]
     )
     text = models.TextField()
+
+    # https://django-taggit.readthedocs.io/en/latest/api.html#TaggableManager
+    tags = TaggableManager(blank=True)
+
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, related_name='tagme_owner')
     comments = models.ManyToManyField(settings.AUTH_USER_MODEL, 
