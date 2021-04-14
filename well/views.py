@@ -20,19 +20,16 @@ class PostListView(View):
             # __icontains for case-insensitive search
             query = Q(title__icontains=strval) 
             query.add(Q(text__icontains=strval), Q.OR)
-            objects = Post.objects.filter(query).select_related().order_by('-updated_at')[:10]
+            post_list = Post.objects.filter(query).select_related().order_by('-updated_at')[:10]
         else :
-            objects = Post.objects.all().order_by('-updated_at')[:10]
+            post_list = Post.objects.all().order_by('-updated_at')[:10]
 
         # Augment the post_list
-        for obj in objects:
+        for obj in post_list:
             obj.natural_updated = naturaltime(obj.updated_at)
 
-        ctx = {'forum_list' : objects, 'search': strval}
-        retval = render(request, self.template_name, ctx)
-
-        dump_queries()
-        return retval
+        ctx = {'post_list' : post_list, 'search': strval}
+        return render(request, self.template_name, ctx)
 
 # References
 
