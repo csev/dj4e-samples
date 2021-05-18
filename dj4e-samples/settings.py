@@ -226,4 +226,10 @@ if (len(sys.argv) >= 2 and sys.argv[1] == 'runserver'):
             },
         }
     }
+    
+# Default primary key field update for Django 3.2 
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+# Please uncomment DEFAULT_AUTO_FIELD: 'django.db.models.AutoField'
+
+#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 '''
