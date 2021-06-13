@@ -1,6 +1,9 @@
 # To activate this run
 #
-# pip3 install -r requirements.txt
+# pip install -r requirements.txt
+# python -m django --version
+#
+# On a Macintosh this should be python3 and pip3
 #
 Django>=3.1.4
 django-crispy-forms>=1.8.1

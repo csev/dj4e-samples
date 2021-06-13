@@ -203,6 +203,10 @@ LOGIN_REDIRECT_URL = '/'
 # Don't set default LOGIN_URL - let django.contrib.auth set it when it is loaded
 # LOGIN_URL = '/accounts/login'
 
+# Needed for 3.2 and later
+# https://stackoverflow.com/questions/67783120/warning-auto-created-primary-key-used-when-not-defining-a-primary-key-type-by
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 # https://coderwall.com/p/uzhyca/quickly-setup-sql-query-logging-django
 # https://stackoverflow.com/questions/12027545/determine-if-django-is-running-under-the-development-server
 
