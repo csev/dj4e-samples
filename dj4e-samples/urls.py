@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', include('home.urls')),  # Change to ads.urls
