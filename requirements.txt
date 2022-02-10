@@ -5,7 +5,7 @@
 #
 # On a Macintosh this should be python3 and pip3
 #
-Django==3.2.5
+Django==3.2.12
 django-crispy-forms==1.8.1
 django-filter==2.2.0
 djangorestframework==3.11.2
