@@ -3,8 +3,6 @@ from well.models import Post
 from django.views import View
 from django.contrib.humanize.templatetags.humanize import naturaltime
 
-from well.utils import dump_queries
-
 from django.db.models import Q
 
 class PostListView(View):
