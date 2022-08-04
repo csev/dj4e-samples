@@ -1,6 +1,5 @@
 import os
-from django.urls import path
-from django.conf.urls import url
+from django.urls import path, re_path
 from django.views.static import serve
 from . import views
 from django.views.generic import TemplateView
@@ -18,7 +17,7 @@ urlpatterns = [
     path('messages', views.TalkMessages.as_view(), name='messages'),
 
     # Serve up a local static folder to serve spinner.gif
-    url(r'^static/(?P<path>.*)$', serve,
+    re_path(r'^static/(?P<path>.*)$', serve,
         {'document_root': os.path.join(BASE_DIR, 'static'), 'show_indexes': True},
         name='static'
     )
