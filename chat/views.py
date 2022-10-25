@@ -5,6 +5,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.http import JsonResponse, HttpResponse
 from chat.models import Message
 from datetime import datetime, timedelta
+from django.utils.html import escape
 import time
 
 class HomeView(View) :
@@ -30,10 +31,13 @@ class TalkMain(LoginRequiredMixin, View) :
 
 class TalkMessages(LoginRequiredMixin, View) :
     def get(self, request):
+        # Delete chats from more than 2 hours ago
+        Message.objects.filter(created_at__lt=datetime.now()-timedelta(hours=2)).delete()
         messages = Message.objects.all().order_by('-created_at')[:10]
         results = []
         for message in messages:
-            result = [message.text, naturaltime(message.created_at)]
+            # For now we escape in the back-end - but a real application would esacpe in JS
+            result = [escape(message.text), naturaltime(message.created_at)]
             results.append(result)
         return JsonResponse(results, safe=False)
 
