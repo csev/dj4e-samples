@@ -18,7 +18,7 @@ class ForumDetailView(OwnerDetailView):
     model = Forum
     template_name = "forums/detail.html"
     def get(self, request, pk) :
-        x = Forum.objects.get(id=pk)
+        x = get_object_or_404(Forum, id=pk)
         comments = Comment.objects.filter(forum=x).order_by('-updated_at')
         comment_form = CommentForm()
         context = { 'forum' : x, 'comments': comments, 'comment_form': comment_form }
