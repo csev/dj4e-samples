@@ -3,7 +3,7 @@ from forums.models import Forum, Comment
 from django.views import View
 from django.views import generic
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import reverse ,reverse_lazy
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -53,6 +53,6 @@ class CommentDeleteView(OwnerDeleteView):
     # https://stackoverflow.com/questions/26290415/deleteview-with-a-dynamic-success-url-dependent-on-id
     def get_success_url(self):
         forum = self.object.forum
-        return reverse('forums:forum_detail', args=[forum.id])
+        return reverse_lazy('forums:forum_detail', args=[forum.id])
 
 
