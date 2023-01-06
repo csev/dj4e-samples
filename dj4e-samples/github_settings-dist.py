@@ -26,7 +26,7 @@ SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 # Note you may not get email for github users that don't make their
 # email public - that is OK
 
-# For detail: https://readthedocs.org/projects/python-social-auth/downloads/pdf/latest/
+# For detail: https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
 
 # Using ngrok is hard because the url changes every time you start ngrok
 
