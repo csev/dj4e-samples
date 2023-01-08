@@ -7,7 +7,13 @@ class BasicForm(forms.Form):
         validators.MinLengthValidator(2, "Please enter 2 or more characters")
     ])
     mileage = forms.IntegerField()
-    purchase_date = forms.DateField()
+    
+    # add widget to date field for picking date easier 
+    purchase_date = forms.DateField(
+        widget=forms.TextInput(     
+        attrs={'type': 'date'} 
+    )
+    )
 
 # References 
 
