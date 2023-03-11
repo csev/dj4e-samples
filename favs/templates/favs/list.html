@@ -49,14 +49,33 @@
 {% endif %}
 </p>
 <script>
+function toggleInlineDisplay(star_id) {
+    var elem = document.getElementById(star_id);
+    if(window.getComputedStyle(elem).display == "inline") {
+        elem.style.display = 'none';
+        elem.dataset.previousDisplay = 'inline';
+    } else if(window.getComputedStyle(elem).display == "block") {
+        elem.style.display = 'none';
+        elem.dataset.previousDisplay = 'block';
+    } else {
+        console.log('prev', elem.dataset.previousDisplay);
+        if ( typeof elem.dataset.previousDisplay == 'string' ) {
+            elem.style.display = elem.dataset.previousDisplay
+        } else {
+            elem.style.display = 'inline';
+        }
+    }
+}
+
 function favPost(url, thing_id) {
-    console.log('Requesting JSON');
-    $.post(url, {},  function(rowz){
+    console.log('POSTing to', url);
+    fetch(url, { method: 'POST', body: '{}' } )
+    .then((response) => {
         console.log(url, 'finished');
-        $("#unfavorite_star_"+thing_id).toggle();
-        $("#favorite_star_"+thing_id).toggle();
-    }).fail(function(xhr) {
-        alert('Url failed with '+xhr.status+' '+url);
+        toggleInlineDisplay("unfavorite_star_"+thing_id);
+        toggleInlineDisplay("favorite_star_"+thing_id);
+    }).catch((error) => {
+        alert('Url failed with '+error+' '+url);
     });
 }
 </script>

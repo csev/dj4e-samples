@@ -8,11 +8,13 @@
 <a href="{% url 'chat:talk' %}" target="_blank">Lets Chat</a>
 </p>
 <script type="text/javascript">
-$(document).ready( function () {
-    $.getJSON('{% url 'chat:jsonfun' %}', function(data) {
-      $("#back").html(data.first);
-      console.log(data);
-    })
+document.addEventListener("DOMContentLoaded", function(){
+    fetch("{% url 'chat:jsonfun' %}", {cache: "no-store"})
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data)
+        document.getElementById('back').innerHTML = data.first;
+    });
 });
 </script>
 {% endblock %}

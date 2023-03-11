@@ -81,7 +81,7 @@ INSTALLED_APPS = [
 ]
 
 # When we get to crispy forms :)
-CRISPY_TEMPLATE_PACK = 'bootstrap3'  # Add
+CRISPY_TEMPLATE_PACK = 'crispy-bootstrap5'  # Add
 
 # When we get to tagging
 TAGGIT_CASE_INSENSITIVE = True
