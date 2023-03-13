@@ -26,8 +26,9 @@ async function loadUrl(url, id) {
     document.getElementById(id).style.color = 'orange';
     document.getElementById(id).innerHTML = 'Loading...';
 
+    // Either start the request or have a broken request
     const request = fetch(url).catch((error) => {
-        const txt = 'Request Failed\nURL:'+url+'\n'+error;
+        const txt = 'Could not start fetch\nURL:'+url+'\n'+error;
         return txt;
     });
 
@@ -35,14 +36,14 @@ async function loadUrl(url, id) {
     const response = await request;
     console.log('response', response);
 
-    // A failure to construct a request returns an error string
+    // A failure to start the fetch returns an error string
     if ( typeof response == 'string' ) {
         document.getElementById(id).innerHTML = response;
         document.getElementById(id).style.color = 'red';
         return response;
     }
 
-    // Got a non-200 response
+    // Request worked but we got a non-200 response
     if ( ! response.ok ) {
         const txt = 'Fetch Failed\nURL:'+url+'\nStatus:'+response.status+' '+response.statusText;
         console.log(txt);
@@ -51,8 +52,9 @@ async function loadUrl(url, id) {
         return txt;
     }
 
-    // Parse the response as JSON
+    // Got a 200, parse the response as JSON
     const data = await response.json().catch((error) => {return error.toString()} );
+
     console.log('JSON data', data);
     if ( typeof data == 'object' ) {
         document.getElementById(id).style.color = 'green';
