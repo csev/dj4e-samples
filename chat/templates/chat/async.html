@@ -2,9 +2,13 @@
 {% block content %}
 <p>Lets get some JSON using async / await.  Turn on your developer console and press the buttons below:</p>
 <p>
-<button onclick="loadUrl('/broken', 'broken');return false;">Fail Button</button> 
+<button onclick="loadUrl('hddp://x/broken', 'urlfail');return false;">URL Fail</button>
 </p>
-<p id="broken">New text will not go here</span></p>
+<p id="urlfail">New text will not go here</span></p>
+<p>
+<button onclick="loadUrl('/broken', 'response');return false;">Response Fail</button>
+</p>
+<p id="response">New text will not go here</span></p>
 <p>
 <button onclick="loadUrl('{% url 'chat:jsonfun' %}', 'working');return false;">Retrieve Data</button> 
 </p>
@@ -15,12 +19,25 @@ async function loadUrl(url, id) {
     console.log("Loading", url);
     document.getElementById(id).style.color = 'orange';
     document.getElementById(id).innerHTML = 'Loading...';
-    const response = await fetch(url);
-    if ( ! response.ok ) {
-        console.log(response.status); // 400
-        console.log(response.statusText); // Not Found
+
+    const request = fetch(url).catch((error) => {
+        const txt = 'Request Failed\nURL:'+url+'\nError:'+error;
+        document.getElementById(id).innerHTML = txt;
         document.getElementById(id).style.color = 'red';
-        alert('Fetch Failed\nURL:'+url+'\nStatus:'+response.status+' '+response.statusText);
+        console.log(txt);
+        return false;
+    });
+    console.log('request', request);
+
+    const response = await request;
+    console.log('response', response);
+    if ( response == false ) return;
+
+    if ( ! response.ok ) {
+        const txt = 'Fetch Failed\nURL:'+url+'\nStatus:'+response.status+' '+response.statusText;
+        console.log(txt);
+        document.getElementById(id).innerHTML = txt;
+        document.getElementById(id).style.color = 'red';
         return;
     }
     const data = await response.json();
