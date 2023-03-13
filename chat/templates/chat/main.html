@@ -1,21 +1,11 @@
 {% extends 'base_bootstrap.html' %}
 {% block content %}
 <p>Howdy - Lets get some JSON</p>
-<p id="back">This text will be replaced in 2 seconds</p>
 <p>
-<a href="{% url 'chat:syntax' %}" target="_new">JSON and JavaScript</a> |
+<a href="{% url 'chat:syntax' %}" target="_blank">JSON and JavaScript</a> |
 <a href="{% url 'chat:jsonfun' %}" target="_blank">JSON Endpoint</a>  |
+<a href="{% url 'chat:async' %}" target="_blank">Using Fetch</a>  |
 <a href="{% url 'chat:talk' %}" target="_blank">Lets Chat</a>
 </p>
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function(){
-    fetch("{% url 'chat:jsonfun' %}", {cache: "no-store"})
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data)
-        document.getElementById('back').innerHTML = data.first;
-    });
-});
-</script>
 {% endblock %}
 </body>

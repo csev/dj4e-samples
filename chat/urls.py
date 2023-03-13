@@ -11,6 +11,10 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='main'),
     path('syntax', TemplateView.as_view(template_name='chat/syntax.html'), 
         name='syntax'),
+    path('async', TemplateView.as_view(template_name='chat/async.html'), 
+        name='async'),
+    path('promise', TemplateView.as_view(template_name='chat/promise.html'), 
+        name='promise'),
     path('jsonfun', views.jsonfun, name='jsonfun'),
 
     path('talk', views.TalkMain.as_view(), name='talk'),

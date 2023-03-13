@@ -15,22 +15,19 @@
 </div>
 
 <script type="text/javascript">
-function updateMsg() {
+async function updateMsg() {
     console.log('Requesting JSON');
 
-    fetch("{% url 'chat:messages' %}", {cache: "no-store"})
-    .then((response) => response.json())
-    .then((rowz) => {
-        console.log(rowz)
-        document.getElementById('chatcontent').innerHTML = "";
-        for (var i = 0; i < rowz.length; i++) {
-            arow = rowz[i];
-            document.getElementById('chatcontent').innerHTML +=
-                '<p>'+arow[0] + '<br/>&nbsp;&nbsp;'+arow[1]+"</p>\n";
-        }
-        setTimeout('updateMsg()', 4000);
-    });
-
+    const response = await fetch("{% url 'chat:messages' %}", {cache: "no-store"});
+    const rowz = await response.json();
+    console.log(rowz)
+    document.getElementById('chatcontent').innerHTML = "";
+    for (var i = 0; i < rowz.length; i++) {
+        arow = rowz[i];
+        document.getElementById('chatcontent').innerHTML +=
+            '<p>'+arow[0] + '<br/>&nbsp;&nbsp;'+arow[1]+"</p>\n";
+    }
+    setTimeout('updateMsg()', 4000);
 }
 
 document.addEventListener("DOMContentLoaded", function(){
