@@ -18,16 +18,22 @@
 async function updateMsg() {
     console.log('Requesting JSON');
 
-    const response = await fetch("{% url 'chat:messages' %}", {cache: "no-store"});
-    const rowz = await response.json();
-    console.log(rowz)
-    document.getElementById('chatcontent').innerHTML = "";
-    for (var i = 0; i < rowz.length; i++) {
-        arow = rowz[i];
-        document.getElementById('chatcontent').innerHTML +=
-            '<p>'+arow[0] + '<br/>&nbsp;&nbsp;'+arow[1]+"</p>\n";
-    }
-    setTimeout('updateMsg()', 4000);
+    fetch("{% url 'chat:messages' %}", {cache: "no-store"})
+      .then((response) => response.json())
+      .then((rowz) => {
+        console.log('JSON data', rowz);
+        document.getElementById('chatcontent').innerHTML = "";
+        for (var i = 0; i < rowz.length; i++) {
+            arow = rowz[i];
+            document.getElementById('chatcontent').innerHTML +=
+                '<p>'+arow[0] + '<br/>&nbsp;&nbsp;'+arow[1]+"</p>\n";
+        }
+        setTimeout('updateMsg()', 4000);
+      })
+      .catch((error) => {
+          alert(error);
+      });
+
 }
 
 document.addEventListener("DOMContentLoaded", function(){
