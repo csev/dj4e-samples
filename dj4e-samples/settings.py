@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # Extensions - installed with pip3 / requirements.txt
     'django_extensions', 
     'crispy_forms',  
+    'crispy_bootstrap5',  
     'rest_framework', 
     'social_django',  
     'taggit',
@@ -80,10 +81,12 @@ INSTALLED_APPS = [
     'tagme.apps.TagmeConfig',
 ]
 
-# When we get to crispy forms :)
-CRISPY_TEMPLATE_PACK = 'crispy-bootstrap5'  # Add
-
 # When we get to tagging
+
+# When we get to crispy forms :)
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 TAGGIT_CASE_INSENSITIVE = True
 
 MIDDLEWARE = [
