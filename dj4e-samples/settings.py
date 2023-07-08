@@ -1,6 +1,5 @@
 """
 Django settings for samples project.
-
 """
 
 import os
