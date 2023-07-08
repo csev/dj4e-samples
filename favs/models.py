@@ -26,7 +26,7 @@ class Fav(models.Model) :
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
         related_name='favs_users')
 
-    # https://docs.djangoproject.com/en/3.0/ref/models/options/#unique-together
+    # https://docs.djangoproject.com/en/4.2/ref/models/options/#unique-together
     class Meta:
         unique_together = ('thing', 'user')
 

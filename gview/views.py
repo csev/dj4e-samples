@@ -35,7 +35,7 @@ class DogDetailView(View):
         return render(request, 'gview/'+modelname+'_detail.html', cntx)
 
 # Lets save time and use the built-in generics
-# https://docs.djangoproject.com/en/3.0/topics/class-based-views/generic-display/
+# https://docs.djangoproject.com/en/4.2/topics/class-based-views/generic-display/
 from django.views import generic
 
 class HorseListView(generic.ListView):
@@ -84,6 +84,6 @@ class WackyEquinesView(generic.ListView):
         return context
 
 # There is much more to learn
-# https://docs.djangoproject.com/en/3.0/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView
-# https://docs.djangoproject.com/en/3.0/ref/class-based-views/generic-display/#django.views.generic.detail.ListView
+# https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView
+# https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-display/#django.views.generic.detail.ListView
 
