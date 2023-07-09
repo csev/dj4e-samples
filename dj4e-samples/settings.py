@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    # Extensions - installed with pip3 / requirements.txt
+    # Extensions - installed with requirements.txt
     'django_extensions', 
     'crispy_forms',  
     'crispy_bootstrap5',  
