@@ -9,19 +9,65 @@ You can see some of the samples working at
 
 http://samples.dj4e.com
 
-To set this up, go into your virtual environment if needed, and then check this
-out into some folder:
+Setting up a Virtual Environment on the Mac
+-------------------------------------------
+
+Install `virtualenv`, if you use homebrew you can:
+
+    brew install virtualenv
+
+Then checkout this repository:
 
     cd ...wherever...
     git clone https://github.com/csev/dj4e-samples.git
     cd dj4e-samples
-    pip3 install -r requirements.txt
-    python3 manage.py migrate
-    python3 manage.py createsuperuser --username dj4e-samples
-    # python3 manage.py changepassword dj4e-samples
+    virtualenv .venv
+    source .venv/bin/activate
+    python --version
+    pip install -r requirements4.txt
+
+    python manage.py migrate
+    python manage.py createsuperuser --username dj4e-samples
+    # python manage.py changepassword dj4e-samples
     # dj4e_nn_!
-    python3 manage.py runscript gview_load
-    python3 manage.py runscript many_load
+
+Running Locally on the Mac
+--------------------------
+
+If you have Django installed on your local computer you can test any of the sample
+applications by going into the folder and starting the server:
+
+    cd dj4e-samples
+    source .venv/bin/activate   # If needed
+    python manage.py runserver
+
+And visit `http://localhost:8000`.
+
+Setting up a Virtual Environment on Python Anywhere
+---------------------------------------------------
+
+The instructions for setting up a virtual environment on PythonAnywhere in the Linux shell
+are:
+
+    mkvirtualenv django4 --python=/usr/bin/python3.11
+    pip install django==4.2.3 ## this may take a couple of minutes
+
+To activate the environment type:
+
+    workon django4
+
+Then check this out into some folder:
+
+    cd ~/django_projects    # Create the folder if needed
+    git clone https://github.com/csev/dj4e-samples.git
+    cd dj4e-samples
+    pip install -r requirements.txt
+    python manage.py migrate
+    python manage.py createsuperuser --username dj4e-samples
+    # python manage.py changepassword dj4e-samples
+    # dj4e_nn_!
+    python manage.py runscript gview_load
+    python manage.py runscript many_load
 
 These samples may be updated from time to time so you might want to get updates
 using `git pull`.  Also if there are bugs, you are welcome to submit
@@ -30,17 +76,6 @@ a Pull Request on github.
 All of the documentation material is copyright CC-BY 3.0 and the code is copyright MIT
 by whomever wrote the code or documentation.  You are welcome to use this in any way you see
 fit and paste code from this repo into your applications.
-
-Running Locally
----------------
-
-If you have Django installed on your local computer you can test any of the sample
-applications by going into the folder and starting the server:
-
-    cd dj4e-samples
-    python3 manage.py runserver
-
-And visit `http://localhost:8000`.
 
 Running on PythonAnywhere
 -------------------------
