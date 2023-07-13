@@ -1,0 +1,13 @@
+{% extends 'base_bootstrap.html' %}
+{% block content %}
+<p>JSON / AJAX / FETCH Examples</p>
+<p>
+<a href="{% url 'fetch:syntax' %}" target="_blank">JavaScript Object Syntax</a> |
+<a href="{% url 'fetch:jsonfun' %}" target="_blank">Load JSON in Browser</a>
+</p>
+<p>
+<a href="{% url 'fetch:promise' %}" target="_blank">Fetch JSON with Promises</a>  |
+<a href="{% url 'fetch:async' %}" target="_blank">Fetch JSON with Async / Await</a>
+</p>
+{% endblock %}
+</body>

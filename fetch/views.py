@@ -9,7 +9,7 @@ import time
 
 class HomeView(View) :
     def get(self, request):
-        return render(request, 'ajax/main.html')
+        return render(request, 'fetch/main.html')
 
 def jsonfun(request):
     time.sleep(2)

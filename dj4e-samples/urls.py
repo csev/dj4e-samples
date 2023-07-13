@@ -49,7 +49,7 @@ urlpatterns = [
     path('rest/', include('rest.urls')),
     path('autos/', include('autos.urls')),
     path('usermodel/', include('usermodel.urls')),
-    path('ajax/', include('ajax.urls')),
+    path('fetch/', include('fetch.urls')),
     path('chat/', include('chat.urls')),
     path('util/', include('util.urls')),
     path('well/', include('well.urls')),

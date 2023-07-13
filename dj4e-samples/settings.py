@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'autos.apps.AutosConfig',
     'cats.apps.CatsConfig',
     'usermodel.apps.UsermodelConfig',
-    'ajax.apps.AjaxConfig',
+    'fetch.apps.FetchConfig',
     'chat.apps.ChatConfig',
     'util.apps.UtilConfig',
     'well.apps.WellConfig',
