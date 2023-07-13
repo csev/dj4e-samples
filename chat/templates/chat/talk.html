@@ -4,9 +4,7 @@
 <form method="post">
 {% csrf_token %}
 <input type="text" name="message" size="60"/>
-<input type="submit" value="Chat"/>
-<input type="submit" name="reset" value="Reset"/>
-<a href="{% url 'chat:main' %}" target="_blank">Cancel</a>
+<input type="submit" value="Post"/>
 </p>
 </form>
 

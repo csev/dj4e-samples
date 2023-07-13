@@ -8,18 +8,6 @@ from datetime import datetime, timedelta
 from django.utils.html import escape
 import time
 
-class HomeView(View) :
-    def get(self, request):
-        return render(request, 'chat/main.html')
-
-def jsonfun(request):
-    time.sleep(2)
-    stuff = {
-        'first': 'first thing',
-        'second': 'second thing'
-    }
-    return JsonResponse(stuff)
-
 class TalkMain(LoginRequiredMixin, View) :
     def get(self, request):
         return render(request, 'chat/talk.html')
@@ -40,8 +28,3 @@ class TalkMessages(LoginRequiredMixin, View) :
             result = [escape(message.text), naturaltime(message.created_at)]
             results.append(result)
         return JsonResponse(results, safe=False)
-
-
-# References
-
-# https://simpleisbetterthancomplex.com/tutorial/2016/07/27/how-to-return-json-encoded-response.html
