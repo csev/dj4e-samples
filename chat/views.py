@@ -25,7 +25,7 @@ class TalkMessages(LoginRequiredMixin, View) :
         messages = Message.objects.all().order_by('-created_at')[:10]
         results = []
         for message in messages:
-            # For now we escape in the back-end - but a real application would esacpe in JS
+            # For now we escape in the back-end - but a real application would escape in JS
             result = [escape(message.text), naturaltime(message.created_at)]
             results.append(result)
         return JsonResponse(results, safe=False)
