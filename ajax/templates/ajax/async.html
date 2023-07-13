@@ -12,11 +12,11 @@ async / await.  Turn on your developer console and press the buttons below:</p>
 </p>
 <p id="requestfail">New text will not go here</span></p>
 <p>
-<button onclick="loadUrl('{% url 'chat:main' %}', 'jsonfail');return false;">Parse Fail</button>
+<button onclick="loadUrl('{% url 'ajax:main' %}', 'jsonfail');return false;">Parse Fail</button>
 </p>
 <p id="jsonfail">New text will not go here</span></p>
 <p>
-<button onclick="loadUrl('{% url 'chat:jsonfun' %}', 'working');return false;">Retrieve Data</button> 
+<button onclick="loadUrl('{% url 'ajax:jsonfun' %}', 'working');return false;">Retrieve Data</button> 
 </p>
 <p id="working">New text will go here!!!!</span></p>
 <script type="text/javascript">
