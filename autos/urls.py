@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.views.generic import TemplateView
 
-# https://docs.djangoproject.com/en/3.0/topics/http/urls/
+# https://docs.djangoproject.com/en/4.2/topics/http/urls/
 app_name = 'autos'
 urlpatterns = [
     path('', views.MainView.as_view(), name='all'),

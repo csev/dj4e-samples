@@ -1,7 +1,7 @@
 """samples URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -49,6 +49,7 @@ urlpatterns = [
     path('rest/', include('rest.urls')),
     path('autos/', include('autos.urls')),
     path('usermodel/', include('usermodel.urls')),
+    path('fetch/', include('fetch.urls')),
     path('chat/', include('chat.urls')),
     path('util/', include('util.urls')),
     path('well/', include('well.urls')),
@@ -87,4 +88,4 @@ except:
 
 # References
 
-# https://docs.djangoproject.com/en/3.0/ref/urls/#include
+# https://docs.djangoproject.com/en/4.2/ref/urls/#include

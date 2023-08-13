@@ -28,7 +28,7 @@ class ExistsListView(OwnerListView):
 # ./manage.py shell_plus --print-sql
 
 # Below this line, we see raw sql...   With great power comes great responsibility
-# https://docs.djangoproject.com/en/3.0/topics/db/sql/
+# https://docs.djangoproject.com/en/4.2/topics/db/sql/
 
 # A List view using raw SQL - super efficient
 class RawSQLListView(OwnerListView):

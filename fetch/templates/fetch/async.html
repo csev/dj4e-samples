@@ -1,0 +1,71 @@
+{% extends 'base_bootstrap.html' %}
+{% block content %}
+<p>Lets get some JSON using 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">fetch</a> and
+async / await.  Turn on your developer console and press the buttons below:</p>
+<p>
+<button onclick="loadUrl('hddp://x/broken', 'urlsyntax');return false;">URL Syntax Fail</button>
+</p>
+<p id="urlsyntax">New text will not go here</span></p>
+<p>
+<button onclick="loadUrl('/broken', 'requestfail');return false;">Request 404</button>
+</p>
+<p id="requestfail">New text will not go here</span></p>
+<p>
+<button onclick="loadUrl('{% url 'fetch:main' %}', 'jsonfail');return false;">JSON Parse Fail</button>
+</p>
+<p id="jsonfail">New text will not go here</span></p>
+<p>
+<button onclick="loadUrl('{% url 'fetch:jsonfun' %}', 'working');return false;">Retrieve Data</button> 
+</p>
+<p id="working">New text will go here!!!!</span></p>
+<script type="text/javascript">
+
+async function loadUrl(url, id) {
+    console.log("Loading", url);
+    document.getElementById(id).style.color = 'orange';
+    document.getElementById(id).innerHTML = 'Loading...';
+
+    // Either start the request or have a broken request
+    const request = fetch(url).catch((error) => {
+        const txt = 'Could not start fetch\nURL:'+url+'\n'+error;
+        return txt;
+    });
+
+    console.log('request', request);
+    const response = await request;
+    console.log('response', response);
+
+    // A failure to start the fetch returns an error string
+    if ( typeof response == 'string' ) {
+        document.getElementById(id).innerHTML = response;
+        document.getElementById(id).style.color = 'red';
+        return response;
+    }
+
+    // Request worked but we got a non-200 response
+    if ( ! response.ok ) {
+        const txt = 'Fetch Failed\nURL:'+url+'\nStatus:'+response.status+' '+response.statusText;
+        console.log(txt);
+        document.getElementById(id).innerHTML = txt;
+        document.getElementById(id).style.color = 'red';
+        return txt;
+    }
+
+    // Got a 200, parse the response as JSON
+    const data = await response.json().catch((error) => {return error.toString()} );
+
+    console.log('JSON data', data);
+    if ( typeof data == 'object' ) {
+        document.getElementById(id).style.color = 'green';
+        document.getElementById(id).innerHTML = 'Async: ' + data.first;
+    } else {
+        document.getElementById(id).style.color = 'red';
+        document.getElementById(id).innerHTML = data;
+    }
+    return data;
+}
+
+</script>
+{% endblock %}
+</body>

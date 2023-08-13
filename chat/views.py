@@ -4,21 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.http import JsonResponse, HttpResponse
 from chat.models import Message
-from datetime import datetime, timedelta
+from datetime import timedelta
+from django.utils import timezone
 from django.utils.html import escape
 import time
-
-class HomeView(View) :
-    def get(self, request):
-        return render(request, 'chat/main.html')
-
-def jsonfun(request):
-    time.sleep(2)
-    stuff = {
-        'first': 'first thing',
-        'second': 'second thing'
-    }
-    return JsonResponse(stuff)
 
 class TalkMain(LoginRequiredMixin, View) :
     def get(self, request):
@@ -31,17 +20,12 @@ class TalkMain(LoginRequiredMixin, View) :
 
 class TalkMessages(LoginRequiredMixin, View) :
     def get(self, request):
-        # Delete chats from more than 2 hours ago
-        Message.objects.filter(created_at__lt=datetime.now()-timedelta(hours=2)).delete()
+        # Delete chats from more than 20 minutes ago
+        Message.objects.filter(created_at__lt=timezone.now()-timedelta(minutes=20)).delete()
         messages = Message.objects.all().order_by('-created_at')[:10]
         results = []
         for message in messages:
-            # For now we escape in the back-end - but a real application would esacpe in JS
+            # For now we escape in the back-end - but a real application would escape in JS
             result = [escape(message.text), naturaltime(message.created_at)]
             results.append(result)
         return JsonResponse(results, safe=False)
-
-
-# References
-
-# https://simpleisbetterthancomplex.com/tutorial/2016/07/27/how-to-return-json-encoded-response.html

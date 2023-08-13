@@ -1,0 +1,24 @@
+# To activate this run
+#
+# pip install -r requirements.txt
+# python -m django --version
+#
+# On a Macintosh this should be python3 and pip3
+#
+Django==4.0.7
+django-crispy-forms==1.14.0
+crispy-bootstrap5==0.7
+django-filter==2.2.0
+djangorestframework==3.13.1
+Markdown==3.4.1
+social-auth-app-django==5.0.0
+social-auth-core==4.3.0
+django-extensions==3.2.0
+django-taggit==3.0.0
+
+# If you want to use MySQL, and are not running on PythonAnywhere,
+# uncomment the following line you might need to install pre-requisite
+# libraries before mysqlclient will work - instructions are at
+#   https://pypi.org/project/mysqlclient/
+
+# mysqlclient==2.1.1

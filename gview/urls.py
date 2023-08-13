@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.views.generic import TemplateView
 
-# https://docs.djangoproject.com/en/3.0/topics/http/urls/
+# https://docs.djangoproject.com/en/4.2/topics/http/urls/
 
 # To make {% url 'gview:cats' %} work in templates
 # Also, add namespace in project urls.py
