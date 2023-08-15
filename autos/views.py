@@ -12,7 +12,7 @@ from autos.forms import MakeForm
 
 class MainView(LoginRequiredMixin, View):
     def get(self, request):
-        mc = Make.objects.all().count()
+        mc = Make.objects.count()
         al = Auto.objects.all()
 
         ctx = {'make_count': mc, 'auto_list': al}
@@ -79,7 +79,6 @@ class MakeDelete(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         make = get_object_or_404(self.model, pk=pk)
-        form = MakeForm(instance=make)
         ctx = {'make': make}
         return render(request, self.template, ctx)
 
