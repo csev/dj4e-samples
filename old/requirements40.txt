@@ -8,7 +8,7 @@
 Django==4.0.7
 django-crispy-forms==1.14.0
 crispy-bootstrap5==0.7
-django-filter==2.2.0
+django-filter==2.4.0
 djangorestframework==3.13.1
 Markdown==3.4.1
 social-auth-app-django==5.0.0
