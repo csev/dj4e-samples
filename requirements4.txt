@@ -14,7 +14,7 @@ Django
 
 # mysqlclient==2.1.1
 
-# Other requirments - frozen to a version to simplify tech support
+# Other requirements - frozen to a version to simplify tech support
 asgiref
 certifi
 cffi
