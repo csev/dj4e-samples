@@ -1,7 +1,7 @@
 
 # Copy this file to github_settings.py (don't check it into github)
 
-# Go to https://github.com/settings/developers
+# Go to https://github.com/settings/apps
 
 # Add a New OAuth2 App 
 
