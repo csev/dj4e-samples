@@ -18,7 +18,7 @@ class PostListView(View):
             # __icontains for case-insensitive search
             query = Q(title__icontains=strval) 
             query.add(Q(text__icontains=strval), Q.OR)
-            post_list = Post.objects.filter(query).select_related().order_by('-updated_at')[:10]
+            post_list = Post.objects.filter(query).select_related().distinct().order_by('-updated_at')[:10]
         else :
             post_list = Post.objects.all().order_by('-updated_at')[:10]
 
