@@ -12,7 +12,7 @@ class PostListView(View):
         strval =  request.GET.get("search", False)
         if strval :
             # Simple title-only search
-            # objects = Post.objects.filter(title__contains=strval).select_related().order_by('-updated_at')[:10]
+            # objects = Post.objects.filter(title__contains=strval).select_related().distinct().order_by('-updated_at')[:10]
 
             # Multi-field search
             # __icontains for case-insensitive search
