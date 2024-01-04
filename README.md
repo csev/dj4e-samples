@@ -24,7 +24,7 @@ Then checkout this repository:
     virtualenv .venv
     source .venv/bin/activate
     python --version
-    pip install -r requirements4.txt
+    pip install -r requirements42.txt
 
     python manage.py migrate
     python manage.py createsuperuser --username dj4e-samples
