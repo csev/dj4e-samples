@@ -22,10 +22,11 @@ from django.views.static import serve
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', include('home.urls')),  # Change to ads.urls
+    path('', include('home.urls')),  # Keep
     path('admin/', admin.site.urls),  # Keep
     path('accounts/', include('django.contrib.auth.urls')),  # Keep
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
+    # Add new path for ads.urls
 
     # Sample applications
     path('hello/', include('hello.urls')),
