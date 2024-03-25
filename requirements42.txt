@@ -20,7 +20,7 @@ certifi==2023.7.22
 cffi==1.15.1
 charset-normalizer==3.2.0
 crispy-bootstrap5==0.7
-cryptography==41.0.6
+cryptography==42.0.4
 defusedxml==0.7.1
 django-crispy-forms==2.0
 django-extensions==3.2.3
