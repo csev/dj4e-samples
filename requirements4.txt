@@ -27,7 +27,7 @@ django-extensions==3.2.3
 django-filter==23.2
 django-taggit==4.0.0
 djangorestframework==3.14.0
-idna==3.4
+idna==3.7
 importlib-metadata==6.8.0
 Markdown==3.4.3
 oauthlib==3.2.2
