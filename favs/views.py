@@ -1,7 +1,6 @@
 from favs.models import Thing, Fav
 
 from django.views import View
-from django.views import generic
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -56,7 +55,7 @@ class AddFavoriteView(LoginRequiredMixin, View):
         fav = Fav(user=request.user, thing=t)
         try:
             fav.save()  # In case of duplicate key
-        except IntegrityError as e:
+        except IntegrityError:
             pass
         return HttpResponse()
 
@@ -66,8 +65,8 @@ class DeleteFavoriteView(LoginRequiredMixin, View):
         print("Delete PK",pk)
         t = get_object_or_404(Thing, id=pk)
         try:
-            fav = Fav.objects.get(user=request.user, thing=t).delete()
-        except Fav.DoesNotExist as e:
+            Fav.objects.get(user=request.user, thing=t).delete()
+        except Fav.DoesNotExist:
             pass
 
         return HttpResponse()
