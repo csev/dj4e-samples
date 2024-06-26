@@ -8,7 +8,7 @@
 Django==3.2.25
 django-crispy-forms==1.8.1
 django-filter==2.2.0
-djangorestframework==3.11.2
+djangorestframework==3.15.2
 Markdown==3.1.1
 social-auth-app-django==3.1.0
 social-auth-core==3.3.3
