@@ -1,0 +1,29 @@
+<h1>Dump: {{ title }}</h1>
+<ul>
+{% for i in pieces %}
+<li>{{ i.fname }}
+{% if i.folder %}
+( Directory )
+{% else %}
+({{ i.size }})
+{% if i.html %}
+<button onclick="toggle('{{ i.idvalue }}');">Toggle</button>
+<div id="{{ i.idvalue }}" style="display:none;">
+{{ i.html|safe }}
+</div>
+{% endif %}
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+
+<script>
+function toggle(elem) {
+  var x = document.getElementById(elem);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>

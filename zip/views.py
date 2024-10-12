@@ -12,56 +12,42 @@ class UploadView(View) :
         return render(request, 'zip/upload.html')
 
     def post(self, request):
-        retval = """<h1>Yada</h1>
-<script>
-function toggle(elem) {
-  var x = document.getElementById(elem);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
-"""
-        print(request.FILES)
         zf = request.FILES['zip']
-        print(zf)
         zfile = zipfile.ZipFile(zf)
         idvalue = 0
+        pieces = list()
         for fname in zfile.namelist():
             print(fname)
             idvalue = idvalue + 1
-            retval += "<li>" + fname
+            piece = dict()
+            piece['idvalue'] = idvalue
+            piece['fname'] = fname
 
             isdir = zipfile.Path(root=zfile, at=fname).is_dir()
-            print(isdir)
             if isdir : 
-                retval += " (folder) </li>\n"
+                piece['folder'] = isdir
+                pieces.append(piece)
                 continue
             with zfile.open(fname) as hand:
                 data = hand.read()
+                piece['size'] = len(data)
                 print(data[:100])
                 if fname.endswith('.jpg') : 
-                    retval += "<br>"
+                    piece['type'] = 'jpg'
                     data_base64 = base64.b64encode(data)  # encode to base64 (bytes)
                     data_base64 = data_base64.decode()
                     htm = '<img src="data:image/jpeg;base64,' + data_base64 + '"><br/>'
-                    retval += htm
+                    piece['html'] = htm
                 elif fname.endswith('.xml') :
-                    retval += "<button onclick=\"toggle('" + str(idvalue) + "');\">Toggle</button>"
-                    retval += "<br><div id=\"" + str(idvalue) + "\" style=\"display: none;\">"
+                    piece['type'] = 'xml'
                     htm = "<pre>\n" + html.escape(data.decode()) + "\n</pre>\n"
-                    retval += htm
-                    retval += "</div>\n"
+                    piece['html'] = htm
                 elif fname.endswith('.html') :
-                    retval += "<button onclick=\"toggle('" + str(idvalue) + "');\">Toggle</button>"
-                    retval += "<br><div id=\"" + str(idvalue) + "\" style=\"display: none;\">"
-                    retval += data.decode()
-                    retval += "</div>\n"
+                    piece['type'] = 'html'
+                    piece['html'] = data.decode()
 
-            retval += "</div></li>\n"
+            pieces.append(piece)
 
-
-        return HttpResponse(retval);
+        context = { 'title': zf, 'pieces': pieces }
+        return render(request, 'zip/zipdump.html', context)
 
