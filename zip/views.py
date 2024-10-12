@@ -38,6 +38,16 @@ class UploadView(View) :
                     data_base64 = data_base64.decode()
                     htm = '<img src="data:image/jpeg;base64,' + data_base64 + '"><br/>'
                     piece['html'] = htm
+                elif fname.endswith('.png') : 
+                    piece['type'] = 'png'
+                    data_base64 = base64.b64encode(data)  # encode to base64 (bytes)
+                    data_base64 = data_base64.decode()
+                    htm = '<img src="data:image/png;base64,' + data_base64 + '"><br/>'
+                    piece['html'] = htm
+                elif fname.endswith('.txt') :
+                    piece['type'] = 'txt'
+                    htm = "<pre>\n" + html.escape(data.decode()) + "\n</pre>\n"
+                    piece['html'] = htm
                 elif fname.endswith('.xml') :
                     piece['type'] = 'xml'
                     htm = "<pre>\n" + html.escape(data.decode()) + "\n</pre>\n"
