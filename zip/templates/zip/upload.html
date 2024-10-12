@@ -1,0 +1,11 @@
+<h1>ZIP Upload</h1>
+
+<p>
+  <form action="" method="post" id="upload_form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="zip"><br/>
+    <input type="submit" value="Submit">
+    <input type="submit" value="Cancel" onclick="window.location.href='{% url 'zip:main' %}';return false;">
+  </form>
+</p>
+

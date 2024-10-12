@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'util.apps.UtilConfig',
     'well.apps.WellConfig',
     'tagme.apps.TagmeConfig',
+    'zip.apps.ZipConfig',
 ]
 
 # When we get to tagging

@@ -54,6 +54,7 @@ urlpatterns = [
     path('util/', include('util.urls')),
     path('well/', include('well.urls')),
     path('tagme/', include('tagme.urls')),
+    path('zip/', include('zip.urls')),
 ]
 
 # Serve the static HTML
