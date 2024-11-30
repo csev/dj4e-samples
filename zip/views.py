@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
+from bs4 import BeautifulSoup
+import xml.dom.minidom as minidom
+import re
 import zipfile
 import base64
 import html
@@ -50,7 +53,19 @@ class UploadView(View) :
                     piece['html'] = htm
                 elif fname.endswith('.xml') :
                     piece['type'] = 'xml'
-                    htm = "<pre>\n" + html.escape(data.decode()) + "\n</pre>\n"
+                    xmlstr = data.decode()
+                    try:
+                        dom = minidom.parseString(data)
+                        xmlstr = dom.toprettyxml(encoding="utf-8");
+                    except Exception as e:
+                        soup = BeautifulSoup(xmlstr, "xml")  # Use "xml" parser for XML files
+                        # xmlstr = ("XML parse failed "+str(e)+"\n"+"Re-parsed with BeautifulSoup\n").encode() + soup.prettify().encode()
+                        dom = minidom.parseString(soup.prettify());
+                        xmlstr = ("XML parse failed "+str(e)+"\n"+"Re-parsed with BeautifulSoup\n").encode() + dom.toprettyxml(encoding="utf-8");
+                        pass
+                    xmlstr = xmlstr.decode()
+                    xmlstr = re.sub(r'^\s*\n', '', xmlstr, flags=re.MULTILINE)
+                    htm = "<pre>\n" + html.escape(xmlstr) + "\n</pre>\n"
                     piece['html'] = htm
                 elif fname.endswith('.html') :
                     piece['type'] = 'html'
