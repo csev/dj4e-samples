@@ -56,14 +56,19 @@ class UploadView(View) :
                     xmlstr = data.decode()
                     try:
                         dom = minidom.parseString(data)
-                        xmlstr = dom.toprettyxml(encoding="utf-8");
+                        note = ""
                     except Exception as e:
                         soup = BeautifulSoup(xmlstr, "xml")  # Use "xml" parser for XML files
-                        # xmlstr = ("XML parse failed "+str(e)+"\n"+"Re-parsed with BeautifulSoup\n").encode() + soup.prettify().encode()
                         dom = minidom.parseString(soup.prettify());
-                        xmlstr = ("XML parse failed "+str(e)+"\n"+"Re-parsed with BeautifulSoup\n").encode() + dom.toprettyxml(encoding="utf-8");
-                        pass
-                    xmlstr = xmlstr.decode()
+                        note = "XML parse failed "+str(e)+"\n"+"Re-parsed with BeautifulSoup\n"
+                    for elem in dom.getElementsByTagName("property"):
+                        print(elem.nodeName)
+                        if elem.nodeName == "property" :
+                            if elem.getAttribute("enc") != "BASE64" : continue
+                            decoded = base64.b64decode(elem.getAttribute("value"))
+                            elem.setAttribute("B64Decoded", decoded.decode())
+                    xmlstr = dom.toprettyxml(encoding="utf-8");
+                    xmlstr = note + xmlstr.decode()
                     xmlstr = re.sub(r'^\s*\n', '', xmlstr, flags=re.MULTILINE)
                     htm = "<pre>\n" + html.escape(xmlstr) + "\n</pre>\n"
                     piece['html'] = htm
