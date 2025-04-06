@@ -89,6 +89,7 @@
         <li><a href="tagme" target="_blank">tagme</a> - Using the Django 
             <a href="https://django-taggit.readthedocs.io/en/stable/" target="_blank">Taggit</a> library
         </li>
+        <li><a href="favwc" target="_blank">favwc</a> - A web components version of favs using LIT Element</li>
         <!--  Not quite right
         <li><a href="favsql" target="_blank">favsql</a> - An advanced version of favs using SQL directly</li>
         -->
@@ -111,22 +112,21 @@ Type: {% if backends.associated %} GitHub {% else %} Local {% endif %}
 <p>You can <a href="/accounts/logout">Logout</a></p>
 {% else %}
 <p>You can <a href="/accounts/login">Login</a> if you like.</p>
-{% endif %}
-{% if islocal %}
+</p>
 Some of the samples will require a user login to be created.
 </p>
 <p>
 You can play with this code at
 <a href="https://samples.dj4e.com" target="_blank">https://samples.dj4e.com</a>.
-{% else %}
 You
 might need an account and password to log in for certain features.  You might try this:
 <pre>
 Username: dj4e-samples
 Password: dj4e_nn_!
 </pre>
-There is a part of this password that you need to guess.  But if you have done your
-homework, it should only take you one guess (instead of 100 guesses).
+The 'nn' is a part of this password that you need to guess.  But if you have done your
+homework, it should only take you one guess (instead of 100 guesses).  It is also the
+number of Dr. Chuck's Dodge Neon when he races or the decimal ASCII value for the asterisk character.
 {% endif %}
 </p>
 
@@ -137,8 +137,8 @@ homework, it should only take you one guess (instead of 100 guesses).
     <pre>
     git checkout  https://github.com/csev/dj4e-samples
     cd dj4e-samples
-    pip install -r requirements42.txt
     </pre>
+    and follow the instructions in the <a href="https://github.com/csev/dj4e-samples/blob/main/README.md" target="_blank">README.md</a> file.
     </p>
 </body>
 </html>

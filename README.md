@@ -35,8 +35,8 @@ Then checkout this repository:
     ...
     deactivate
 
-Running Locally on the Mac
---------------------------
+Running Locally on the Mac once the venv exists
+-----------------------------------------------
 
 If you have Django installed on your local computer you can test any of the sample
 applications by going into the folder and starting the server:

@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'pics.apps.PicsConfig',
     'rest.apps.RestConfig',
     'favs.apps.FavsConfig',
+    'favwc.apps.FavwcConfig',
     'favsql.apps.FavsqlConfig',
     'autos.apps.AutosConfig',
     'cats.apps.CatsConfig',
