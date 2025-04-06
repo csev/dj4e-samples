@@ -1,4 +1,4 @@
-from favwc.models import Thing, Fav
+from .models import Thing, Fav
 
 from django.views import View
 from django.http import HttpResponse
@@ -17,9 +17,11 @@ class ThingListView(OwnerListView):
         favorites = list()
         if request.user.is_authenticated:
             # rows = [{'id': 2}, {'id': 4} ... ]  (A list of rows)
-            rows = request.user.favorite_things.values('id')
+            rows = request.user.favwc_favorite_things.values('id')
+            print(rows)
             # favorites = [2, 4, ...] using list comprehension
             favorites = [ row['id'] for row in rows ]
+        print(favorites)
         ctx = {'thing_list' : thing_list, 'favorites': favorites}
         return render(request, self.template_name, ctx)
 
@@ -48,26 +50,14 @@ from django.utils.decorators import method_decorator
 from django.db.utils import IntegrityError
 
 @method_decorator(csrf_exempt, name='dispatch')
-class AddFavoriteView(LoginRequiredMixin, View):
+class ToggleFavoriteView(LoginRequiredMixin, View):
     def post(self, request, pk) :
-        print("Add PK",pk)
         t = get_object_or_404(Thing, id=pk)
         fav = Fav(user=request.user, thing=t)
         try:
-            fav.save()  # In case of duplicate key
-        except IntegrityError:
-            pass
-        return HttpResponse()
-
-@method_decorator(csrf_exempt, name='dispatch')
-class DeleteFavoriteView(LoginRequiredMixin, View):
-    def post(self, request, pk) :
-        print("Delete PK",pk)
-        t = get_object_or_404(Thing, id=pk)
-        try:
+            fav.save()
+            return HttpResponse("Favorite saved "+str(fav))
+        except IntegrityError:  # Already there, lets delete...
             Fav.objects.get(user=request.user, thing=t).delete()
-        except Fav.DoesNotExist:
-            pass
-
-        return HttpResponse()
-
+            return HttpResponse("Favorite deleted "+str(fav))
+        return HttpResponse("Something went wrong")

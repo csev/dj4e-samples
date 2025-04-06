@@ -16,9 +16,7 @@ urlpatterns = [
         views.ThingUpdateView.as_view(success_url=reverse_lazy('favwc:all')), name='thing_update'),
     path('thing/<int:pk>/delete', 
         views.ThingDeleteView.as_view(success_url=reverse_lazy('favwc:all')), name='thing_delete'),
-    path('thing/<int:pk>/favorite', 
-        views.AddFavoriteView.as_view(), name='thing_favorite'),
-    path('thing/<int:pk>/unfavorite', 
-        views.DeleteFavoriteView.as_view(), name='thing_unfavorite'),
+    path('thing/<int:pk>/toggle', 
+        views.ToggleFavoriteView.as_view(), name='thing_toggle'),
 ]
 

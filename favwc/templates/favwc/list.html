@@ -1,6 +1,6 @@
 {% extends "base_bootstrap.html" %}
 {% block content %}
-<h1>Favorite Things</h1>
+<h1>Favorite Things (WC)</h1>
 <p>
 {% if thing_list %}
 <ul>
@@ -12,26 +12,11 @@
         <a href="{% url 'favwc:thing_delete' thing.id %}">Delete</a>)
         {% endif %}
         {% if user.is_authenticated %}
-        <!-- Two hrefs with two stacked icons each - one showing and one hidden -->
-        <a href="#" onclick=
-            "favPost('{% url 'favwc:thing_unfavorite' thing.id %}', {{ thing.id }} );return false;"
-            {% if thing.id not in favorites %} style="display: none;" {% endif %}
-            id="favorite_star_{{thing.id}}">
-        <span class="fa-stack" style="vertical-align: middle;">
-        <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
-        <i class="fa fa-star-o fa-stack-1x"></i>
-        </span>
-        </a>
-        <!-- the second href -->
-        <a href="#" onclick=
-             "favPost('{% url 'favwc:thing_favorite' thing.id %}', {{ thing.id }} );return false;"
-            {% if thing.id in favorites %} style="display: none;" {% endif %}
-            id="unfavorite_star_{{thing.id}}">
-        <span class="fa-stack" style="vertical-align: middle;">
-        <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
-        <i class="fa fa-star-o fa-stack-1x"></i>
-        </span>
-        </a>
+        <dj4e-favstar 
+            onclick="favToggle(this, '{% url 'favwc:thing_toggle' thing.id %}');"
+            fav={% if thing.id in favorites %} "true" {% else %} "false" {% endif %} 
+        >
+        </dj4e-favstar>
         {% endif %}
     </li>
   {% endfor %}
@@ -49,34 +34,18 @@
 {% endif %}
 </p>
 <script>
-function toggleInlineDisplay(star_id) {
-    var elem = document.getElementById(star_id);
-    if(window.getComputedStyle(elem).display == "inline") {
-        elem.style.display = 'none';
-        elem.dataset.previousDisplay = 'inline';
-    } else if(window.getComputedStyle(elem).display == "block") {
-        elem.style.display = 'none';
-        elem.dataset.previousDisplay = 'block';
-    } else {
-        console.log('prev', elem.dataset.previousDisplay);
-        if ( typeof elem.dataset.previousDisplay == 'string' ) {
-            elem.style.display = elem.dataset.previousDisplay
-        } else {
-            elem.style.display = 'inline';
-        }
-    }
-}
-
-function favPost(url, thing_id) {
+function favToggle(element, url) {
+    const fav = element.getAttribute('fav');
+    console.log('current value for fav', fav);
     console.log('POSTing to', url);
     fetch(url, { method: 'POST', body: '{}' } )
     .then((response) => {
         console.log(url, 'finished');
-        toggleInlineDisplay("unfavorite_star_"+thing_id);
-        toggleInlineDisplay("favorite_star_"+thing_id);
+        element.setAttribute('fav', fav == 'true' ? 'false' : 'true');
     }).catch((error) => {
         alert('Url failed with '+error+' '+url);
     });
 }
 </script>
+<script type="module" src="/site/wc/dj4e-favstar.js"></script>
 {% endblock %}
