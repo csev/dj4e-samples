@@ -57,7 +57,7 @@ class AddFavoriteView(LoginRequiredMixin, View):
             fav.save()  # In case of duplicate key
         except IntegrityError:
             pass
-        return HttpResponse()
+        return HttpResponse("Favorite added 42")
 
 @method_decorator(csrf_exempt, name='dispatch')
 class DeleteFavoriteView(LoginRequiredMixin, View):
@@ -69,5 +69,5 @@ class DeleteFavoriteView(LoginRequiredMixin, View):
         except Fav.DoesNotExist:
             pass
 
-        return HttpResponse()
+        return HttpResponse("Favorite deleted 42")
 

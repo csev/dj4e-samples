@@ -56,8 +56,8 @@ class ToggleFavoriteView(LoginRequiredMixin, View):
         fav = Fav(user=request.user, thing=t)
         try:
             fav.save()
-            return HttpResponse("Favorite saved: "+str(fav))
+            return HttpResponse("Favorite added 42")
         except IntegrityError:  # Already there, lets delete...
             Fav.objects.get(user=request.user, thing=t).delete()
-            return HttpResponse("Favorite deleted: "+str(fav))
+            return HttpResponse("Favorite deleted 42")
         return HttpResponse("Something went wrong")
