@@ -1,14 +1,12 @@
-import {html, css, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@2.4.0/core/lit-core.min.js';
+import { html, LitElement } from "https://cdn.jsdelivr.net/npm/lit@3.2.1/+esm";
 
 // https://stackoverflow.com/questions/68614776/using-lit-with-javascript-and-no-build-tools
 
 export class SimpleGreeting extends LitElement {
 
-  static get properties() {
-    return {
-      name: {type: String}
-    }
-  }
+  static properties =  {
+    name: { type: String }
+  };
 
   constructor() {
     super();
