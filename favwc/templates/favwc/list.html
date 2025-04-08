@@ -14,7 +14,7 @@
         {% if user.is_authenticated %}
         <dj4e-favstar 
             onclick="favToggle(this, '{% url 'favwc:thing_toggle' thing.id %}');"
-            fav={% if thing.id in favorites %} "true" {% else %} "false" {% endif %} 
+            {% if thing.id in favorites %} fav {% endif %} 
         >
         </dj4e-favstar>
         {% endif %}
@@ -35,13 +35,11 @@
 </p>
 <script>
 function favToggle(element, url) {
-    const fav = element.getAttribute('fav');
-    console.log('current value for fav', fav);
     console.log('POSTing to', url);
     fetch(url, { method: 'POST', body: '{}' } )
     .then((response) => {
-        console.log(url, 'finished');
-        element.setAttribute('fav', fav == 'true' ? 'false' : 'true');
+        console.log(url, 'success');
+        element.toggleAttribute('fav');
     }).catch((error) => {
         alert('Url failed with '+error+' '+url);
     });

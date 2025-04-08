@@ -1,7 +1,5 @@
 import { html, LitElement } from "https://cdn.jsdelivr.net/npm/lit@3.2.1/+esm";
 
-// https://stackoverflow.com/questions/68614776/using-lit-with-javascript-and-no-build-tools
-
 export class SimpleGreeting extends LitElement {
 
   static properties =  {
@@ -13,7 +11,7 @@ export class SimpleGreeting extends LitElement {
     this.name = 'Somebody';
   }
 
-  // Don't use Shadow-DOM 
+  // Inherit CSS from enclosing document
   createRenderRoot() { return this;}
 
   render() {

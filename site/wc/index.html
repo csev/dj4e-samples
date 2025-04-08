@@ -7,13 +7,17 @@
 <ul>
     <li>dj4e-greeting: <dj4e-greeting name="World"></dj4e-greeting></li>
     <li>idj4e-favstar:
-        <dj4e-favstar fav></dj4e-favstar>
-        <dj4e-favstar></dj4e-favstar>
+        <dj4e-favstar fav onclick="toggle(this);"></dj4e-favstar>
+        <dj4e-favstar onclick="toggle(this);"></dj4e-favstar>
     </li>
 </ul>
 
 <script type="module" src="./dj4e-greet.js"></script>
 <script type="module" src="./dj4e-favstar.js"></script>
-
+<script>
+    function toggle(elem) {
+        elem.toggleAttribute('fav');
+    }
+</script>
 </body>
 </html>

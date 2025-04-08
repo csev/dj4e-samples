@@ -1,7 +1,5 @@
 import { html, LitElement } from "https://cdn.jsdelivr.net/npm/lit@3.2.1/+esm";
 
-// https://stackoverflow.com/questions/68614776/using-lit-with-javascript-and-no-build-tools
-
 export class DJ4EFavoriteStar extends LitElement {
 
   static properties = {
@@ -18,7 +16,7 @@ export class DJ4EFavoriteStar extends LitElement {
         <i class="fa fa-star fa-stack-1x" style="${this.fav ? "" : "display: none;"} color: orange;"></i>
         <i class="fa fa-star-o fa-stack-1x"></i>
       </span>
-    ;`
+    `
   }
 }
 
