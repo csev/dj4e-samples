@@ -22,7 +22,7 @@ References
 
 https://django-extensions.readthedocs.io/en/latest/runscript.html
 
-https://docs.djangoproject.com/en/4.2/topics/db/models/#extra-fields-on-many-to-many-relationships
+https://docs.djangoproject.com/en/5.2/topics/db/models/#extra-fields-on-many-to-many-relationships
 
-https://docs.djangoproject.com/en/4.2/ref/models/fields/#choices
+https://docs.djangoproject.com/en/5.2/ref/models/fields/#choices
 

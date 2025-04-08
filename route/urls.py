@@ -15,8 +15,8 @@ urlpatterns = [
 
 # References
 
-# https://docs.djangoproject.com/en/4.2/topics/http/urls/
+# https://docs.djangoproject.com/en/5.2/topics/http/urls/
 
-# https://docs.djangoproject.com/en/4.2/ref/urls/#include
+# https://docs.djangoproject.com/en/5.2/ref/urls/#include
 
-# https://docs.djangoproject.com/en/4.2/topics/http/urls/#url-namespaces-and-included-urlconfs
+# https://docs.djangoproject.com/en/5.2/topics/http/urls/#url-namespaces-and-included-urlconfs

@@ -31,7 +31,7 @@ class PostListView(View):
 
 # References
 
-# https://docs.djangoproject.com/en/4.2/topics/db/queries/#one-to-many-relationships
+# https://docs.djangoproject.com/en/5.2/topics/db/queries/#one-to-many-relationships
 
 # Note that the select_related() QuerySet method recursively prepopulates the
 # cache of all one-to-many relationships ahead of time.

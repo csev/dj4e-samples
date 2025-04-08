@@ -52,7 +52,7 @@ class OwnerDeleteView(LoginRequiredMixin, DeleteView):
 
 # References
 
-# https://docs.djangoproject.com/en/4.2/ref/class-based-views/mixins-editing/#django.views.generic.edit.ModelFormMixin.form_valid
+# https://docs.djangoproject.com/en/5.2/ref/class-based-views/mixins-editing/#django.views.generic.edit.ModelFormMixin.form_valid
 
 # https://stackoverflow.com/questions/862522/django-populate-user-id-when-saving-a-model
 

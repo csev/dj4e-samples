@@ -16,5 +16,5 @@ class SecondView(View):
 
 # References
 
-# https://docs.djangoproject.com/en/4.2/topics/http/urls/#topics-http-reversing-url-namespaces
+# https://docs.djangoproject.com/en/5.2/topics/http/urls/#topics-http-reversing-url-namespaces
 

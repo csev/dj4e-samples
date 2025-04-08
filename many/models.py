@@ -43,11 +43,11 @@ class Membership(models.Model):
 
 # References
 
-# https://docs.djangoproject.com/en/4.2/topics/db/models/#extra-fields-on-many-to-many-relationships
+# https://docs.djangoproject.com/en/5.2/topics/db/models/#extra-fields-on-many-to-many-relationships
 
-# https://docs.djangoproject.com/en/4.2/ref/models/fields/#choices
+# https://docs.djangoproject.com/en/5.2/ref/models/fields/#choices
 
-# https://docs.djangoproject.com/en/4.2/topics/db/examples/many_to_many/
+# https://docs.djangoproject.com/en/5.2/topics/db/examples/many_to_many/
 
-# https://docs.djangoproject.com/en/4.2/ref/models/fields/#datefield
+# https://docs.djangoproject.com/en/5.2/ref/models/fields/#datefield
 
