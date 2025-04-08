@@ -5,3 +5,5 @@ __pycache__
 github_settings.py
 *.pyc
 .venv
+.ve42
+.ve52
