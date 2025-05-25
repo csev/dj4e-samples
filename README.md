@@ -9,12 +9,20 @@ You can see some of the samples working at
 
 http://samples.dj4e.com
 
+Running Locally on the Mac once the ve52 exists
+-----------------------------------------------
+
+If you have Django installed on your local computer you can test any of the sample
+applications by going into the folder and starting the server:
+
+    cd dj4e-samples
+    source .ve52/bin/activate   # If needed
+    python manage.py runserver
+
+And visit `http://localhost:8000`.
+
 Setting up a Virtual Environment on the Mac
 -------------------------------------------
-
-Install `virtualenv`, if you use homebrew you can:
-
-    brew install virtualenv
 
 Then checkout this repository:
 
@@ -34,18 +42,6 @@ Then checkout this repository:
 
     ...
     deactivate
-
-Running Locally on the Mac once the ve52 exists
------------------------------------------------
-
-If you have Django installed on your local computer you can test any of the sample
-applications by going into the folder and starting the server:
-
-    cd dj4e-samples
-    source .ve52/bin/activate   # If needed
-    python manage.py runserver
-
-And visit `http://localhost:8000`.
 
 Setting up a Virtual Environment on Python Anywhere
 ---------------------------------------------------

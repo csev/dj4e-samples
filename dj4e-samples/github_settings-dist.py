@@ -3,14 +3,17 @@
 
 # Go to https://github.com/settings/apps
 
-# Add a New OAuth2 App 
+# Add a New OAuth2 App
 
-# Using PythonAnywhere here are some settings:
+# Using PythonAnywhere here are some settings - replace "drchuck" with your account name
 
-# Application name: ChuckList PythonAnywhere
+# Application name: DJ4E Samples
 # Homepage Url: https://drchuck.pythonanywhere.com
 # Application Description: Whatever
 # Authorization callback URL: https://drchuck.pythonanywhere.com/oauth/complete/github/
+
+# When you are given a Client ID, copy it into this file.  Ask to generate a
+# "New client secret".
 
 # Also on PythonAnywhere, go into the Web tab and enable "Force HTTPS"
 # so you don't get a redirect URI mismatch.
@@ -27,8 +30,6 @@ SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 # email public - that is OK
 
 # For detail: https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
-
-# Using ngrok is hard because the url changes every time you start ngrok
 
 # If you are running on localhost, here are some settings:
 
