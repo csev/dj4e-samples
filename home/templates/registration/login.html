@@ -10,6 +10,22 @@
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" class="btn btn-primary" value="Login" />
+<input type="checkbox" id="show_password">
+<label for="show_password">Show Password</label>
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+    <script>
+        const passwordField = document.getElementById('id_password');
+        const showPasswordCheckbox = document.getElementById('show_password');
+
+        showPasswordCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+    </script>
+
 {% endblock %}

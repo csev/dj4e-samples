@@ -22,6 +22,8 @@
 {{ form|crispy }}
 <input type="submit" class="btn btn-primary" value="Login Locally" />
 <input type="hidden" name="next" value="{{ next }}" />
+<label for="show_password">Show Password</label>
+<input type="hidden" name="next" value="{{ next }}" />
 </form>
 
 {% if settings.SOCIAL_AUTH_GITHUB_KEY %}
@@ -32,6 +34,21 @@
 {% endif %}
 
 <!-- ROOT_URLCONF {{ settings.ROOT_URLCONF }} -->
+
+
+    <script>
+        const passwordField = document.getElementById('id_password');
+        const showPasswordCheckbox = document.getElementById('show_password');
+
+        showPasswordCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+    </script>
+
 
 {% endblock %}
 
