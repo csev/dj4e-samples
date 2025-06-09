@@ -1,18 +1,34 @@
-# To activate this run
+# To run this, you should have a virtual environment with Django 5.2.
+# TO activate an existing environment, use
 #
-# pip install -r requirements.txt
-# python -m django --version
+#   source ~.ve52/bin/activate
+#   
+# If this fails, you need to create and configure a Django 5.2 environment
+# as follows:
 #
-# On a Macintosh this should be python3 and pip3
+#   cd ~
+#   deactivate  # May fail - this is OK
+#   python -m venv .ve52
+#   source ~/.ve52/bin/activate
+#   python --version
 #
+# The Python version for Django 5.2 should be at least 3.10. It will most likely
+# be 3.12 or later. Once you verify your Python version is correct, run:
+#
+#   pip install --upgrade pip
+#   pip install -r requirements52.txt
+#   python -m django --version
+#
+# Your Django version should be 5.2 or later.
+
 Django==5.2
 
 # If you want to use MySQL, and are not running on PythonAnywhere,
-# uncomment the following line you might need to install pre-requisite
+# comment the following line out or you might need to install pre-requisite
 # libraries before mysqlclient will work - instructions are at
 #   https://pypi.org/project/mysqlclient/
 
-# mysqlclient==2.1.1
+mysqlclient==2.2.1; sys_platform != 'darwin'
 
 # Other requirments - frozen to a version to simplify tech support
 asgiref==3.8.1
