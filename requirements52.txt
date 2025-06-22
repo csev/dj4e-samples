@@ -1,7 +1,7 @@
 # To run this, you should have a virtual environment with Django 5.2.
-# TO activate an existing environment, use
+# To activate an existing environment, use
 #
-#   source ~.ve52/bin/activate
+#   source ~/.ve52/bin/activate
 #   
 # If this fails, you need to create and configure a Django 5.2 environment
 # as follows:
@@ -23,14 +23,18 @@
 
 Django==5.2
 
-# If you want to use MySQL, and are not running on PythonAnywhere,
-# comment the following line out or you might need to install pre-requisite
-# libraries before mysqlclient will work - instructions are at
+# If you are not running on MySQL you can keep just use SQLite for everything.
+
+# If you want to use MySQL, and are not running on PythonAnywhere
+# there are some manual steps before you can install mysqlclient with pip.
+
+# The line below only installs the Django mysql support on Linux systems (i.e. like PythonAnywhere)
+
+mysqlclient==2.2.1; sys_platform == 'linux'
+
+# See this web site for details:
 #   https://pypi.org/project/mysqlclient/
 
-mysqlclient==2.2.1; sys_platform != 'darwin'
-
-# Other requirments - frozen to a version to simplify tech support
 asgiref==3.8.1
 beautifulsoup4==4.13.3
 certifi==2025.1.31
