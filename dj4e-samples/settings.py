@@ -207,9 +207,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 IS_PYTHONANYWHERE = 'PYTHONANYWHERE_SITE' in os.environ
 
 IS_RUNSERVER = (
-    len(sys.argv) >= 2 and "manage.py" in sys.argv[0] and sys.argv[1] != "runserver"
+    len(sys.argv) >= 2 and "manage.py" in sys.argv[0] and "runserver" in sys.argv[1]
 )
-print('Variables', IS_PYTHONANYWHERE, IS_RUNSERVER)
 
 if IS_PYTHONANYWHERE and IS_RUNSERVER :
     print()
