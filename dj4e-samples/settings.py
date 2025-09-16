@@ -3,6 +3,7 @@ Django settings for samples project.
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -201,6 +202,22 @@ LOGIN_REDIRECT_URL = '/'
 # Needed for 3.2 and later
 # https://stackoverflow.com/questions/67783120/warning-auto-created-primary-key-used-when-not-defining-a-primary-key-type-by
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Check if the PYTHONANYWHERE_SITE environment variable is set
+IS_PYTHONANYWHERE = 'PYTHONANYWHERE_SITE' in os.environ
+
+IS_RUNSERVER = (
+    len(sys.argv) >= 2 and "manage.py" in sys.argv[0] and sys.argv[1] != "runserver"
+)
+print('Variables', IS_PYTHONANYWHERE, IS_RUNSERVER)
+
+if IS_PYTHONANYWHERE and IS_RUNSERVER :
+    print()
+    print('* On PythonAnywhere you should not use runserver. You should')
+    print('* use "python manage.py check" in the console shell and then')
+    print('* reload the web application under the Web tab or reload')
+    print('* button in the file editor')
+    print()
 
 # https://coderwall.com/p/uzhyca/quickly-setup-sql-query-logging-django
 # https://stackoverflow.com/questions/12027545/determine-if-django-is-running-under-the-development-server
