@@ -86,12 +86,12 @@ if [[ -e "$HOME/polls" ]]; then
     warn "The folder $HOME/polls should not exist - we use $HOME/django_projects/mysite/polls instead - you should remove $HOME/polls to avoid confusion"
 fi
 
-if [[ -e "$HOME/django_projects/locallibrary" ]]; then
-    warn "The folder $HOME/django_projects/locallibrary should not exist - we use $HOME/locallibrary instead in your home directory (right next to as django_projects)"
+if [[ -e "$HOME/locallibrary" ]]; then
+    warn "The folder $HOME/locallibrary should not exist - we use $HOME/django_projects/locallibrary instead in your home directory"
 fi
 
 if [[ -e "$HOME/django_projects/mysite/locallibrary" ]]; then
-    warn "The folder $HOME/django_projects/mysite/locallibrary should not exist - we use $HOME/locallibrary instead in your home directory (right next to as django_projects)"
+    warn "The folder $HOME/django_projects/mysite/locallibrary should not exist - we use $HOME/django_projects/locallibrary instead in your home directory"
 fi
 
 MANAGE_FILE=$HOME/django_projects/mysite/manage.py
