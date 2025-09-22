@@ -25,7 +25,7 @@ fi
 if [[ "$VIRTUAL_ENV" =~ "ve52" ]]; then
   : echo "Running in .ve52"
 elif [[ "$VIRTUAL_ENV" =~ "django42" ]]; then
-  die "You are running in an out-of-date Django 4.2 virtual environment - you should be running Django 5.2 - see DJ4E install instructions"
+  die "You are running in an out-of-date Django 4.2 virtual environment - you should be running the ve52 virtual environment - see DJ4E install instructions"
 else
   die "Not running in virtual environment ve52 - please consult the DJ4E install instructions."
 fi
