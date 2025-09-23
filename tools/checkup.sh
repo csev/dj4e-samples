@@ -94,7 +94,29 @@ if [[ -e "$HOME/django_projects/mysite/locallibrary" ]]; then
     warn "The folder $HOME/django_projects/mysite/locallibrary should not exist - we use $HOME/django_projects/locallibrary instead in your home directory"
 fi
 
+if [[ -f "$HOME/django_projects/locallibrary/locallibrary/settings.py" ]]; then
+    if grep -q "STATIC_ROOT" "$HOME/django_projects/locallibrary/locallibrary/settings.py"; then
+        : echo STATIC_ROOT defined
+    else
+        warn "The $HOME/django_projects/locallibrary/locallibrary/settings.py does not have STATIC_ROOT defined - please see instructions"
+    fi
+fi
+
+if [[ -f "$HOME/django_projects/locallibrary/locallibrary/urls.py" ]]; then
+    if grep -q "permanent=True" "$HOME/django_projects/locallibrary/locallibrary/urls.py"; then
+        warn "The $HOME/django_projects/locallibrary/locallibrary/urls.py should not have 'permanent=True' in the redirect entry - please see instructions.  Once you fix this, you will may need to clear your browser cache to get the redirect out of the browser cache."
+    else
+        : echo STATIC_ROOT defined
+    fi
+fi
+
+
 MANAGE_FILE=$HOME/django_projects/mysite/manage.py
+if [[ -f "$MANAGE_FILE" && -f "$HOME/dj4e-samples/tools/patch_manage.py" ]]; then
+    python $HOME/dj4e-samples/tools/patch_manage.py $MANAGE_FILE
+fi
+
+MANAGE_FILE=$HOME/django_projects/locallibrary/manage.py
 if [[ -f "$MANAGE_FILE" && -f "$HOME/dj4e-samples/tools/patch_manage.py" ]]; then
     python $HOME/dj4e-samples/tools/patch_manage.py $MANAGE_FILE
 fi
