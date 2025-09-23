@@ -36,6 +36,7 @@ patched = False
 for line in lines:
     if not patched and ('def main():' == line or 'if __name__ == "__main__":' == line) :
         output.append(line)
+        patched = True
         for new in patch_content:
             output.append(new)
         continue
