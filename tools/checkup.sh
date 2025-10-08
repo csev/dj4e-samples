@@ -103,7 +103,7 @@ if [[ -f "$HOME/django_projects/locallibrary/locallibrary/settings.py" ]]; then
 fi
 
 if [[ -f "$HOME/django_projects/locallibrary/locallibrary/urls.py" ]]; then
-    if grep -q "permanent=True" "$HOME/django_projects/locallibrary/locallibrary/urls.py"; then
+    if grep -q "RedirectView.as_view(url=.*permanent=True" "$HOME/django_projects/locallibrary/locallibrary/urls.py"; then
         warn "The $HOME/django_projects/locallibrary/locallibrary/urls.py should not have 'permanent=True' in the redirect entry - please see instructions.  Once you fix this, you will may need to clear your browser cache to get the redirect out of the browser cache."
     else
         : echo STATIC_ROOT defined
