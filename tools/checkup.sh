@@ -19,7 +19,7 @@ die () {
 if [ -n "$VIRTUAL_ENV" ]; then
     : echo "Running in a virtual environment: $VIRTUAL_ENV"
 else
-    die "You are not running in a virtual environment, please consult the DJ4E install instructions."
+    die 'You are not running in a virtual environment, please consult the DJ4E install instructions.  Perhaps you need to run "source ~/.ve52/bin/activate"'
 fi
 
 if [[ "$VIRTUAL_ENV" =~ "ve52" ]]; then
