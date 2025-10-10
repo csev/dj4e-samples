@@ -82,6 +82,10 @@ if [[ -e "$HOME/mysite" ]]; then
     warn "The folder $HOME/mysite should not exist - we use $HOME/django_projects/mysite instead - you should remove $HOME/mysite to avoid confusion"
 fi
 
+if [[ -e "$HOME/django_projects/djangotutorial" ]]; then
+    warn "The folder $HOME/django_projects/djangotutorial should not exist - we use $HOME/django_projects/mysite instead - you should remove $HOME/django_projects/djangotutorial to avoid confusion"
+fi
+
 if [[ -e "$HOME/polls" ]]; then
     warn "The folder $HOME/polls should not exist - we use $HOME/django_projects/mysite/polls instead - you should remove $HOME/polls to avoid confusion"
 fi
