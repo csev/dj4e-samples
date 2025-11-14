@@ -13,14 +13,12 @@ class ArticleDetailView(OwnerDetailView):
 
 class ArticleCreateView(OwnerCreateView):
     model = Article
-    # List the fields to copy from the Article model to the Article form
+    # List Article model fields to copy to the Article form / template
     fields = ['title', 'text']
 
 class ArticleUpdateView(OwnerUpdateView):
     model = Article
     fields = ['title', 'text']
-    # This would make more sense
-    # fields_exclude = ['owner', 'created_at', 'updated_at']
 
 
 class ArticleDeleteView(OwnerDeleteView):
