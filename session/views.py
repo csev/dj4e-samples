@@ -1,6 +1,26 @@
 from django.http import HttpResponse
 
 # Create your views here.
+from django.http import HttpResponse
+from django.shortcuts import render
+
+def hello(request):
+    # Use session
+    count = request.session.get('hello_count', 0)
+    request.session['hello_count'] = count + 1
+
+    # Render page that includes the required string
+    context = {
+        'required_token': '18642f54',
+        'count': request.session['hello_count'],
+    }
+    # If you prefer render, assign to a variable so you can set cookie on it.
+    response = render(request, 'hello/hello.html', context)
+
+    # Set the required cookie
+    response.set_cookie('dj4e_cookie', '18642f54', max_age=1000)
+
+    return response
 
 # https://docs.djangoproject.com/en/4.2/ref/request-response/#django.http.HttpRequest.COOKIES
 # HttpResponse.set_cookie(key, value='', max_age=None, expires=None, path='/', 
