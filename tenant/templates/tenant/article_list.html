@@ -21,9 +21,9 @@
 <p>
 <a href="{% url 'myarts:article_create' %}">Add an Article</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'myarts:all' %}">Logout</a>
+    <p> Logged in as {{ user.username }}</p>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'myarts:all' %}">Login</a>
+    <p>Not currently logged in.</p>
 {% endif %}
 </p>
 {% endblock %}

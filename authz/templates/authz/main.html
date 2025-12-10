@@ -7,10 +7,8 @@ Email: {{ user.email }}
 Id: {{ user.id }}
 </pre>
 </p>
-<p>You can <a href="{% url 'logout' %}?next={% url 'authz:open' %}">Logout</a></p>
 {% else %}
 <p>You are not logged in</p>
-<p>You can <a href="{% url 'login' %}?next={{ request.path }}">Login</a> if you like.</p>
 {% endif %}
 <ul>
     <li>

@@ -43,9 +43,9 @@
 <a href="{% url 'favsql:thing_create' %}">Add a Thing</a> |
 <a href="{% url 'favsql:thingsql' %}">Switch to SQL</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'favsql:things' %}">Logout</a>
+    <p> Logged in as {{ user.username }} </p>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'favsql:things' %}">Login</a>
+    <p>Not currently logged in.</p>
 {% endif %}
 </p>
 <script>

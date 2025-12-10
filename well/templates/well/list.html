@@ -46,9 +46,9 @@
 <p>
 <a href="{% url 'well:post_create' %}">Add a Post</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'well:all' %}">Logout</a>
+    <p> Logged in as {{ user.username }}</p>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'well:all' %}">Login</a>
+    <p>Not currently logged in.</p>
 {% endif %}
 </p>
 {% endblock %}

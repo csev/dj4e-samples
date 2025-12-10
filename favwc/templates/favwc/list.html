@@ -26,19 +26,20 @@
 {% endif %}
 </p>
 <p>
-<a href="{% url 'favwc:thing_create' %}">Add a Thing</a> |
+<a href="{% url 'favwc:thing_create' %}">Add a Thing</a>
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'favwc:all' %}">Logout</a>
+    <p> Logged in as {{ user.username }} </p>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'favwc:all' %}">Login</a>
+    <p>Not currently logged in.</p>
 {% endif %}
 </p>
 <script>
 function favToggle(element, url) {
     console.log('POSTing to', url);
     fetch(url, { method: 'POST', body: '{}' } )
+    .then((response) => response.text())
     .then((response) => {
-        console.log(url, 'success');
+        console.log(url, response);
         element.toggleAttribute('fav');
     }).catch((error) => {
         alert('Url failed with '+error+' '+url);

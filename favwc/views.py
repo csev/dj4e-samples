@@ -51,14 +51,6 @@ from django.db.utils import IntegrityError
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ToggleFavoriteView(LoginRequiredMixin, View):
-    # Add get for manual retrieval
-    def get(self, request, pk) :
-        t = get_object_or_404(Thing, id=pk)
-        try:
-            fav = Fav.objects.get(user=request.user, thing=t).delete()
-            return HttpResponse("Favorite present: "+str(fav))
-        except:
-            return HttpResponse("Favorite not present: "+str(t)+" -> "+str(request.user))
 
     def post(self, request, pk) :
         t = get_object_or_404(Thing, id=pk)

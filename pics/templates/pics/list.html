@@ -22,9 +22,9 @@
 <p>
 <a href="{% url 'pics:pic_create' %}">Add an Pic</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'pics:all' %}">Logout</a>
+    <p> Logged in as {{ user.username }}</p>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'pics:all' %}">Login</a>
+    <p>Not currently logged in.</p>
 {% endif %}
 </p>
 {% endblock %}

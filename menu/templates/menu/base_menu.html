@@ -44,9 +44,15 @@
             <!-- https://brobin.me/blog/2016/07/super-simple-django-gravatar/ -->
             <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b>
         </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="rightnavDropdown">
-            <li><a class="dropdown-item" href="{% url 'logout' %}?next={% url 'menu:main' %}">Logout</a></li>
-        </ul>
+         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="rightnavDropdown">
+             <li>
+                 <form action="{% url 'logout' %}" method="post" class="d-inline">
+                     {% csrf_token %}
+                     <input type="hidden" name="next" value="{% url 'menu:main' %}">
+                     <button class="dropdown-item btn btn-link" type="submit">Logout</button>
+                 </form>
+             </li>
+         </ul>
        </li>
        {% else %}
        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}?next={% url 'menu:main' %}">Login</a></li>
