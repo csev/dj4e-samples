@@ -37,12 +37,19 @@
 function favToggle(element, url) {
     console.log('POSTing to', url);
     fetch(url, { method: 'POST', body: '{}' } )
-    .then((response) => response.text())
+    .then((response) => {
+        if (!response.ok) { // Check if the response status is in the 2xx range (success)
+            console.log("If you see this error, it is likely in ToggleFavoriteView()");
+            console.log("Note: It is easier to diagnose this error FireFox.");
+            throw new Error(`AJAX/fetch error status: ${response.status}, see developer console.`)
+        }
+        return response.text();
+    })
     .then((response) => {
         console.log(url, response);
         element.toggleAttribute('fav');
     }).catch((error) => {
-        alert('Url failed with '+error+' '+url);
+        alert(`Url ${url} failed ${error}`);
     });
 }
 </script>

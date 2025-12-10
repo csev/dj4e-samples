@@ -53,7 +53,7 @@ from django.db.utils import IntegrityError
 class ToggleFavoriteView(LoginRequiredMixin, View):
 
     def post(self, request, pk) :
-        t = get_object_or_404(Thing, id=pk)
+        t = get_object_or_404(Thing, xid=pk)
         fav = Fav(user=request.user, thing=t)
         try:
             fav.save()
