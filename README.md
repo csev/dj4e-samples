@@ -23,6 +23,8 @@ Then checkout this repository:
     cd ...wherever...
     git clone https://github.com/csev/dj4e-samples.git
     cd dj4e-samples
+    git checkout django42
+    
     python3.11 -m venv .venv
     source .venv/bin/activate
     python --version
@@ -67,7 +69,8 @@ Then check this out into some folder:
     cd ~/django_projects    # Create the folder if needed
     git clone https://github.com/csev/dj4e-samples.git
     cd dj4e-samples
-    pip install -r requirements.txt
+    git checkout djdngo42
+    pip install -r requirements42.txt
     python manage.py migrate
     python manage.py createsuperuser --username dj4e-samples
     # python manage.py changepassword dj4e-samples
