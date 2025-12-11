@@ -66,3 +66,4 @@ sqlparse==0.5.3
 typing_extensions==4.13.1
 urllib3==2.3.0
 zipp==3.21.0
+elasticsearch>=8.0.0
