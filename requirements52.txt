@@ -55,6 +55,9 @@ Markdown==3.7
 oauthlib==3.2.2
 pycparser==2.22
 PyJWT==2.10.1
+# Note: jwcrypto uses legacy setup.py build (deprecation warning expected but harmless)
+# Latest version as of 2025 - package hasn't been updated to PEP 517 yet
+jwcrypto==1.5.6
 python3-openid==3.2.0
 pytz==2025.2
 requests==2.32.3
