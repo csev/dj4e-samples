@@ -5,3 +5,6 @@ updates:
     schedule:
       interval: weekly
     target-branch: django52
+    ignore:
+      - dependency-name: "Django"
+        versions: [">5.2.*"]
