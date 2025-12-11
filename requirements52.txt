@@ -21,7 +21,7 @@
 #
 # Your Django version should be 5.2 or later.
 
-Django==5.2
+Django==6.0
 
 # If you are not running on MySQL you can keep just use SQLite for everything.
 
