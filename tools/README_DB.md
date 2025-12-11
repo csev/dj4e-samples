@@ -17,6 +17,7 @@ This is particularly useful when:
 
 ## Features
 
+- **Version checking**: Verifies Python 3.x and Django are available before proceeding
 - **Auto-detection**: Automatically finds your Django project root and settings
 - **Multi-database support**: Works with SQLite, MySQL, and PostgreSQL
 - **Safe foreign key handling**: Properly disables/enables foreign key constraints
@@ -26,34 +27,52 @@ This is particularly useful when:
 
 ## Requirements
 
-- Python 3.x
+- Running in the correct Virtual Environment with the correct version of Python and Django
 - Django project with `manage.py` in the root directory
 - Database configured in Django settings
 - Appropriate database permissions
+
+## Before You Start
+
+Make sure you have the correct latest version of `dj4e-samples` and it is checked out to the correct version.  Also this resets any inadvertent changes you have made to `dj4e-samples`.
+
+    cd (the folder where dj4e-samples is)/dj4e-samples
+
+For example if you are working on the www.dj4e.com `market` assignment on PythonAnywhere.
+
+    cd ~/dj4e-samples
+
+Then 
+
+    bash ./tools/rollback.sh
+    git checkout django52
+    git pull
+
+These steps ensure you're working with the latest code from the correct branch 
+in `dj4e-samples` before resetting your database.
 
 ## Usage
 
 ### Basic Usage
 
-From any directory within your Django project:
+From any directory within your Django project (the folder with `manage.py`)
 
-```bash
-python tools/resetdb.py
-```
+    python (the folder where dj4e-samples is)/dj4e-samples/tools/resetdb.py
 
-Or if you're already in the `tools` directory:
+For example if you are working on the www.dj4e.com `market` assignment on PythonAnywhere.
 
-```bash
-python resetdb.py
-```
+    python ~/dj4e-samples/tools/resetdb.py
 
 The script will:
-1. Automatically find your Django project root (by looking for `manage.py`)
-2. Detect your settings module
-3. Connect to your database
-4. Ask for confirmation
-5. Drop all tables
-6. Delete all migration files
+1. Check Python version (requires Python 3.x)
+2. Check Django version (must be installed and available in your virtual environment)
+3. Automatically find your Django project root (by looking for `manage.py`)
+4. Detect your settings module
+5. Connect to your database
+6. Display version information
+7. Ask for confirmation
+8. Drop all tables
+9. Delete all migration files
 
 ### What Gets Deleted
 
@@ -74,7 +93,9 @@ The script preserves:
 ============================================================
 Database and Migration Reset Script
 ============================================================
-
+Python version: 3.11.5
+Django version: 4.2.7
+============================================================
 Found Django project at: /path/to/dj4e-samples
 Using settings module: dj4e-samples.settings
 
@@ -173,6 +194,25 @@ The script automatically detects your Django settings module by:
 4. **Project detection**: Verifies you're in a Django project before proceeding
 
 ## Troubleshooting
+
+### "ERROR: Python 3.x is required!"
+
+The script detected that you're not using Python 3.x. Solutions:
+- Make sure you're using Python 3.x (check with `python --version` or `python3 --version`)
+- Activate your virtual environment if you're using one
+- Use `python3` instead of `python` if your system has both versions
+
+### "WARNING: Django is not installed or not available in current environment!"
+
+The script couldn't import Django. This usually means:
+- Django is not installed in your current Python environment
+- You're not in the correct virtual environment
+- Django needs to be installed: `pip install django`
+
+Solutions:
+- Activate your project's virtual environment
+- Install Django: `pip install django` or `pip install -r requirements.txt`
+- Verify Django is installed: `python -c "import django; print(django.get_version())"`
 
 ### "Could not find manage.py"
 

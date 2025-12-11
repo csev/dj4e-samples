@@ -125,6 +125,11 @@ if [[ -f "$MANAGE_FILE" && -f "$HOME/dj4e-samples/tools/patch_manage.py" ]]; the
     python $HOME/dj4e-samples/tools/patch_manage.py $MANAGE_FILE
 fi
 
+MANAGE_FILE=$HOME/django_projects/market/manage.py
+if [[ -f "$MANAGE_FILE" && -f "$HOME/dj4e-samples/tools/patch_manage.py" ]]; then
+    python $HOME/dj4e-samples/tools/patch_manage.py $MANAGE_FILE
+fi
+
 if [[ "$HAVE_WARNING" == "true" ]]; then
   echo Please address the warning errors and re-run the script
 else

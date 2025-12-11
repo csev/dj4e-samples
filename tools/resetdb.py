@@ -11,8 +11,42 @@ Can be run from any directory within a Django project.
 
 import os
 import sys
-import django
 from pathlib import Path
+
+# Check Python version first
+def check_python_version():
+    """Check if Python version is 3.x."""
+    python_version = sys.version_info
+    if python_version.major < 3:
+        print("=" * 60)
+        print("ERROR: Python 3.x is required!")
+        print(f"Current Python version: {python_version.major}.{python_version.minor}.{python_version.micro}")
+        print("=" * 60)
+        sys.exit(1)
+    return python_version
+
+# Check Python version before proceeding
+python_version = check_python_version()
+
+# Try to import Django and check version
+def check_django_version():
+    """Check Django version if available."""
+    try:
+        import django
+        django_version = django.get_version()
+        return django_version
+    except ImportError:
+        print("=" * 60)
+        print("WARNING: Django is not installed or not available in current environment!")
+        print("Make sure you're running in the correct virtual environment.")
+        print("=" * 60)
+        sys.exit(1)
+
+# Check Django version
+django_version = check_django_version()
+
+# Now import django for use in setup
+import django
 
 
 def find_django_project_root():
@@ -175,6 +209,9 @@ def main():
     """Main function to reset database and migrations."""
     print("=" * 60)
     print("Database and Migration Reset Script")
+    print("=" * 60)
+    print(f"Python version: {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")
+    print(f"Django version: {django.get_version()}")
     print("=" * 60)
     
     # Confirm before proceeding

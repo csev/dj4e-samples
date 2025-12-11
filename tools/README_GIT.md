@@ -29,17 +29,16 @@ The `rollback.sh` script provides an interactive way to:
 
 ### Basic Usage
 
-From any directory within your git repository:
+From any directory that is a git repository:
 
-```bash
-./tools/rollback.sh
-```
+     cd (the folder with your project that contains `manage.py`)
+     bash (path to dj4e-samples)/dj4e-samples/tools/rollback.sh
 
-Or if you're already in the `tools` directory:
+For example on PythonAnywhere if you are working on the `market` assignment
+do the following:
 
-```bash
-./rollback.sh
-```
+    cd ~/django_projects/market
+    bash ~/dj4e-samples/tool/rollback.sh
 
 ### What the Script Does
 
@@ -97,9 +96,9 @@ Current branch: feature-branch
 
 Available tags:
 ===============
- 1. v1.2.0                         2024-01-15 10:30:00 -0500
- 2. v1.1.0                         2024-01-01 09:00:00 -0500
- 3. v1.0.0                         2023-12-15 14:20:00 -0500
+ 1. mkt3                            2024-01-15 10:30:00 -0500
+ 2. mkt2                            2024-01-01 09:00:00 -0500
+ 3. mkt1                            2023-12-15 14:20:00 -0500
 
 Options:
   [0] Roll back to latest commit on 'feature-branch' (discard local changes)
@@ -114,7 +113,7 @@ Enter your choice: 0
 ```bash
 Enter your choice: 2
 
-Rolling back to tag: v1.1.0
+Rolling back to tag: mkt2
 This will discard all local changes and untracked files!
 Are you sure? (yes/no): yes
 ```
