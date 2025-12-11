@@ -43,7 +43,7 @@ charset-normalizer==3.4.1
 crispy-bootstrap5==2025.4
 cryptography==44.0.2
 defusedxml==0.7.1
-django-crispy-forms==2.3
+django-crispy-forms==2.5
 django-extensions==4.1
 django-filter==25.2
 django-taggit==6.1.0
