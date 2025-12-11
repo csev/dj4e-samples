@@ -16,6 +16,11 @@ checkout.  Here are the instructions for the Django versions:
       git clone https://github.com/csev/dj4e-samples.git
       git checkout django42
 
+* Django 4.0 [README.md](https://github.com/csev/dj4e-samples/blob/django40/README.md) (very obsolete)
+
+      git clone https://github.com/csev/dj4e-samples.git
+      git checkout django40
+
 The `main` branch is deprecated to allow for the support of multiple Django versions
 simulataneously.  Django has a very agressive 
 [deprecation process and timeline](https://www.djangoproject.com/download/#supported-versions)
