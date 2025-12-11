@@ -39,7 +39,7 @@ asgiref==3.8.1
 beautifulsoup4==4.13.3
 certifi==2025.1.31
 cffi==1.17.1
-charset-normalizer==3.4.1
+charset-normalizer==3.4.4
 crispy-bootstrap5==2025.4
 cryptography==44.0.2
 defusedxml==0.7.1
