@@ -46,7 +46,7 @@ Then
 
     bash ./tools/rollback.sh
     git checkout django52
-    git pull
+    git pull orgin django52
 
 These steps ensure you're working with the latest code from the correct branch 
 in `dj4e-samples` before resetting your database.
