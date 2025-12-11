@@ -37,10 +37,9 @@ This script is particularly useful when:
 
 ### Basic Usage
 
-Since `checkup.sh` checked your entire home folder on PythonAnywhere you
+Since `checkup.sh` scans your entire home folder on PythonAnywhere you
 can run it as follows:
 
-    cd ~            # go to your home directory
     bash ~/dj4e-samples/tools/checkup.sh
 
 ### What the Script Checks
