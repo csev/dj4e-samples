@@ -25,6 +25,54 @@ print_warning() {
     echo -e "${YELLOW}$1${NC}"
 }
 
+# Function to check if there are uncommitted changes or untracked files
+has_changes() {
+    ! git diff-index --quiet HEAD -- 2>/dev/null || [ -n "$(git ls-files --others --exclude-standard)" ]
+}
+
+# Function to create a backup tag before rollback
+create_backup_tag() {
+    local target="$1"
+    local timestamp=$(date +"%Y%m%d-%H%M%S")
+    local backup_tag="pre-rollback-${timestamp}"
+    
+    # Check if there are changes to save
+    if ! has_changes; then
+        return 0  # No changes to backup
+    fi
+    
+    echo ""
+    print_warning "Creating backup tag before rollback..."
+    
+    # Save current HEAD commit
+    local current_head=$(git rev-parse HEAD)
+    
+    # Stage all changes (including untracked files)
+    git add -A 2>/dev/null || true
+    
+    # Create a temporary commit with current state
+    git commit -m "Backup before rollback to $target" --no-verify 2>/dev/null || {
+        # If commit fails (e.g., no changes after staging), create an empty commit
+        git commit -m "Backup before rollback to $target" --allow-empty --no-verify 2>/dev/null || true
+    }
+    
+    # Create tag pointing to this backup commit
+    if git tag "$backup_tag" 2>/dev/null; then
+        print_success "Created backup tag: $backup_tag"
+        echo "  You can recover your changes with: git checkout $backup_tag"
+        echo "  Or view the backup: git show $backup_tag"
+        echo ""
+    else
+        print_warning "Warning: Could not create backup tag (tag may already exist)"
+    fi
+    
+    # Reset to previous HEAD (soft reset to undo the commit, but changes remain staged)
+    git reset --soft "$current_head" 2>/dev/null || true
+    
+    # Unstage all files to restore original state
+    git reset HEAD 2>/dev/null || true
+}
+
 # Check if we're in a git repository
 if ! git rev-parse --git-dir > /dev/null 2>&1; then
     print_error "Error: Not a git repository!"
@@ -42,11 +90,12 @@ echo "Current branch: $CURRENT_BRANCH"
 echo ""
 
 # Check for uncommitted changes
-if ! git diff-index --quiet HEAD -- 2>/dev/null || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+if has_changes; then
     print_warning "Warning: You have uncommitted changes or untracked files!"
     echo ""
     git status --short
     echo ""
+    print_warning "A backup tag will be created before rollback so you can recover your changes if needed."
     read -p "Do you want to continue? This will DISCARD ALL local changes and untracked files! (yes/no): " confirm
     if [ "$confirm" != "yes" ]; then
         echo "Rollback cancelled."
@@ -68,6 +117,9 @@ if [ ${#tags[@]} -eq 0 ]; then
     echo ""
     read -p "Do you want to roll back to the latest commit on '$CURRENT_BRANCH'? (yes/no): " rollback_branch
     if [ "$rollback_branch" = "yes" ]; then
+        # Create backup tag if there are changes
+        create_backup_tag "latest commit on $CURRENT_BRANCH"
+        
         echo ""
         print_warning "Rolling back to latest commit on '$CURRENT_BRANCH' (discarding all local changes)..."
         # Try to reset to remote branch first, then fall back to local HEAD
@@ -111,6 +163,9 @@ fi
 
 # Handle rollback to latest commit on current branch
 if [ "$choice" = "0" ]; then
+    # Create backup tag if there are changes
+    create_backup_tag "latest commit on $CURRENT_BRANCH"
+    
     echo ""
     print_warning "Rolling back to latest commit on '$CURRENT_BRANCH' (discarding all local changes)..."
     # Fetch latest from remote for current branch
@@ -133,6 +188,9 @@ if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#tag
     print_warning "This will discard all local changes and untracked files!"
     read -p "Are you sure? (yes/no): " final_confirm
     if [ "$final_confirm" = "yes" ]; then
+        # Create backup tag if there are changes
+        create_backup_tag "$selected_tag"
+        
         # Discard local changes
         git reset --hard "$selected_tag"
         # Remove untracked files and directories
