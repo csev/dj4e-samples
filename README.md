@@ -1,9 +1,12 @@
 
-DJ4E Samples
-============
+DJ4E Samples Django 5.2
+=======================
 
-This is a set of Django projects that provide free sample code to
-support the www.dj4e.com web site.
+This is a set of Django 5.2 projects that provide free sample code to
+support the www.dj4e.com web site.  If you want to use these
+with Django 4.2,
+please switch to the `django42` branch
+at <a href="https://github.com/csev/dj4e-samples/blob/django42/README.md">README.md</a>
 
 You can see some of the samples working at
 
