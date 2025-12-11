@@ -6,17 +6,17 @@ support the www.dj4e.com web site.  These samples can be used
 for Django 5.2 or Django 4.2.  Each is on a branch that you should
 checkout.  Here are the instructions for the Django versions:
 
-* Django 5.2 [README.md](https://github.com/csev/dj4e-samples/blob/django52/README.md)
+* Django 5.2 [README.md](https://github.com/csev/dj4e-samples/blob/django52/README.md) (supported through 1Q28)
 
       git clone https://github.com/csev/dj4e-samples.git
       git checkout django52
 
-* Django 4.2 [README.md](https://github.com/csev/dj4e-samples/blob/django42/README.md)
+* Django 4.2 [README.md](https://github.com/csev/dj4e-samples/blob/django42/README.md) (supported through 1Q26)
 
       git clone https://github.com/csev/dj4e-samples.git
       git checkout django42
 
-* Django 4.0 [README.md](https://github.com/csev/dj4e-samples/blob/django40/README.md) (very obsolete)
+* Django 4.0 [README.md](https://github.com/csev/dj4e-samples/blob/django40/README.md) (Unsuported since August 3, 2022)
 
       git clone https://github.com/csev/dj4e-samples.git
       git checkout django40
