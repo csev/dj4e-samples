@@ -21,7 +21,7 @@
 {% csrf_token %}
 {{ form|crispy }}
 <input type="submit" class="btn btn-primary" value="Login Locally" />
-<input type="hidden" name="next" value="{{ next }}" />
+<input type="checkbox" id="show_password">
 <label for="show_password">Show Password</label>
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
@@ -37,14 +37,18 @@
 
 
     <script>
-        const passwordField = document.getElementById('id_password');
-        const showPasswordCheckbox = document.getElementById('show_password');
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordField = document.getElementById('id_password');
+            const showPasswordCheckbox = document.getElementById('show_password');
 
-        showPasswordCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                passwordField.type = 'text';
-            } else {
-                passwordField.type = 'password';
+            if (passwordField && showPasswordCheckbox) {
+                showPasswordCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        passwordField.type = 'text';
+                    } else {
+                        passwordField.type = 'password';
+                    }
+                });
             }
         });
     </script>
