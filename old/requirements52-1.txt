@@ -34,7 +34,7 @@ lxml==5.3.0
 Markdown==3.4.3
 oauthlib==3.2.2
 pycparser==2.21
-PyJWT==2.7.0
+PyJWT==2.10.1
 python3-openid==3.2.0
 pytz==2023.3
 requests==2.31.0
