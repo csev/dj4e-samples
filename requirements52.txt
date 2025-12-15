@@ -52,7 +52,7 @@ idna==3.11
 importlib_metadata==8.7.0
 lxml==6.0.2
 Markdown==3.7
-oauthlib==3.2.2
+oauthlib==3.3.1
 pycparser==2.22
 PyJWT==2.10.1
 # Note: jwcrypto uses legacy setup.py build (deprecation warning expected but harmless)
