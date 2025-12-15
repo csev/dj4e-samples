@@ -67,6 +67,6 @@ social-auth-core==4.8.1
 soupsieve==2.8
 sqlparse==0.5.3
 typing_extensions==4.15.0
-urllib3==2.6.0
+urllib3==2.6.2
 zipp==3.23.0
 elasticsearch>=8.0.0
