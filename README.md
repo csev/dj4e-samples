@@ -96,6 +96,22 @@ Django version.
 
 The Django version should be at least 5.2.
 
+Setting up Git (Source Code Managment) On PythonAnywhere
+--------------------------------------------------------
+
+Some of the assignments in this course have you use the `git` course code management
+system.  To use the more advanced features of `git` on PythonAnywhere
+you must first tell `git` who you are so that it can mark each of your changes.
+Run the following commands to configure `git` in your PythonAnywhere account:
+    
+    git config --global user.email "youremail@example.com"
+    git config --global user.name "Your name"
+
+You only need to do this once - you can check if you are already configured by running:
+
+    git config --global user.name
+
+If it prints out your name, you are already configured.
 
 Checking out The Sample Code
 ----------------------------
