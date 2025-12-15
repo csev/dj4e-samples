@@ -60,7 +60,7 @@ PyJWT==2.10.1
 jwcrypto==1.5.6
 python3-openid==3.2.0
 pytz==2025.2
-requests==2.32.4
+requests>=2.32.5
 requests-oauthlib==2.0.0
 social-auth-app-django==5.6.0
 social-auth-core==4.8.1
