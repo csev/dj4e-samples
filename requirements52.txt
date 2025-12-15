@@ -30,7 +30,7 @@ Django==5.2.9
 
 # The line below only installs the Django mysql support on Linux systems (i.e. like PythonAnywhere)
 
-mysqlclient==2.2.1; sys_platform == 'linux'
+mysqlclient==2.2.7; sys_platform == 'linux'
 
 # See this web site for details:
 #   https://pypi.org/project/mysqlclient/
