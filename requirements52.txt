@@ -36,7 +36,7 @@ mysqlclient==2.2.7; sys_platform == 'linux'
 #   https://pypi.org/project/mysqlclient/
 
 asgiref==3.8.1
-beautifulsoup4==4.13.3
+beautifulsoup4==4.14.3
 certifi==2025.1.31
 cffi==1.17.1
 charset-normalizer==3.4.4
