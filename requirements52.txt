@@ -37,7 +37,7 @@ mysqlclient==2.2.7; sys_platform == 'linux'
 
 asgiref==3.8.1
 beautifulsoup4==4.14.3
-certifi==2025.1.31
+certifi==2025.11.12
 cffi==1.17.1
 charset-normalizer==3.4.4
 crispy-bootstrap5==2025.6
