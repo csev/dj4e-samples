@@ -51,7 +51,7 @@ djangorestframework==3.16.0
 idna==3.11
 importlib_metadata==8.7.0
 lxml==6.0.2
-Markdown==3.7
+Markdown==3.10
 oauthlib==3.3.1
 pycparser==2.23
 PyJWT==2.10.1
