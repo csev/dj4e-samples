@@ -5,4 +5,18 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "django52"
-    security-updates-only: true
+
+    # We disable all normal version-update PRs. Because we manually
+    # advance minor and patch releases in bulk periodicallly when we
+    # change Django versions.
+    
+    # Dependabot security PRs are NOT controlled here —
+    # they must be enabled in the GitHub UI at:
+    #   Settings → Security → Dependabot security updates → Enable
+    #
+    # With that switch ON:
+    #   - You will only get pull requests if GitHub detects
+    #     a security advisory with a fix available.
+    #   - No non-security patch/minor/major version PRs will appear.
+
+    open-pull-requests-limit: 0
