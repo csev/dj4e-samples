@@ -1,16 +1,8 @@
 version: 2
 updates:
-  - package-ecosystem: pip
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
-      interval: weekly
-    target-branch: django52
-    ignore:
-      - dependency-name: "Django"
-        versions: [">5.2.*"]
-      ignore:
-      - dependency-name: "*"
-        update-types:
-          - "version-update:semver-major"
-          - "version-update:semver-minor"
-          - "version-update:semver-patch"
+      interval: "weekly"
+    target-branch: "django52"
+    security-updates-only: true
