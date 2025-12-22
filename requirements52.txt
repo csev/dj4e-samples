@@ -41,7 +41,7 @@ certifi==2025.11.12
 cffi==1.17.1
 charset-normalizer==3.4.4
 crispy-bootstrap5==2025.6
-cryptography==44.0.2
+cryptography==46.0.3
 defusedxml==0.7.1
 django-crispy-forms==2.5
 django-extensions==4.1
