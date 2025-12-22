@@ -8,3 +8,9 @@ updates:
     ignore:
       - dependency-name: "Django"
         versions: [">5.2.*"]
+      ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
