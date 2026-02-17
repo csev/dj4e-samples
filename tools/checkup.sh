@@ -133,6 +133,7 @@ fi
 if [[ "$HAVE_WARNING" == "true" ]]; then
   echo Please address the warning errors and re-run the script
 else
-  echo Checkup complete
+  HOME_MD5=$(echo -n "$HOME" | (md5sum 2>/dev/null || md5 -q 2>/dev/null) | cut -c1-6)
+  echo "Checkup complete $HOME $HOME_MD5"
 fi
 
