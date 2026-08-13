@@ -21,7 +21,8 @@
 #
 # Your Django version should be 5.2 or later.
 
-Django==5.2.9
+# Stay on Django 5.2.x — do not advance to Django 6 here.
+Django==5.2.17
 
 # If you are not running on MySQL you can keep just use SQLite for everything.
 
@@ -38,35 +39,35 @@ mysqlclient==2.2.7; sys_platform == 'linux'
 asgiref==3.11.0
 beautifulsoup4==4.14.3
 certifi==2025.11.12
-cffi==1.17.1
+cffi==2.1.1
 charset-normalizer==3.4.4
 crispy-bootstrap5==2025.6
-cryptography==44.0.2
+cryptography==50.0.0
 defusedxml==0.7.1
 django-crispy-forms==2.5
 django-extensions==4.1
 django-filter==25.2
 django-taggit==6.1.0
 djangorestframework==3.16.0
-idna==3.11
+idna==3.15
 importlib_metadata==8.7.0
-lxml==6.0.2
-Markdown==3.7
+lxml==6.1.1
+Markdown==3.8.1
 oauthlib==3.3.1
 pycparser==2.23
-PyJWT==2.10.1
+PyJWT==2.13.0
 # Note: jwcrypto uses legacy setup.py build (deprecation warning expected but harmless)
 # Latest version as of 2025 - package hasn't been updated to PEP 517 yet
-jwcrypto==1.5.6
+jwcrypto==1.5.8
 python3-openid==3.2.0
 pytz==2025.2
 requests>=2.32.5
 requests-oauthlib==2.0.0
 social-auth-app-django==5.6.0
 social-auth-core==4.8.1
-soupsieve==2.8
-sqlparse==0.5.3
+soupsieve==2.8.4
+sqlparse==0.5.5
 typing_extensions==4.15.0
-urllib3==2.6.2
+urllib3==2.7.0
 zipp==3.23.0
 elasticsearch>=8.0.0

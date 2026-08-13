@@ -6,6 +6,14 @@ updates:
       interval: "weekly"
     target-branch: "django52"
 
+    # Stay on Django 5.2 for this branch — never open PRs that jump to 6.x.
+    # 5.2.x security patches are still allowed.
+    ignore:
+      - dependency-name: "Django"
+        versions: ["6.x"]
+      - dependency-name: "django"
+        versions: ["6.x"]
+
     # We disable all normal version-update PRs. Because we manually
     # advance minor and patch releases in bulk periodicallly when we
     # change Django versions.
